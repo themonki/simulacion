@@ -92,16 +92,21 @@ public class tableroDeMaquinas extends JFrame{
 		
 		Component[] components = panelMaquinas.getComponents(); 
 		
-		for (int i=0;i<components.length;i++){
+		for (int i=0;i<25;i++){
 			
 
 			
 			JLabel l =(JLabel) panelMaquinas.getComponent(i);
-			//l.setBackground(color_no_disponible);
-			//l.setOpaque(true);
+			JLabel l2= new JLabel(l.getText());
+			
+			l2.setBackground(color_no_disponible);
+			l2.setOpaque(true);
+			
+			l2.setIcon(l.getIcon());
+			l2.setBorder(l.getBorder());
 			
 			
-			//panelReparacion.add(l);
+			panelReparacion.add(l2);
 			System.out.println(i);
 			
 		};
