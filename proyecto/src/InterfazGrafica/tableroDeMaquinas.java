@@ -1,6 +1,7 @@
 package InterfazGrafica;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -21,12 +22,16 @@ public class tableroDeMaquinas extends JFrame{
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
 	Color color_disponible=new Color(170,225,150); 
+	Color color_no_disponible= new Color(225,170,150);
+	int filas=5;
+	int columnas=10;
 	
 	public tableroDeMaquinas (){
 		
 		super("SIMULACIÓN DE MAQUINAS");
 		this.setLayout(new FlowLayout());
 		iniciarPanelMaquinas();
+		iniciarPanelReparacion();
 		
 		this.setSize(500, 500);
 		this.setVisible(true);
@@ -34,16 +39,15 @@ public class tableroDeMaquinas extends JFrame{
 	}
 	
 	public void iniciarPanelMaquinas (){
-		int filas=10;
-		int columnas=5;
-		GridLayout grilla= new GridLayout(columnas, filas,10,10);
+		
+		GridLayout grilla= new GridLayout(filas, columnas,10,10);
 		
 		panelMaquinas= new JPanel(grilla);
 		
 		
 		int numero_maquina=0;
-		for(int i= 0;i<columnas;i++){
-			for  (int j=0;j<filas;j++){
+		for(int i= 0;i<filas;i++){
+			for  (int j=0;j<columnas;j++){
 				
 				JLabel l=new JLabel(""+numero_maquina);
 				numero_maquina++;
@@ -59,10 +63,6 @@ public class tableroDeMaquinas extends JFrame{
 				
 				
 			}
-			
-			
-			
-			
 			
 		}
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
@@ -81,9 +81,47 @@ public class tableroDeMaquinas extends JFrame{
 	
 	public void iniciarPanelReparacion(){
 		
-		GridLayout grilla= new GridLayout(2, 10,10,10);
-		panelReparacion= new JPanel();
 		
+		GridLayout grilla= new GridLayout(filas, columnas,10,10);
+		
+		panelReparacion= new JPanel(grilla);
+		//GridLayout grilla= new GridLayout();
+		//panelReparacion= new JPanel(new FlowLayout());//grilla);
+		
+		int number =0;
+		
+		Component[] components = panelMaquinas.getComponents(); 
+		
+		for (int i=0;i<components.length;i++){
+			
+
+			
+			JLabel l =(JLabel) panelMaquinas.getComponent(i);
+			//l.setBackground(color_no_disponible);
+			//l.setOpaque(true);
+			
+			
+			//panelReparacion.add(l);
+			System.out.println(i);
+			
+		};
+				
+				
+				//System.out.println(number);
+				
+				//panelReparacion.add(l);
+			
+			
+		
+		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Repair Set");
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		panelReparacion.setBorder(borde);
+		//panelMaquinas.setBorder(BorderF
+		
+		this.add(panelReparacion);
 		
 		
 	}
