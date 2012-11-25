@@ -101,15 +101,60 @@ Las maquinas son componentes que pueden presentar fallas, las fallas afectan de 
 Para solucionar este problema el sistema cuenta con un ente reparador, y un set de maquinas dispuestas a suplantar las maquinas que se dañen durante el proceso, sin embargo no siempre son suficientes las maquinas auxiliares y encontramos fracciones de tiempo donde la producción no se lleva a cabo con las 50 maquinas funcionando.
 
 
-\subsection{Comportamiento de los Datos}
-
 
 
 \section{Modelo de Simulación.}
 
+\subsection{Eventos.}
+
+\begin{itemize}
+\item Falla maquina.
+\item Una maquina es reparada.
+\end{itemize}
+
+Diagramas de flujo de los eventos:
+\begin{center}
+
+\includegraphics[scale=0.47]{fallaMaquina.png}
+
+Figura2. \emph{evento: falla maquina.}
+\end{center}
+\begin{center}
+
+\includegraphics[scale=0.47]{reparar.png}
+
+Figura3. \emph{evento: Una maquina es reparada.}
+\end{center}
+
+
+
+\subsection{Reloj de La Simulación}
+
+La unidad de tiempo que vamos a utilizar son las horas, nuestro reloj va a avanzar de acuerdo al modelo de simulación LEF donde se guardan los tiempos de los eventos futuros y se ordenan cronológicamente así el cambio de estado del reloj  se va a dar por el tiempo del evento mas próximo en cada iteración.\\
+
+La simulacion termina cuando:
+\begin{enumerate}
+\item El reloj del sistema a llegado a un valor indicado.
+\item no hay mas eventos futuros en el arreglo.
+\end{enumerate}
+
+\subsection{Comportamiento de los Datos.}
+
+\begin{itemize}
+\item \textbf{Fallo de una maquina:}
+\item \textbf{Reparación de una maquina:}
+
+\end{itemize}
+
+
+
 \section{Diseño y Analisis de Escenarios.} 
 
+
 \section{Implementación del Modelo.}
+
+
+
 
 \section{Conclusiones.}
 
