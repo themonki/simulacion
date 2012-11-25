@@ -1,0 +1,20 @@
+Proyecto de Simulación de Eventos discretos
+
+Fallas de máquinas
+
+En una fábrica funcionan 50 máquinas que son operadas 8 horas al día durante
+5 días de la semana. Cada máquina está sujeta a fallas . Una máquina dañada
+se reemplaza por una de repuesto inmediatamente o cuando haya una disponi-
+ble. Al mismo tiempo, la máquina con daño se manda a reparación. Una vez
+reparada, se convierte en una máquina de repuesto disponible.
+
+Se quiere saber cuantos reparadores se debe contratar y cuantas máquinas adi-
+cionales se deben alquilar, si se quiere mantener la capacidad de producción al
+93 a 96 % de la que se tendría, si las 50 máquinas funcionarán siempre.
+Repara una máquina dañada se demora 8±3 horas. Si la máquina reasumen el
+trabajo sigue funcionando 16±6 horas hasta que se presente otro daño. El tiempo
+requerido para remover una máquina dañada y reemplazarla se puede considerar
+muy pequeño.
+
+Exposición: Mostrar como las fallas puede funcionar como actividades, que pa-
+san por el sistema.
