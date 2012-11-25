@@ -1,5 +1,8 @@
 package Simulacion;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Vector;
@@ -59,6 +62,20 @@ public class Simulacion {
 	private void imprimir(Evento e){
 		System.out.println(" " + this.reloj + ", " + e.getTipoEvento()+ ", " + this.colaAdicionales + 
 				", " + this.colaRepacion + ", " + this.listaEventos.toString());
+	}
+	
+	private void ordenar(){
+		Collections.sort(listaEventos, new Comparator<Evento<Integer, String>>() {
+
+			@Override
+			public int compare(Evento<Integer, String> o1,
+					Evento<Integer, String> o2) {
+				int compare = o1.getTiempo().compareTo(o2.getTiempo());
+				return compare;
+				
+			}
+			
+		});
 	}
 
 }
