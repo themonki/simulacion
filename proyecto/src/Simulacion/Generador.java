@@ -8,13 +8,13 @@ public class Generador {
 	private Random random;
 	
 	public Generador(int seed){
-		Random random;
-		random = new Random();
-		random.setSeed(seed);
+		//Random random;
+		this.random = new Random();
+		this.random.setSeed(seed);
 	}
 	
 	public double tiempoFalloMaquina(){
-		double r;
+		double r=0;
 		r = //(int) (Math.floor(
 				random.nextDouble();//));//*(12)) + 10);
 		return r;
