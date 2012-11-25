@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class tableroDeMaquinas extends JFrame{
@@ -22,16 +23,18 @@ public class tableroDeMaquinas extends JFrame{
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
 	Color color_disponible=new Color(170,225,150); 
-	Color color_no_disponible= new Color(225,170,150);
+	Color color_no_disponible= new Color(225,150,150);
 	int filas=5;
 	int columnas=10;
 	
 	public tableroDeMaquinas (){
 		
-		super("SIMULACIÓN DE MAQUINAS");
+		super("Machine Simulation");
 		this.setLayout(new FlowLayout());
 		iniciarPanelMaquinas();
 		iniciarPanelReparacion();
+		
+		this.add(new Button("Start Simulation"));
 		
 		this.setSize(500, 500);
 		this.setVisible(true);
@@ -107,7 +110,7 @@ public class tableroDeMaquinas extends JFrame{
 			
 			
 			panelReparacion.add(l2);
-			System.out.println(i);
+			
 			
 		};
 				
