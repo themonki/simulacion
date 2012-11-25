@@ -1,4 +1,4 @@
 *.jar
 *.class
 proyecto/bin/*
-proyecto/images/*
+proyecto/images/*.class
