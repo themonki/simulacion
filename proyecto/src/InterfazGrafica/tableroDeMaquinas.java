@@ -2,16 +2,20 @@ package InterfazGrafica;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.ScrollPane;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -22,6 +26,7 @@ public class tableroDeMaquinas extends JFrame{
 	
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
+	JScrollPane scrollReparacion; 
 	Color color_disponible=new Color(170,225,150); 
 	Color color_no_disponible= new Color(225,150,150);
 	int filas=5;
@@ -85,9 +90,12 @@ public class tableroDeMaquinas extends JFrame{
 	public void iniciarPanelReparacion(){
 		
 		
-		GridLayout grilla= new GridLayout(filas, columnas,10,10);
 		
-		panelReparacion= new JPanel(grilla);
+		
+		panelReparacion= new JPanel();
+		BoxLayout box=new BoxLayout(panelReparacion,BoxLayout.Y_AXIS);
+		
+		panelReparacion.setLayout(box);
 		//GridLayout grilla= new GridLayout();
 		//panelReparacion= new JPanel(new FlowLayout());//grilla);
 		
@@ -120,16 +128,21 @@ public class tableroDeMaquinas extends JFrame{
 				//panelReparacion.add(l);
 			
 			
-		
+		scrollReparacion= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Repair Set");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
-		panelReparacion.setBorder(borde);
-		//panelMaquinas.setBorder(BorderF
+		scrollReparacion.setBorder(borde);
 		
-		this.add(panelReparacion);
+		
+		
+		scrollReparacion.setViewportView(panelReparacion);
+		
+		scrollReparacion.setPreferredSize(new Dimension(150, 500));
+		
+		this.add(scrollReparacion);
 		
 		
 	}
