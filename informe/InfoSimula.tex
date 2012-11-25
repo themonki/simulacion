@@ -81,14 +81,30 @@
 
 \section{Análisis del Sistema y del Problema.}
 \subsection{Descripción del Sistema}
-El sistema se compone de un conjunto de maquinas, las maquinas procesan la entrada y generan una salida, en el  sistema no existe conexión entre las maquinas cada una procesa su input independientemente de las otras, las maquinas se mantienen encendidas 8 horas del día, es decir que el rendimiento total semanal se calcula con la formula $8*5*50$ donde 8 son las  horas del dia , 5 son los dias de la  semana, y 50 es el número de maquinas.
+El sistema se compone de un conjunto de maquinas, las maquinas procesan la entrada y generan una salida, en el  sistema no existe conexión entre las maquinas cada una procesa su input independientemente de las otras, las maquinas se mantienen encendidas 8 horas del día, es decir que el rendimiento total semanal se calcula con la formula $8*5*50$ donde 8 son las  horas del dia , 5 son los días de la  semana, y 50 es el número de maquinas.\\
+
+En el sistema siempre tendremos recursos para la entrada que procesan las maquinas, en el sistema se cuenta con un conjunto de maquinas auxiliares, y una cola de reparación en caso de que ocurra algún fallo en alguna maquina esta pasa a la cola de reparación y luego al prestador de servicio que la repara.
+
+
 \subsection{Descripción Gráfica del Sistema}
 \begin{center}
 
-\includegraphics[scale=0.50]{Simulacion.png}
+\includegraphics[scale=0.47]{Simulacion.png}
 
-Figura1.\emph{Comportamiento del Sistema}
+Figura1. \emph{Comportamiento del Sistema}
 \end{center}
+
+\subsection{Descripción del Problema}
+
+Las maquinas son componentes que pueden presentar fallas, las fallas afectan de manera general a la producción del sistema.\\
+
+Para solucionar este problema el sistema cuenta con un ente reparador, y un set de maquinas dispuestas a suplantar las maquinas que se dañen durante el proceso, sin embargo no siempre son suficientes las maquinas auxiliares y encontramos fracciones de tiempo donde la producción no se lleva a cabo con las 50 maquinas funcionando.
+
+
+\subsection{Comportamiento de los Datos}
+
+
+
 \section{Modelo de Simulación.}
 
 \section{Diseño y Analisis de Escenarios.} 
