@@ -26,7 +26,8 @@ public class tableroDeMaquinas extends JFrame{
 	
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
-	JScrollPane scrollReparacion; 
+	JPanel panelDisponibles;
+	JScrollPane scrollReparacion,scrollDisponibles; 
 	Color color_disponible=new Color(170,225,150); 
 	Color color_no_disponible= new Color(225,150,150);
 	int filas=5;
@@ -38,6 +39,7 @@ public class tableroDeMaquinas extends JFrame{
 		this.setLayout(new FlowLayout());
 		iniciarPanelMaquinas();
 		iniciarPanelReparacion();
+		iniciarPanelDisponibles();
 		
 		this.add(new Button("Start Simulation"));
 		
@@ -143,6 +145,65 @@ public class tableroDeMaquinas extends JFrame{
 		scrollReparacion.setPreferredSize(new Dimension(150, 500));
 		
 		this.add(scrollReparacion);
+		
+		
+	}
+	
+	
+	public void iniciarPanelDisponibles(){
+		
+		
+		panelDisponibles= new JPanel();
+		BoxLayout box=new BoxLayout(panelDisponibles,BoxLayout.Y_AXIS);
+		
+		panelDisponibles.setLayout(box);
+		//GridLayout grilla= new GridLayout();
+		//panelReparacion= new JPanel(new FlowLayout());//grilla);
+		
+		int number =0;
+		
+		Component[] components = panelDisponibles.getComponents(); 
+		
+		for (int i=0;i<25;i++){
+			
+
+			
+			JLabel l =(JLabel) panelMaquinas.getComponent(i);
+			JLabel l2= new JLabel(l.getText());
+			
+			l2.setBackground(color_disponible);
+			l2.setOpaque(true);
+			
+			l2.setIcon(l.getIcon());
+			l2.setBorder(l.getBorder());
+			
+			
+			panelDisponibles.add(l2);
+			
+			
+		};
+				
+				
+				//System.out.println(number);
+				
+				//panelReparacion.add(l);
+			
+			
+		scrollDisponibles= new JScrollPane();
+		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Availables");
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		scrollDisponibles.setBorder(borde);
+		
+		
+		
+		scrollDisponibles.setViewportView(panelDisponibles);
+		
+		scrollDisponibles.setPreferredSize(new Dimension(150, 500));
+		
+		this.add(scrollDisponibles);
 		
 		
 	}
