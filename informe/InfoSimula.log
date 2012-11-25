@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.10.10)  25 NOV 2012 11:30
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.10.10)  25 NOV 2012 12:38
 entering extended mode
 **InfoSimula.tex
 (C:\Users\Felipe\.ssh\simulacion\informe\InfoSimula.tex
@@ -492,6 +492,10 @@ File: Simulacion.png Graphic file (type png)
 Package pdftex.def Info: Simulacion.png used on input line 88.
 (pdftex.def)             Requested size: 188.20265pt x 288.07553pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
+
+ []
+
 [1
 
 {C:/Users/Felipe/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/F
@@ -512,7 +516,7 @@ e1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti
 10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on InfoSimula.pdf (2 pages, 131336 bytes).
+Output written on InfoSimula.pdf (2 pages, 133064 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
