@@ -83,15 +83,14 @@ public class Simulacion {
 	 * Función que genera el evento de reparación de una maquina en el sistema
 	 */
 	public void eventoReparacion(){
-		listaEventos.add(new Evento<Integer, String> (this.reloj+tiempos.tiempoReparacion(),"R"));
 		if(colaFuncionamiento< MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar
 			colaFuncionamiento++;
 		}else{//si esta completo, se coloca como adicional
 			colaAdicionales++;
 		}
-		
-		
+				
 		if(colaRepacion>0){//se tienen maquinas a reparar
+			listaEventos.add(new Evento<Integer, String> (this.reloj+tiempos.tiempoReparacion(),"R"));
 			colaRepacion--;
 		}else{// cola del reparador libre
 			reparadoresDisponibles++;
@@ -128,7 +127,7 @@ public class Simulacion {
 	 */
 	private void imprimir(Evento<Integer, String> e){
 		System.out.println(" " + this.reloj + ", E=" + e.getTipoEvento()+ ", CA=" + this.colaAdicionales + 
-				", CR=" + this.colaRepacion + ", CF" + this.colaFuncionamiento+ ", LEF=" + this.listaEventos.toString());
+				", CR=" + this.colaRepacion + ", CF=" + this.colaFuncionamiento+ ", NR=" + this.reparadoresDisponibles +", LEF=" + this.listaEventos.toString());
 	}
 	
 
@@ -139,7 +138,7 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(456778, 50,1,1,80);
+			Simulacion s = new Simulacion(12345, 50,1,1,200);
 			s.starSimulacion();
 		
 		}
