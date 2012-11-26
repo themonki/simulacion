@@ -28,7 +28,7 @@ public class Evento<Tiempo,TipoEvento> {
 
 	public String toString(){
 		String a;
-		a= (String) "seguro";
+		a= "("+this.tiempo + "," + this.tipoEvento+ ")";
 		return a;
 	}
 
