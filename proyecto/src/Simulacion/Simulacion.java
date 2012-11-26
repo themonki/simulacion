@@ -20,6 +20,7 @@ public class Simulacion {
 	private int colaAdicionales;
 	private int colaFuncionamiento;
 	private boolean ocupado;
+	private int MAX_MAQUINAS=50;
 	
 	public Simulacion(int seed, int colaAdicionales){
 		
@@ -36,7 +37,7 @@ public class Simulacion {
 		reloj=0;
 		tiempos = new Generador(seed);	
 		this.colaAdicionales= colaAdicionales;
-		this.colaFuncionamiento=50;
+		this.colaFuncionamiento=MAX_MAQUINAS;
 		colaRepacion=0;
 		ocupado=false;
 		
@@ -65,6 +66,19 @@ public class Simulacion {
 	}
 	
 	public void eventoReparacion(){
+		listaEventos.add(new Evento<Integer, String> (this.reloj+tiempos.tiempoReparacion(),"R"));
+		if(colaFuncionamiento< MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar
+			colaFuncionamiento++;
+		}else{//si esta completo, se coloca como adicional
+			colaAdicionales++;
+		}
+		
+		
+		if(colaRepacion>0){//se tienen maquinas a reparar
+			colaRepacion--;
+		}else{// cola del reparador libre
+			ocupado=false;
+		}
 	}
 	
 	public void starSimulacion()
