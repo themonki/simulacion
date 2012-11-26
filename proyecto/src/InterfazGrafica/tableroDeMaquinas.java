@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -26,12 +27,18 @@ public class tableroDeMaquinas extends JFrame{
 	
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
-	JPanel panelDisponibles;
+	JPanel panelDisponibles,panelDatosDeEntrada;
 	JScrollPane scrollReparacion,scrollDisponibles; 
 	Color color_disponible=new Color(170,225,150); 
 	Color color_no_disponible= new Color(225,150,150);
 	int filas=5;
 	int columnas=10;
+	
+	JTextField numero_maquinas_extras,tiempo,numero_eventos;
+	JTextField numero_reparadores;
+	
+	JLabel numero_maquinas_extras_label,tiempo_label,eventos_label;
+	JLabel numero_reparadores_label;
 	
 	public tableroDeMaquinas (){
 		
@@ -40,10 +47,11 @@ public class tableroDeMaquinas extends JFrame{
 		iniciarPanelMaquinas();
 		iniciarPanelReparacion();
 		iniciarPanelDisponibles();
+		iniciarDatosDeEntrada();
 		
 		this.add(new Button("Start Simulation"));
 		
-		this.setSize(500, 500);
+		this.setSize(1200, 800);
 		this.setVisible(true);
 		
 	}
@@ -204,6 +212,52 @@ public class tableroDeMaquinas extends JFrame{
 		scrollDisponibles.setPreferredSize(new Dimension(150, 500));
 		
 		this.add(scrollDisponibles);
+		
+		
+	}
+	
+	public void iniciarDatosDeEntrada(){
+		panelDatosDeEntrada= new JPanel(new GridLayout(4,2,10,10));
+		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Incoming Data");
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		panelDatosDeEntrada.setBorder(borde);
+		//panelDatosDeEntrada.setPreferredSize(new Dimension(350, 200));
+		
+		
+		
+		 numero_maquinas_extras= new JTextField(10);
+		 numero_reparadores= new JTextField(10);
+		 tiempo= new JTextField(10);
+		 numero_eventos= new JTextField(10) ;
+		 
+		 
+		 tiempo_label= new JLabel("Timer Finish");
+		 tiempo_label.setFont(Estilos.fontLabels);
+		 eventos_label= new JLabel("Events Number");
+		 eventos_label.setFont(Estilos.fontLabels);		 
+				
+		
+		 numero_maquinas_extras_label= new JLabel("Number Machine Avalaible");
+		 numero_maquinas_extras_label.setFont(Estilos.fontLabels);
+		 numero_reparadores_label= new JLabel("Number Repairers");
+		 numero_reparadores_label.setFont(Estilos.fontLabels);
+		 
+		 
+		 
+		 panelDatosDeEntrada.add(numero_maquinas_extras_label);
+		 panelDatosDeEntrada.add(numero_maquinas_extras);
+		 panelDatosDeEntrada.add(numero_reparadores_label);
+		 panelDatosDeEntrada.add(numero_reparadores);
+		 panelDatosDeEntrada.add(tiempo_label);
+		 panelDatosDeEntrada.add(tiempo);
+		 panelDatosDeEntrada.add(eventos_label);
+		 panelDatosDeEntrada.add(numero_eventos);
+		 
+		 
+		 this.add(panelDatosDeEntrada);
 		
 		
 	}
