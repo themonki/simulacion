@@ -59,6 +59,11 @@ public class Simulacion {
 	 */
 	public void eventoFallo(){
 		
+		if(colaFuncionamiento<=0){
+			//no ahi maquinas a fallar
+			return;
+		}
+		
 		//Nuevo evento de fallo.
 		listaEventos.add(new Evento<Integer, String>(this.reloj+ tiempos.tiempoFalloMaquina(), "F"));
 		if(reparadoresDisponibles>0){
@@ -102,10 +107,11 @@ public class Simulacion {
 	 */
 	public void starSimulacion()
 	{
-		Evento<Integer, String> uno= new Evento<Integer, String>(0, "F");
-		listaEventos.add(uno);
-		imprimir(uno);
-		
+		for(int i=0;i<25;i++){//ANALIZAR ESTO
+			Evento<Integer, String> uno= new Evento<Integer, String>(i*14, "F");
+			listaEventos.add(uno);
+			imprimir(uno);
+		}
 		while (this.reloj <= this.MAX_TIEMPO){
 			Evento<Integer, String> evento = listaEventos.poll();
 			reloj= (Integer) evento.getTiempo();
@@ -138,7 +144,7 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,1,1,200);
+			Simulacion s = new Simulacion(12345, 50,10,13,500);
 			s.starSimulacion();
 		
 		}

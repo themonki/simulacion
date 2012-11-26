@@ -98,7 +98,7 @@ Figura1. \emph{Comportamiento del Sistema}
 
 La fabrica quiere mantener el stock de maquinaria principal en funcionamiento continuo por lo menos en un 96\% o 98\%. El problema que se tiene es que las maquinas son componentes que pueden presentar fallas, y estas afectan de manera general a la producción de la fabrica.\\
 
-Para solucionar este problema se disponen de maquinas adicionales dispuestas a suplantar las maquinas que se dañen durante el proceso, y tambien se cuenta con un equipo de mantenimiento que puede reparar las maquinas que se dañen. Sin embargo no siempre son suficientes las maquinas auxiliares y la cantidad de personal para atender las maquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 maquinas. Por esta razon la fabrica quiere determinar cuantas maquinas adicionales y cuanto personal es el necesario para cumplir la meta.
+Para solucionar este problema la fabrica ha dispuesto de maquinas adicionales dispuestas a suplantar las maquinas que se dañen durante el proceso, que tienen a fallar luego de $16\pm6$ horas, y tambien se cuenta con un equipo de mantenimiento que puede reparar las maquinas que se dañen en aproximadamente $8\pm3$ horas. Sin embargo no siempre son suficientes las maquinas auxiliares y la cantidad de personal para atender las maquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 maquinas. Por esta razon la fabrica quiere determinar cuantas maquinas adicionales y cuanto personal es el necesario para cumplir la meta.
 
 \section{Modelo de Simulación.}
 
@@ -127,7 +127,7 @@ Figura3. \emph{Evento: Se realiza la reparación de una de las maquinas dañadas
 
 \subsection{Reloj de La Simulación}
 
-La unidad de tiempo que vamos a utilizar son las horas, nuestro reloj va a avanzar de acuerdo al modelo de simulación LEF donde se guardan los tiempos de los eventos futuros y se ordenan cronológicamente así el cambio de estado del reloj  se va a dar por el tiempo del evento mas próximo en cada iteración.\\
+La unidad de tiempo que se va a emplear es la hora, el reloj va a avanzar de acuerdo al modelo de simulación LEF, donde se almacenan los tiempos de los eventos futuros y se ordenan cronológicamente, así el cambio de estado del reloj  se va a dar por el tiempo del evento más próximo en cada iteración.\\
 
 La simulacion termina cuando:
 \begin{enumerate}
