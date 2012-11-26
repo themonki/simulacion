@@ -10,6 +10,7 @@ import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -43,7 +45,11 @@ public class tableroDeMaquinas extends JFrame{
 	JLabel numero_maquinas_extras_label,tiempo_label,eventos_label;
 	JLabel numero_reparadores_label;
 	
+	Timer time ;
+	
 	public tableroDeMaquinas (){
+		
+		
 		
 		super("Machine Simulation");
 		this.setLayout(new FlowLayout());
@@ -60,6 +66,16 @@ public class tableroDeMaquinas extends JFrame{
 		
 		this.setSize(1200, 800);
 		this.setVisible(true);
+		
+		
+		time= new Timer(1000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				borrarPanel(panelMaquinas, 1);
+				
+			}
+		});
 		
 	}
 	
@@ -301,12 +317,16 @@ public class tableroDeMaquinas extends JFrame{
 		agregarPanel(panelDisponibles,Integer.parseInt(numero_maquinas_extras.getText()),color_disponible);
 		agregarPanel(panelReparacion,5,color_no_disponible);
 		
+		
+		
 		}
 		
 		else {
 			
 			borrarPanel(panelMaquinas, 1);
 		}
+		
+		time.start();
 		
 	}
 	
