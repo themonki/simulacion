@@ -81,9 +81,9 @@
 
 \section{Análisis del Sistema y del Problema.}
 \subsection{Descripción del Sistema}
-El sistema se compone de un conjunto de maquinas, las maquinas procesan la entrada y generan una salida, en el  sistema no existe conexión entre las maquinas cada una procesa su input independientemente de las otras, las maquinas se mantienen encendidas 8 horas del día, es decir que el rendimiento total semanal se calcula con la formula $8*5*50$ donde 8 son las  horas del dia , 5 son los días de la  semana, y 50 es el número de maquinas.\\
+El sistema esta compuesto de un conjunto de maquinas que funcionan en una fabrica, entre las cuales no existe conexión de manera que cada una trabaja independientemente de las otras; estas se mantienen encendidas 8 horas del día, es decir que el rendimiento total semanal se calcula con la formula $8*5*50$ donde 8 son las  horas del dia, 5 son los días de la  semana, y 50 es el número de maquinas que están laborando.\\
 
-En el sistema siempre tendremos recursos para la entrada que procesan las maquinas, en el sistema se cuenta con un conjunto de maquinas auxiliares, y una cola de reparación en caso de que ocurra algún fallo en alguna maquina esta pasa a la cola de reparación y luego al prestador de servicio que la repara.
+Dentro de la fabrica se cuenta con un conjunto de maquinas adicionales que son enviadas a trabajar si alguna de las maquinas presenta una falla. Tambien se cuenta con personal de mantenimiento, que se encargan de reparar las maquinas que puedan fallar; cada empleado puede reparar una maquina al tiempo, en caso de no tener a algun empleado disponible se debe ponerse en espera, y en el momento de que un empleado la reemplace esta se convierte en una maquina adicional.
 
 
 \subsection{Descripción Gráfica del Sistema}
@@ -96,20 +96,17 @@ Figura1. \emph{Comportamiento del Sistema}
 
 \subsection{Descripción del Problema}
 
-Las maquinas son componentes que pueden presentar fallas, las fallas afectan de manera general a la producción del sistema.\\
+La fabrica quiere mantener el stock de maquinaria principal en funcionamiento continuo por lo menos en un 96\% o 98\%. El problema que se tiene es que las maquinas son componentes que pueden presentar fallas, y estas afectan de manera general a la producción de la fabrica.\\
 
-Para solucionar este problema el sistema cuenta con un ente reparador, y un set de maquinas dispuestas a suplantar las maquinas que se dañen durante el proceso, sin embargo no siempre son suficientes las maquinas auxiliares y encontramos fracciones de tiempo donde la producción no se lleva a cabo con las 50 maquinas funcionando.
-
-
-
+Para solucionar este problema se disponen de maquinas adicionales dispuestas a suplantar las maquinas que se dañen durante el proceso, y tambien se cuenta con un equipo de mantenimiento que puede reparar las maquinas que se dañen. Sin embargo no siempre son suficientes las maquinas auxiliares y la cantidad de personal para atender las maquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 maquinas. Por esta razon la fabrica quiere determinar cuantas maquinas adicionales y cuanto personal es el necesario para cumplir la meta.
 
 \section{Modelo de Simulación.}
 
 \subsection{Eventos.}
 
 \begin{itemize}
-\item Falla maquina.
-\item Una maquina es reparada.
+\item Falla de una maquina.
+\item Reparación de una maquina.
 \end{itemize}
 
 Diagramas de flujo de los eventos:
@@ -117,13 +114,13 @@ Diagramas de flujo de los eventos:
 
 \includegraphics[scale=0.47]{fallaMaquina.png}
 
-Figura2. \emph{evento: falla maquina.}
+Figura2. \emph{Evento: Se presenta una falla en una de las maquina.}
 \end{center}
 \begin{center}
 
 \includegraphics[scale=0.47]{reparar.png}
 
-Figura3. \emph{evento: Una maquina es reparada.}
+Figura3. \emph{Evento: Se realiza la reparación de una de las maquinas dañadas.}
 \end{center}
 
 
