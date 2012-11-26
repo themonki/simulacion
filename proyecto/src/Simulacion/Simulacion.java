@@ -80,7 +80,7 @@ public class Simulacion {
 	}
 	
 	/**
-	 * Funcion que genera el evento de reparacion de una maquina en el sistema
+	 * Función que genera el evento de reparación de una maquina en el sistema
 	 */
 	public void eventoReparacion(){
 		listaEventos.add(new Evento<Integer, String> (this.reloj+tiempos.tiempoReparacion(),"R"));
