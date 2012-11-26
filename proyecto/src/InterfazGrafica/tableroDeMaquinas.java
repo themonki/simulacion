@@ -7,6 +7,9 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -14,9 +17,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -40,7 +45,11 @@ public class tableroDeMaquinas extends JFrame{
 	JLabel numero_maquinas_extras_label,tiempo_label,eventos_label;
 	JLabel numero_reparadores_label;
 	
+	Timer time ;
+	
 	public tableroDeMaquinas (){
+		
+		
 		
 		super("Machine Simulation");
 		this.setLayout(new FlowLayout());
@@ -49,12 +58,27 @@ public class tableroDeMaquinas extends JFrame{
 		iniciarPanelDisponibles();
 		iniciarDatosDeEntrada();
 		
-		this.add(new Button("Start Simulation"));
+		Button start= new Button("Start Simulation");
+		start.addActionListener(new manejador());
+		this.add(start);
+		
+		
 		
 		this.setSize(1200, 800);
 		this.setVisible(true);
 		
+		
+		time= new Timer(1000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				borrarPanel(panelMaquinas, 1);
+				
+			}
+		});
+		
 	}
+	
 	
 	public void iniciarPanelMaquinas (){
 		
@@ -67,7 +91,7 @@ public class tableroDeMaquinas extends JFrame{
 		for(int i= 0;i<filas;i++){
 			for  (int j=0;j<columnas;j++){
 				
-				JLabel l=new JLabel(""+numero_maquina);
+				JLabel l=new JLabel();
 				numero_maquina++;
 			
 				//l.setBackground(Color.GREEN);
@@ -97,6 +121,10 @@ public class tableroDeMaquinas extends JFrame{
 		
 	}
 	
+	//---------------------PANEL DE REPARACION-------------------------
+	
+	
+	
 	public void iniciarPanelReparacion(){
 		
 		
@@ -113,25 +141,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		Component[] components = panelMaquinas.getComponents(); 
 		
-		for (int i=0;i<25;i++){
-			
-
-			
-			JLabel l =(JLabel) panelMaquinas.getComponent(i);
-			JLabel l2= new JLabel(l.getText());
-			
-			l2.setBackground(color_no_disponible);
-			l2.setOpaque(true);
-			
-			l2.setIcon(l.getIcon());
-			l2.setBorder(l.getBorder());
-			
-			
-			panelReparacion.add(l2);
-			
-			
-		};
-				
+						
 				
 				//System.out.println(number);
 				
@@ -157,6 +167,40 @@ public class tableroDeMaquinas extends JFrame{
 		
 	}
 	
+	//---------------------  ------------------------
+	
+	public void agregarPanel(JPanel panel ,int cantidad,Color color){
+		
+		
+		for (int i=0;i<cantidad;i++){
+			
+
+			JLabel l=new JLabel();
+		
+			//l.setBackground(Color.GREEN);
+			l.setBackground(color);
+			l.setOpaque(true);
+			l.setIcon(new ImageIcon("images/images.gif"));
+			l.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY));
+			
+			panel.add(l);						
+		};
+		panel.updateUI();
+		
+	}
+	
+	public void borrarPanel(JPanel panel ,int cantidad){
+		
+		
+		for (int i=0;i<cantidad;i++){
+					
+			panel.remove(0);						
+		};
+		panel.updateUI();
+		
+	}
+	
+	//-----------------------------------------------------
 	
 	public void iniciarPanelDisponibles(){
 		
@@ -165,36 +209,7 @@ public class tableroDeMaquinas extends JFrame{
 		BoxLayout box=new BoxLayout(panelDisponibles,BoxLayout.Y_AXIS);
 		
 		panelDisponibles.setLayout(box);
-		//GridLayout grilla= new GridLayout();
-		//panelReparacion= new JPanel(new FlowLayout());//grilla);
 		
-		int number =0;
-		
-		Component[] components = panelDisponibles.getComponents(); 
-		
-		for (int i=0;i<25;i++){
-			
-
-			
-			JLabel l =(JLabel) panelMaquinas.getComponent(i);
-			JLabel l2= new JLabel(l.getText());
-			
-			l2.setBackground(color_disponible);
-			l2.setOpaque(true);
-			
-			l2.setIcon(l.getIcon());
-			l2.setBorder(l.getBorder());
-			
-			
-			panelDisponibles.add(l2);
-			
-			
-		};
-				
-				
-				//System.out.println(number);
-				
-				//panelReparacion.add(l);
 			
 			
 		scrollDisponibles= new JScrollPane();
@@ -253,8 +268,8 @@ public class tableroDeMaquinas extends JFrame{
 		 panelDatosDeEntrada.add(numero_reparadores);
 		 panelDatosDeEntrada.add(tiempo_label);
 		 panelDatosDeEntrada.add(tiempo);
-		 panelDatosDeEntrada.add(eventos_label);
-		 panelDatosDeEntrada.add(numero_eventos);
+		 //panelDatosDeEntrada.add(eventos_label);
+		 //panelDatosDeEntrada.add(numero_eventos);
 		 
 		 
 		 this.add(panelDatosDeEntrada);
@@ -263,7 +278,59 @@ public class tableroDeMaquinas extends JFrame{
 	}
 	
 	
+	public String validar() {
+		
+		validador valida= new validador();
+		String mensaje="" ;
+		mensaje+=valida.validar("Number Machine Avalaible",numero_maquinas_extras.getText(),true ,1, 20);
+		
+		mensaje+=valida.validar("Number Repairers",numero_reparadores.getText(),true ,1, 20);
 	
+		mensaje+=valida.validar("Timer Finish",tiempo.getText(),true ,10, 100);
+		
+		//mensaje+=valida.validar("Events Number",numero_eventos.getText(),true ,10, 100);
+		
+		
+		if (!mensaje.equals("")){
+			JOptionPane.showMessageDialog(this,mensaje);
+			
+			
+		}
+		
+		return mensaje;
+		
+		
+		
+	}
+	
+	private class manejador implements ActionListener {
+		
+		
 	
 
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		if(validar().equals(""))
+		{
+			
+		agregarPanel(panelDisponibles,Integer.parseInt(numero_maquinas_extras.getText()),color_disponible);
+		agregarPanel(panelReparacion,5,color_no_disponible);
+		
+		
+		
+		}
+		
+		else {
+			
+			borrarPanel(panelMaquinas, 1);
+		}
+		
+		time.start();
+		
+	}
+	
+	}
+
+	
 }
