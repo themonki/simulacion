@@ -150,7 +150,7 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,8,7,1300);
+			Simulacion s = new Simulacion(12345, 50,1,1,2000);
 			s.starSimulacion();
 		
 		}
