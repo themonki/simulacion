@@ -3,6 +3,8 @@ package Simulacion;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 
 /**
  * @author monki
@@ -22,6 +24,8 @@ public class Simulacion {
 	private int MAX_REPARADOR;
 	private int MAX_MAQUINAS_ADICIONALES;
 	private int MAX_TIEMPO;
+	private String INDICADOR_FALLA="F";
+	private String INDICADOR_REPARACION="R";
 
 	
 	/**
@@ -34,7 +38,7 @@ public class Simulacion {
 	public Simulacion(int seed, int colaFuncionamiento, int colaAdicionales, int cantReparadores, int tiempoMax){
 		
 		//listaEventos = new LinkedList<Evento<Integer,String>>();
-		listaEventos = new PriorityQueue<Evento<Integer,String>>(11, new Comparator<Evento<Integer, String>>() {
+		this.listaEventos = new PriorityQueue<Evento<Integer,String>>(11, new Comparator<Evento<Integer, String>>() {
 
 			@Override
 			public int compare(Evento<Integer, String> o1,
@@ -43,11 +47,10 @@ public class Simulacion {
 				return compare;
 			}
 		});
-		reloj=0;
-		tiempos = new Generador(seed);
-		this.MAX_TIEMPO = tiempoMax;
-		
-		colaRepacion=0;		
+		this.reloj=0;
+		this.tiempos = new Generador(seed);
+		this.MAX_TIEMPO = tiempoMax;		
+		this.colaRepacion=0;		
 		this.colaAdicionales= this.MAX_MAQUINAS_ADICIONALES = colaAdicionales;
 		this.colaFuncionamiento= this.MAX_MAQUINAS=colaFuncionamiento;		
 		this.reparadoresDisponibles = this.MAX_REPARADOR = cantReparadores;
@@ -58,27 +61,27 @@ public class Simulacion {
 	 * 
 	 */
 	public void eventoFallo(){
-		
-		if(colaFuncionamiento<=0){
+				
+		if(this.colaFuncionamiento<=0){
 			//no ahi maquinas a fallar
 			return;
 		}
 		
 		//Nuevo evento de fallo.
-		listaEventos.add(new Evento<Integer, String>(this.reloj+ tiempos.tiempoFalloMaquina(), "F"));
-		if(reparadoresDisponibles>0){
-			reparadoresDisponibles--;
+		listaEventos.add(new Evento<Integer, String>(this.reloj+ this.tiempos.tiempoFalloMaquina(), this.INDICADOR_FALLA));
+		if(this.reparadoresDisponibles>0){
+			this.reparadoresDisponibles--;
 			//Evento de reparacion
-			listaEventos.add(new Evento<Integer, String>(this.reloj+tiempos.tiempoReparacion(), "R"));
+			this.listaEventos.add(new Evento<Integer, String>(this.reloj+this.tiempos.tiempoReparacion(), this.INDICADOR_REPARACION));
 		}
 		else{
-			colaRepacion++; //Se suma a la cola de repacion
+			this.colaRepacion++; //Se suma a la cola de repacion
 		}
 		
-		if(colaAdicionales>0){
-			colaAdicionales--; //Si hay maquinas adicionales se reasume.
+		if(this.colaAdicionales>0){
+			this.colaAdicionales--; //Si hay maquinas adicionales se reasume.
 		}else{
-			colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
+			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
 		}
 		
 		
@@ -88,17 +91,18 @@ public class Simulacion {
 	 * Función que genera el evento de reparación de una maquina en el sistema
 	 */
 	public void eventoReparacion(){
-		if(colaFuncionamiento< MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar
-			colaFuncionamiento++;
+			
+		if(this.colaFuncionamiento< this.MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar
+			this.colaFuncionamiento++;
 		}else{//si esta completo, se coloca como adicional
-			colaAdicionales++;
+			this.colaAdicionales++;
 		}
 				
-		if(colaRepacion>0){//se tienen maquinas a reparar
-			listaEventos.add(new Evento<Integer, String> (this.reloj+tiempos.tiempoReparacion(),"R"));
-			colaRepacion--;
+		if(this.colaRepacion>0){//se tienen maquinas a reparar
+			this.listaEventos.add(new Evento<Integer, String> (this.reloj+this.tiempos.tiempoReparacion(),this.INDICADOR_REPARACION));
+			this.colaRepacion--;
 		}else{// cola del reparador libre
-			reparadoresDisponibles++;
+			this.reparadoresDisponibles++;
 		}
 	}
 	
@@ -107,24 +111,26 @@ public class Simulacion {
 	 */
 	public void starSimulacion()
 	{
-		for(int i=0;i<25;i++){//ANALIZAR ESTO
-			Evento<Integer, String> uno= new Evento<Integer, String>(i*14, "F");
-			listaEventos.add(uno);
+		for(int i=0;i<50;i++){//ANALIZAR ESTO
+			Evento<Integer, String> uno= new Evento<Integer, String>(i*8, this.INDICADOR_FALLA);
+			this.listaEventos.add(uno);
 			imprimir(uno);
 		}
-		while (this.reloj <= this.MAX_TIEMPO){
-			Evento<Integer, String> evento = listaEventos.poll();
-			reloj= (Integer) evento.getTiempo();
+		do{
+			Evento<Integer, String> evento = this.listaEventos.poll();
+			
+			//if((Integer) evento.getTiempo()>=this.MAX_TIEMPO){break;}//GENERABA EL EVENTO QUE SEGUIA DESPUES DEL MAX :P
+			this.reloj=(Integer) evento.getTiempo();
 			String tipoEvento = (String) evento.getTipoEvento();
 			
-			if(tipoEvento.equals("F")){
+			if(tipoEvento.equals(this.INDICADOR_FALLA)){
 				this.eventoFallo();
 				imprimir(evento);
 			}else{
 				this.eventoReparacion();
 				imprimir(evento);
 			}
-		}
+		}while (this.reloj < this.MAX_TIEMPO);
 		
 	}
 	
@@ -144,7 +150,7 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,10,13,500);
+			Simulacion s = new Simulacion(12345, 50,8,7,1300);
 			s.starSimulacion();
 		
 		}
