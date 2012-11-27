@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.30)  26 NOV 2012 00:40
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.6.9)  26 NOV 2012 23:04
 entering extended mode
  %&-line parsing enabled.
 **InfoSimula.tex
@@ -484,6 +484,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--100
 
  []
 
+
+Overfull \hbox (22.57248pt too wide) in paragraph at lines 101--102
+[]\OT1/cmr/m/n/10 Para solu-cionar este prob-le-ma la f^^Sabrica ha dis-puesto 
+de m^^Saquinas adi-cionales dis-pues-tas a su-plan-tar(REEMPLAZAR)
+ []
+
 <fallaMaquina.png, id=13, 759.83875pt x 327.2225pt>
 File: fallaMaquina.png Graphic file (type png)
  <use fallaMaquina.png>
@@ -495,26 +501,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--131
 
  []
 
-[3 <./fallaMaquina.png> <./reparar.png>] (./InfoSimula.aux) ) 
+[3 <./fallaMaquina.png> <./reparar.png>] [4] (./InfoSimula.aux) ) 
 Here is how much of TeX's memory you used:
- 4127 strings out of 495061
- 52959 string characters out of 1182621
- 118875 words of memory out of 3000000
- 7276 multiletter control sequences out of 15000+50000
+ 4128 strings out of 495061
+ 52967 string characters out of 1182622
+ 120876 words of memory out of 3000000
+ 7277 multiletter control sequences out of 15000+50000
  10023 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,7n,32p,662b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on InfoSimula.pdf (3 pages, 199177 bytes).
+ 27i,7n,32p,698b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on InfoSimula.pdf (4 pages, 201600 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
+ 54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
