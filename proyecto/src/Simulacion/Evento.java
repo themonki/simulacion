@@ -1,13 +1,15 @@
 package Simulacion;
 
-public class Evento<Tiempo,TipoEvento> {
+public class Evento<Tiempo,TipoEvento, Maquina> {
 
 	private Tiempo tiempo;
 	private TipoEvento tipoEvento;
+	private Maquina maquina;
 
-	public Evento(Tiempo tiempo, TipoEvento tipoEvento){
+	public Evento(Tiempo tiempo, TipoEvento tipoEvento, Maquina maquina){
 		this.tiempo = tiempo;
 		this.tipoEvento = tipoEvento;
+		this.maquina = maquina;
 	}
 
 	public Tiempo getTiempo(){
@@ -17,6 +19,10 @@ public class Evento<Tiempo,TipoEvento> {
 	public TipoEvento getTipoEvento(){
 		return this.tipoEvento;
 	}
+	
+	public Maquina getMaquina(){
+		return this.maquina;
+	}
 
 	public void setTiempo(Tiempo nuevoTiempo){
 		this.tiempo = nuevoTiempo;
@@ -25,10 +31,14 @@ public class Evento<Tiempo,TipoEvento> {
 	public void setTipoEvento(TipoEvento nuevoTipoEvento){
 		this.tipoEvento= nuevoTipoEvento;				
 	}
+	
+	public void setMaquina(Maquina nuevaMaquina){
+		this.maquina= nuevaMaquina;
+	}
 
 	public String toString(){
 		String a;
-		a= "("+this.tiempo + "," + this.tipoEvento+ ")";
+		a= "("+this.tiempo + ", " + this.tipoEvento+ ", "+ this.maquina + ")";
 		return a;
 	}
 

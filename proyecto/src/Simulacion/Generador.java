@@ -17,7 +17,7 @@ public class Generador {
 	//Tiempo en que vuelve a fallar una maquina 
 	public int tiempoFalloMaquina(){
 		int r;
-		r = (int) (Math.floor(random.nextDouble()*(20)) + 140);
+		r = (int) (Math.floor(random.nextDouble()*(21)) + 140);
 		return r;
 		
 	}
