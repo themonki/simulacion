@@ -17,7 +17,7 @@ public class Generador {
 	//Tiempo en que vuelve a fallar una maquina 
 	public int tiempoFalloMaquina(){
 		int r;
-		r = (int) (Math.floor(random.nextDouble()*(13)) + 10);
+		r = (int) (Math.floor(random.nextDouble()*(20)) + 140);
 		return r;
 		
 	}
@@ -31,16 +31,15 @@ public class Generador {
 	
 	public static void main(String [] args )
 	{
-		
-		/*System.out.println("hola");
+		/*
 		Generador g;
 		g = new Generador(15863);
-		for ( int i = 0 ; i< 5; i++)
+		for ( int i = 0 ; i< 10; i++)
 		{
 		System.out.println(g.tiempoFalloMaquina());
 		System.out.println(g.tiempoReparacion());
-		}*/
-		
+		}
+		*/
 		
 	}
 
