@@ -1,9 +1,11 @@
 package Simulacion;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Vector;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
 
@@ -33,6 +35,10 @@ public class Simulacion {
 	private Queue<String> maquinasAdicionales;
 	private Queue<String> maquinasReparacion;
 	private Queue<String> puestosLibres; //Maquinas que no pudieron ser reemplazadas
+	
+	
+	//Revisar eventos por maquina
+    private Vector<Vector<Evento<Integer, String, String>>> eventosMaquina;
 
 	
 	/**
@@ -42,6 +48,9 @@ public class Simulacion {
 	 * @param cantReparadores indica la cantidad de reparadores que se tienen
 	 * @param tiempoMax indica la cantidad de tiempo maximo invertido en la simulacion
 	 */
+	
+
+	
 	public Simulacion(int seed, int colaFuncionamiento, 
 			int colaAdicionales, int cantReparadores, int tiempoMax){
 		
@@ -70,8 +79,20 @@ public class Simulacion {
 		
 		//Inicializar maquinas adicionales
 		for(int i=0; i< this.colaAdicionales; i++){
-			this.maquinasAdicionales.add("A"+(i+1));
+			this.maquinasAdicionales.add(""+(this.MAX_MAQUINAS+(i+1))); //Por aca cambie para que funcione informacion
 		}
+		
+		
+		
+		
+		//Informativo
+		eventosMaquina = new Vector<Vector<Evento<Integer,String,String>>>(this.MAX_MAQUINAS+ this.MAX_MAQUINAS_ADICIONALES);
+		for(int i=0; i< this.MAX_MAQUINAS + this.MAX_MAQUINAS_ADICIONALES ; i++){
+			eventosMaquina.add(new Vector<Evento<Integer,String,String>>());
+			
+		}
+		
+	
 		
 	}
 	
@@ -144,13 +165,14 @@ public class Simulacion {
 	public void starSimulacion()
 	{
 		for(int i=0;i<this.MAX_MAQUINAS;i++){//ANALIZAR ESTO
-			Evento<Integer, String, String> uno= new Evento<Integer, String, String>((i*8)+ this.tiempos.tiempoFalloMaquina(),
+			Evento<Integer, String, String> uno= new Evento<Integer, String, String>((i*20)+ this.tiempos.tiempoFalloMaquina(),
 					this.INDICADOR_FALLA,
 					""+(i+1));
 			this.listaEventos.add(uno);
+			eventosMaquina.get(i).add(uno);
 			//imprimir(uno);
 		}
-		System.out.println("LEF= " + this.listaEventos);
+		//System.out.println("LEF= " + this.listaEventos);
 		do{
 			Evento<Integer, String, String> evento = this.listaEventos.poll();
 			
@@ -158,6 +180,10 @@ public class Simulacion {
 			this.reloj=(Integer) evento.getTiempo();
 			String tipoEvento = (String) evento.getTipoEvento();
 			String maquina = (String) evento.getMaquina();
+			
+			//Informativo
+			eventosMaquina.get((Integer.parseInt(maquina)-1)).add(evento);
+			
 			
 			if(tipoEvento.equals(this.INDICADOR_FALLA)){
 				this.eventoFallo(maquina);
@@ -168,16 +194,20 @@ public class Simulacion {
 			}
 		}while (this.reloj < this.MAX_TIEMPO);
 		
+		
+		System.out.println(eventosMaquina.get(0));
+		System.out.println(eventosMaquina.get(50));
+
 	}
 	
 	/**
 	 * @param e
 	 */
 	private void imprimir(Evento<Integer, String, String> e){
-		System.out.println(" " + this.reloj + ", E=" + e.getTipoEvento()+ ", M= " + e.getMaquina()+ ", CA=" + this.colaAdicionales + 
+		/*System.out.println(" " + this.reloj + ", E=" + e.getTipoEvento()+ ", M= " + e.getMaquina()+ ", CA=" + this.colaAdicionales + 
 				", CR=" + this.colaRepacion + ", CF=" + this.colaFuncionamiento+ ", NR=" + this.reparadoresDisponibles +", LEF=" + this.listaEventos.toString()
 				+ ", MA= " + this.maquinasAdicionales + ", MR= " + this.maquinasReparacion + "PL= " + this.puestosLibres);
-	}
+	*/}
 	
 
 	/**
@@ -187,7 +217,7 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,1,1,2000);
+			Simulacion s = new Simulacion(12345, 50,1,1,700);
 			s.starSimulacion();
 		
 		}
