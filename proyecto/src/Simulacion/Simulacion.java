@@ -24,7 +24,6 @@ public class Simulacion {
 	private int colaAdicionales;
 	private int colaFuncionamiento;
 	private int reparadoresDisponibles;
-	private int desempenioFuncionamiento;
 	private int MAX_MAQUINAS;
 	private int MAX_REPARADOR;
 	private int MAX_MAQUINAS_ADICIONALES;
@@ -35,6 +34,11 @@ public class Simulacion {
 	private Queue<String> maquinasReparacion;
 	//private Queue<String> puestosLibres; //Maquinas que no pudieron ser reemplazadas No es necesario para interfaz grafica
 	
+	//variable desempeño
+	private int relojAnterior;
+	private int desempenioFuncionamiento;
+	private int desempenioColaReparador;
+	private int desempenioColaAdicional;
 	
 	// Revisar eventos por maquina
     private Vector<Vector<Evento<Integer, String, String>>> eventosMaquina;
@@ -78,6 +82,10 @@ public class Simulacion {
 		this.colaFuncionamiento= this.MAX_MAQUINAS=colaFuncionamiento;		
 		this.reparadoresDisponibles = this.MAX_REPARADOR = cantReparadores;
 		
+		//variables de desempeño
+		this.desempenioFuncionamiento=this.MAX_MAQUINAS; //representa la suma ponderada de los cambios (cantidad de nodos * (tiempo ahora - tiempo anterior))
+		this.desempenioColaAdicional=0;
+		this.desempenioColaReparador=0;
 		
 		this.maquinasAdicionales = new LinkedList<String>();
 		this.maquinasReparacion = new LinkedList<String>();
@@ -125,6 +133,7 @@ public class Simulacion {
 		}
 		else{
 			this.colaRepacion++; //Se suma a la cola de repacion
+			if(this.colaRepacion>this.desempenioColaReparador)this.desempenioColaReparador=this.colaRepacion;
 			this.maquinasReparacion.add(maquina);
 			// Información UI
 			Vector<Object> evento= new Vector<Object>();
@@ -148,8 +157,17 @@ public class Simulacion {
 			this.resumenSimulacion.add(evento);
 			
 		}else{
+			
+			/* DESEMPENO
+			 * FALLA UNA MAQUINA Y NO SE TIENE MAQUINAS ADICIONALES ENTONCES SE CAMBIA LA COLA DE FUNCIONAMIENTO, SE RECALCULA EL CUADRADO
+			 * */
+			this.desempenioFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
+			//System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioFuncionamiento );
+			this.relojAnterior=this.reloj;
+			/* **************************/			
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
-			//this.puestosLibres.add(maquina);
+			 
+			//this.puestosLibres.add(maquina);			
 		}
 		
 		
@@ -160,8 +178,17 @@ public class Simulacion {
 	 */
 	public void eventoReparacion(String maquina){
 			
-		if(this.colaFuncionamiento< this.MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar
+		if(this.colaFuncionamiento< this.MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar y se supone no se tienen maquinas adiconales
+			
+			/* DESEMPENO
+			 * SE REPARO UNA MAQUINA Y SE TIENE UN HUECO ENTONCES SE CAMBIA LA COLA DE FUNCIONAMIENTO, SE RECALCULA EL CUADRADO
+			 * */
+			this.desempenioFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
+			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.relojAnterior +" - "+this.reloj  + ") = Value: "+ this.desempenioFuncionamiento );
+			this.relojAnterior=this.reloj;
+			/* **************************/
 			this.colaFuncionamiento++;
+
 			listaEventos.add(new Evento<Integer, String, String>(this.reloj+ this.tiempos.tiempoFalloMaquina(), 
 					this.INDICADOR_FALLA, 
 					 maquina));
@@ -175,6 +202,7 @@ public class Simulacion {
 			//this.puestosLibres.poll(); //Puede servir para que cuando se pase a la parte grafica se sepa que lugar reemplazar
 		}else{//si esta completo, se coloca como adicional
 			this.colaAdicionales++;
+			if(this.colaAdicionales>this.desempenioColaAdicional)this.desempenioColaAdicional=this.colaAdicionales;
 			this.maquinasAdicionales.add(maquina);
 			
 			// Información UI
@@ -215,18 +243,16 @@ public class Simulacion {
 			eventosMaquina.get(i).add(uno);
 			//imprimir(uno);
 		}
+		this.relojAnterior=this.reloj; 
 		//System.out.println("LEF= " + this.listaEventos);
 		do{
 			Evento<Integer, String, String> evento = this.listaEventos.poll();
-			
-			//if((Integer) evento.getTiempo()>=this.MAX_TIEMPO){break;}//GENERABA EL EVENTO QUE SEGUIA DESPUES DEL MAX :P
 			this.reloj=(Integer) evento.getTiempo();
 			String tipoEvento = (String) evento.getTipoEvento();
 			String maquina = (String) evento.getMaquina();
 			
 			//Informativo
 			eventosMaquina.get(Integer.parseInt(maquina)).add(evento);
-			
 			
 			if(tipoEvento.equals(this.INDICADOR_FALLA)){
 				this.eventoFallo(maquina);
@@ -235,6 +261,8 @@ public class Simulacion {
 				this.eventoReparacion(maquina);
 				imprimir(evento);
 			}
+			
+
 		}while (this.reloj < this.MAX_TIEMPO);
 		
 		
@@ -259,13 +287,55 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,1,1,700);
+			Simulacion s = new Simulacion(12345, 50,1,1,500);
 			s.starSimulacion();
 		
 		}
 	
 	public Vector<Vector<Object>> getResumenSimulacion(){
 		return this.resumenSimulacion;
+	}
+
+	/**
+	 * @return the desempenioFuncionamiento
+	 */
+	public int getDesempenioFuncionamiento() {
+		return desempenioFuncionamiento;
+	}
+
+	/**
+	 * @return the desempenioColaReparador
+	 */
+	public int getDesempenioColaReparador() {
+		return desempenioColaReparador;
+	}
+
+	/**
+	 * @return the desempenioColaAdicional
+	 */
+	public int getDesempenioColaAdicional() {
+		return desempenioColaAdicional;
+	}
+
+	/**
+	 * @param desempenioFuncionamiento the desempenioFuncionamiento to set
+	 */
+	public void setDesempenioFuncionamiento(int desempenioFuncionamiento) {
+		this.desempenioFuncionamiento = desempenioFuncionamiento;
+	}
+
+	/**
+	 * @param desempenioColaReparador the desempenioColaReparador to set
+	 */
+	public void setDesempenioColaReparador(int desempenioColaReparador) {
+		this.desempenioColaReparador = desempenioColaReparador;
+	}
+
+	/**
+	 * @param desempenioColaAdicional the desempenioColaAdicional to set
+	 */
+	public void setDesempenioColaAdicional(int desempenioColaAdicional) {
+		this.desempenioColaAdicional = desempenioColaAdicional;
 	}
 
 }
