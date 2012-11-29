@@ -84,7 +84,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		GridLayout grilla= new GridLayout(filas, columnas,10,10);
 		
-		panelMaquinas= new JPanel(grilla);
+		panelMaquinas= new JPanel();
 		
 		
 		int numero_maquina=0;
@@ -99,7 +99,7 @@ public class tableroDeMaquinas extends JFrame{
 				l.setOpaque(true);
 				l.setIcon(new ImageIcon("images/images.gif"));
 				l.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY));
-				
+				l.setPreferredSize(new Dimension(75, 80));
 				panelMaquinas.add(l);
 				
 				
