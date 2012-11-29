@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.Border;
@@ -33,6 +34,9 @@ public class tableroDeMaquinas extends JFrame{
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
 	JPanel panelDisponibles,panelDatosDeEntrada;
+	JTabbedPane paneltab;
+	JPanel panelPpal;
+	
 	JScrollPane scrollReparacion,scrollDisponibles; 
 	Color color_disponible=new Color(170,225,150); 
 	Color color_no_disponible= new Color(225,150,150);
@@ -53,18 +57,31 @@ public class tableroDeMaquinas extends JFrame{
 		
 		super("Machine Simulation");
 		this.setLayout(new FlowLayout());
+		
+		
+		panelPpal= new JPanel();
+		paneltab= new JTabbedPane();
+		
+		
 		iniciarPanelMaquinas();
 		iniciarPanelReparacion();
 		iniciarPanelDisponibles();
 		iniciarDatosDeEntrada();
 		
 		Button start= new Button("Start Simulation");
+		Button skip= new Button("Skip ");
+		skip.setEnabled(false);
 		start.addActionListener(new manejador());
-		this.add(start);
+		panelPpal.add(start);
+		panelPpal.add(skip);
 		
 		
+		paneltab.add(panelPpal,"Simulation");
+		paneltab.add(new JPanel(),"Statistical");
+		this.add(paneltab);
 		
-		this.setSize(1200, 800);
+		panelPpal.setPreferredSize(new Dimension(1180, 700));
+		this.setSize(1220, 800);
 		this.setVisible(true);
 		
 		
@@ -100,6 +117,7 @@ public class tableroDeMaquinas extends JFrame{
 				l.setIcon(new ImageIcon("images/images.gif"));
 				l.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY));
 				l.setPreferredSize(new Dimension(75, 80));
+				l.setName(""+numero_maquina);
 				panelMaquinas.add(l);
 				
 				
@@ -117,7 +135,7 @@ public class tableroDeMaquinas extends JFrame{
 		panelMaquinas.setPreferredSize(new Dimension(850, 500));
 		panelMaquinas.setBackground(Color.WHITE);
 		panelMaquinas.setVisible(true);
-		this.add(panelMaquinas);
+		panelPpal.add(panelMaquinas);
 		
 	
 		
@@ -133,23 +151,8 @@ public class tableroDeMaquinas extends JFrame{
 		
 		
 		panelReparacion= new JPanel();
-		BoxLayout box=new BoxLayout(panelReparacion,BoxLayout.Y_AXIS);
-		
-		panelReparacion.setLayout(box);
-		//GridLayout grilla= new GridLayout();
-		//panelReparacion= new JPanel(new FlowLayout());//grilla);
-		
-		int number =0;
-		
-		Component[] components = panelMaquinas.getComponents(); 
-		
-						
-				
-				//System.out.println(number);
-				
-				//panelReparacion.add(l);
-			
-			
+		BoxLayout box=new BoxLayout(panelReparacion,BoxLayout.Y_AXIS);		
+		panelReparacion.setLayout(box);			
 		scrollReparacion= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Repair Set");
@@ -164,20 +167,47 @@ public class tableroDeMaquinas extends JFrame{
 		
 		scrollReparacion.setPreferredSize(new Dimension(150, 500));
 		
-		this.add(scrollReparacion);
+		panelPpal.add(scrollReparacion);
 		
 		
 	}
 	
 	//---------------------  ------------------------
-	
-	public void agregarPanel(JPanel panel ,int cantidad,Color color){
-		
-		
-		for (int i=0;i<cantidad;i++){
+	public JLabel buscarJLabelMaquina(int idMaquina){
+		String id=""+idMaquina;
+		/*Busca en los tres panels el objeto label que representa la maquina al pasar por referencia el objeto a otra variable que en efecto es la misma
+		 * se borra del panel o container donde estaba anteriormente*/
+		for (int i=0;i<panelMaquinas.getComponentCount();i++){
 			
+			JLabel temp =(JLabel) panelMaquinas.getComponent(i);
+			if (temp.getName().equals(id)) return temp;
+		}
+		
+		
+		for (int i=0;i<panelDisponibles.getComponentCount();i++){
+			
+			JLabel temp =(JLabel) panelDisponibles.getComponent(i);
+			if (temp.getName().equals(id)) return temp;
+		}
+		
+		for (int i=0;i<panelReparacion.getComponentCount();i++){
+			
+			JLabel temp =(JLabel) panelReparacion.getComponent(i);
+			if (temp.getName().equals(id)) return temp;
+		}
+		
+		
+		
+		return null;
+		
+		
+	}
+	
+	public void agregarPanel(JPanel panel ,int idMaquina,Color color){
+		
+	
 
-			JLabel l=new JLabel();
+			JLabel l=buscarJLabelMaquina(idMaquina);
 		
 			//l.setBackground(Color.GREEN);
 			l.setBackground(color);
@@ -186,7 +216,7 @@ public class tableroDeMaquinas extends JFrame{
 			l.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY));
 			
 			panel.add(l);						
-		};
+		
 		panel.updateUI();
 		
 	}
@@ -228,7 +258,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		scrollDisponibles.setPreferredSize(new Dimension(150, 500));
 		
-		this.add(scrollDisponibles);
+		panelPpal.add(scrollDisponibles);
 		
 		
 	}
@@ -274,7 +304,7 @@ public class tableroDeMaquinas extends JFrame{
 		 //panelDatosDeEntrada.add(numero_eventos);
 		 
 		 
-		 this.add(panelDatosDeEntrada);
+		 panelPpal.add(panelDatosDeEntrada);
 		
 		
 	}
