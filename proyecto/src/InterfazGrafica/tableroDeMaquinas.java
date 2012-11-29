@@ -58,6 +58,24 @@ public class tableroDeMaquinas extends JFrame{
 	private JScrollPane scrollReparador;
 	private JPanel panelReparador;
 	int eventoActual=0;
+
+	private JPanel panelDatosDeEstado;
+
+	private JLabel numero_maquinas_extras_label_estado;
+
+	private JTextField numero_maquinas_extras_estado;
+
+	private JTextField tiempo_estado;
+
+	private JLabel tiempo_estado_label;
+
+	private JTextField cola_reparacion_estado;
+
+	private JLabel cola_reparacion_estado_label;
+
+	private JTextField maquinas_set;
+
+	private JLabel maquinas_set_label;
 	
 	public tableroDeMaquinas (){
 		
@@ -80,6 +98,7 @@ public class tableroDeMaquinas extends JFrame{
 		iniciarPanelDisponibles();
 		iniciarDatosDeEntrada();
 		
+		
 		Button start= new Button("Start Simulation");
 		Button skip= new Button("Skip ");
 		skip.setEnabled(false);
@@ -87,12 +106,17 @@ public class tableroDeMaquinas extends JFrame{
 		panelPpal.add(start);
 		panelPpal.add(skip);
 		
+		iniciarDatosDeEstado();
 		
 		paneltab.add(panelPpal,"Simulation");
 		paneltab.add(new JPanel(),"Statistical");
 		this.add(paneltab);
 		
 		panelPpal.setPreferredSize(new Dimension(1180, 700));
+		
+		
+		
+		
 		this.setSize(1220, 800);
 		this.setVisible(true);
 		
@@ -104,11 +128,20 @@ public class tableroDeMaquinas extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				try {
 				correrEvento(ResumenSimulacion.get(eventoActual));
 				eventoActual++;
+				}
+				catch(Exception ef){
+					
+					time.stop();
+				}
 			}
 		});
+		
+		
+		
+		
 		
 	}
 	
@@ -141,6 +174,13 @@ public class tableroDeMaquinas extends JFrame{
 			
 			agregarPanel(panelReparacion,idMaquina,color_no_disponible);
 		}
+		
+		
+		
+		 numero_maquinas_extras_estado.setText(""+panelDisponibles.getComponentCount());		
+		 tiempo_estado.setText(""+reloj) ;		 
+		 cola_reparacion_estado.setText(""+panelReparacion.getComponentCount());
+		 maquinas_set.setText(""+panelMaquinas.getComponentCount());
 		
 	}
 
@@ -407,6 +447,87 @@ public class tableroDeMaquinas extends JFrame{
 		
 		
 	}
+	
+	//-----------------------INICIAR DATOS DE ESTADO
+	
+	public void iniciarDatosDeEstado(){
+		panelDatosDeEstado= new JPanel(new GridLayout(5,2,10,10));
+		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "State");
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		panelDatosDeEstado.setBorder(borde);
+		//panelDatosDeEntrada.setPreferredSize(new Dimension(350, 200));
+		
+		
+		
+		 numero_maquinas_extras_estado= new JTextField(10);		
+		 tiempo_estado= new JTextField(10);		 
+		 cola_reparacion_estado= new JTextField(10);
+		 maquinas_set= new JTextField(10);
+		 				
+		
+		 numero_maquinas_extras_label_estado= new JLabel("Avalaibles:");
+		 numero_maquinas_extras_label_estado.setFont(Estilos.fontLabels);
+		 
+		 tiempo_estado_label= new JLabel("Actual Time:");
+		 tiempo_estado_label.setFont(Estilos.fontLabels);
+		 
+		 cola_reparacion_estado_label = new JLabel("Repair Queu:");
+		 cola_reparacion_estado_label.setFont(Estilos.fontLabels);
+		 
+		 maquinas_set_label= new JLabel("Machine Set:");
+		 maquinas_set_label.setFont(Estilos.fontLabels);
+		 
+		 
+		 panelDatosDeEstado.add(numero_maquinas_extras_label_estado);
+		 panelDatosDeEstado.add(numero_maquinas_extras_estado);
+		 
+		 panelDatosDeEstado.add(tiempo_estado_label);
+		 
+		 panelDatosDeEstado.add(tiempo_estado);
+		 
+		 panelDatosDeEstado.add(cola_reparacion_estado_label);
+		 
+		 panelDatosDeEstado.add(cola_reparacion_estado);
+		 
+		 
+		 panelDatosDeEstado.add(maquinas_set_label);
+		 panelDatosDeEstado.add(maquinas_set);
+		 
+		 
+		 Button acelerar= new Button("+");
+		 acelerar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (time.getDelay()-100>0)
+				time.setDelay(time.getDelay()-100);
+				
+				
+			}
+		});
+		
+	
+		 /*panelDatosDeEstado.add(acelerar);
+		 panelDatosDeEstado.add(disminuir);*/
+		 
+		 
+		 //panelDatosDeEntrada.add(eventos_label);
+		 //panelDatosDeEntrada.add(numero_eventos);
+		 
+		 
+		 panelPpal.add(panelDatosDeEstado);
+		 panelPpal.add(new JLabel("SPEED::"));
+		 panelPpal.add(acelerar);
+	
+		
+		
+	}
+	
+	
+	//---------------------------------------------------
 	
 	
 	public String validar() {
