@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.6.9)  26 NOV 2012 23:04
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.30)  28 NOV 2012 20:18
 entering extended mode
  %&-line parsing enabled.
 **InfoSimula.tex
@@ -504,7 +504,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--131
 [3 <./fallaMaquina.png> <./reparar.png>] [4] (./InfoSimula.aux) ) 
 Here is how much of TeX's memory you used:
  4128 strings out of 495061
- 52967 string characters out of 1182622
+ 52967 string characters out of 1182621
  120876 words of memory out of 3000000
  7277 multiletter control sequences out of 15000+50000
  10023 words of font info for 36 fonts, out of 3000000 for 9000
@@ -518,7 +518,7 @@ fonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
 17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on InfoSimula.pdf (4 pages, 201600 bytes).
+Output written on InfoSimula.pdf (4 pages, 201589 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
