@@ -41,10 +41,10 @@ public class Simulacion {
     
     // Para interfaz grafica
     private Vector<Vector<Object>> resumenSimulacion;
-    private String REPARACION="Reparar";
-    private String COLAREPARACION="ColaReparacion";
-    private String COLAADICIONAL="ColaAdicional";
-    private String REEMPLAZO="Reemplazar";
+    private String REPARACION="irAReparador";
+    private String COLAREPARACION="irAColaReparacion";
+    private String COLAADICIONAL="irAColaAdicional";
+    private String REEMPLAZO="irAFabrica";
 
 	
 	/**
