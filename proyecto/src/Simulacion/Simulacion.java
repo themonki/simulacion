@@ -12,12 +12,11 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 
 
 /**
- * @author monki
+ * @author monki 
  *
  */
 public class Simulacion {
 	
-	//private LinkedList<Evento<Integer, String>> listaEventos;
 	private PriorityQueue<Evento<Integer, String, String>> listaEventos;
 	private int reloj;
 	private Generador tiempos;
@@ -34,11 +33,18 @@ public class Simulacion {
 	private String INDICADOR_REPARACION="R";
 	private Queue<String> maquinasAdicionales;
 	private Queue<String> maquinasReparacion;
-	private Queue<String> puestosLibres; //Maquinas que no pudieron ser reemplazadas
+	//private Queue<String> puestosLibres; //Maquinas que no pudieron ser reemplazadas No es necesario para interfaz grafica
 	
 	
-	//Revisar eventos por maquina
+	// Revisar eventos por maquina
     private Vector<Vector<Evento<Integer, String, String>>> eventosMaquina;
+    
+    // Para interfaz grafica
+    private Vector<Vector<Object>> resumenSimulacion;
+    private String REPARACION="Reparar";
+    private String COLAREPARACION="ColaReparacion";
+    private String COLAADICIONAL="ColaAdicional";
+    private String REEMPLAZO="Reemplazar";
 
 	
 	/**
@@ -75,11 +81,11 @@ public class Simulacion {
 		
 		this.maquinasAdicionales = new LinkedList<String>();
 		this.maquinasReparacion = new LinkedList<String>();
-		this.puestosLibres = new LinkedList<String>();
+		//this.puestosLibres = new LinkedList<String>();
 		
 		//Inicializar maquinas adicionales
 		for(int i=0; i< this.colaAdicionales; i++){
-			this.maquinasAdicionales.add(""+(this.MAX_MAQUINAS+(i+1))); //Por aca cambie para que funcione informacion
+			this.maquinasAdicionales.add(""+(this.MAX_MAQUINAS+i)); 
 		}
 		
 		
@@ -92,6 +98,7 @@ public class Simulacion {
 			
 		}
 		
+		this.resumenSimulacion = new Vector<Vector<Object>>();
 	
 		
 	}
@@ -100,14 +107,7 @@ public class Simulacion {
 	 * Función que crea un evento de fallo de una maquina en el sistema
 	 * 
 	 */
-	public void eventoFallo(String maquina){
-				
-		/*if(this.colaFuncionamiento<=0){
-			//no ahi maquinas a fallar
-			return;
-		}*/ //CREO QUE AHORA NO HACE FALTA.
-		
-
+	public void eventoFallo(String maquina){	
 		
 		if(this.reparadoresDisponibles>0){
 			this.reparadoresDisponibles--;
@@ -115,20 +115,41 @@ public class Simulacion {
 			this.listaEventos.add(new Evento<Integer, String, String>(this.reloj+this.tiempos.tiempoReparacion(), 
 					this.INDICADOR_REPARACION,
 					maquina));
+			
+			// Información UI
+			Vector<Object> evento= new Vector<Object>();
+			evento.add(maquina);
+			evento.add(this.REPARACION);
+			evento.add(this.reloj);
+			this.resumenSimulacion.add(evento);
 		}
 		else{
 			this.colaRepacion++; //Se suma a la cola de repacion
 			this.maquinasReparacion.add(maquina);
+			// Información UI
+			Vector<Object> evento= new Vector<Object>();
+			evento.add(maquina);
+			evento.add(this.COLAREPARACION);
+			evento.add(this.reloj);
+			this.resumenSimulacion.add(evento);
 		}
 		
 		if(this.colaAdicionales>0){
 			this.colaAdicionales--; //Si hay maquinas adicionales se reasume.
 			listaEventos.add(new Evento<Integer, String, String>(this.reloj+ this.tiempos.tiempoFalloMaquina(), 
 					this.INDICADOR_FALLA, 
-					this.maquinasAdicionales.poll()));
+					this.maquinasAdicionales.peek()));
+			
+			// Información UI
+			Vector<Object> evento= new Vector<Object>();
+			evento.add(this.maquinasAdicionales.poll());
+			evento.add(this.REEMPLAZO);
+			evento.add(this.reloj);
+			this.resumenSimulacion.add(evento);
+			
 		}else{
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
-			this.puestosLibres.add(maquina);
+			//this.puestosLibres.add(maquina);
 		}
 		
 		
@@ -144,15 +165,37 @@ public class Simulacion {
 			listaEventos.add(new Evento<Integer, String, String>(this.reloj+ this.tiempos.tiempoFalloMaquina(), 
 					this.INDICADOR_FALLA, 
 					 maquina));
-			this.puestosLibres.poll(); //Puede servir para que cuando se pase a la parte grafica se sepa que lugar reemplazar
+			// Información UI
+			Vector<Object> evento= new Vector<Object>();
+			evento.add(maquina);
+			evento.add(this.REEMPLAZO);
+			evento.add(this.reloj);
+			this.resumenSimulacion.add(evento);
+			
+			//this.puestosLibres.poll(); //Puede servir para que cuando se pase a la parte grafica se sepa que lugar reemplazar
 		}else{//si esta completo, se coloca como adicional
 			this.colaAdicionales++;
 			this.maquinasAdicionales.add(maquina);
+			
+			// Información UI
+			Vector<Object> evento= new Vector<Object>();
+			evento.add(maquina);
+			evento.add(this.COLAADICIONAL);
+			evento.add(this.reloj);
+			this.resumenSimulacion.add(evento);
 		}
 				
 		if(this.colaRepacion>0){//se tienen maquinas a reparar
 			this.listaEventos.add(new Evento<Integer, String, String> (this.reloj+this.tiempos.tiempoReparacion(),
-					this.INDICADOR_REPARACION, this.maquinasReparacion.poll()));
+					this.INDICADOR_REPARACION, this.maquinasReparacion.peek()));
+			
+			// Información UI
+			Vector<Object> evento= new Vector<Object>();
+			evento.add(this.maquinasReparacion.poll());
+			evento.add(this.REPARACION);
+			evento.add(this.reloj);
+			this.resumenSimulacion.add(evento);
+			
 			this.colaRepacion--;
 		}else{// cola del reparador libre
 			this.reparadoresDisponibles++;
@@ -167,7 +210,7 @@ public class Simulacion {
 		for(int i=0;i<this.MAX_MAQUINAS;i++){//ANALIZAR ESTO
 			Evento<Integer, String, String> uno= new Evento<Integer, String, String>((i*20)+ this.tiempos.tiempoFalloMaquina(),
 					this.INDICADOR_FALLA,
-					""+(i+1));
+					""+i);
 			this.listaEventos.add(uno);
 			eventosMaquina.get(i).add(uno);
 			//imprimir(uno);
@@ -182,7 +225,7 @@ public class Simulacion {
 			String maquina = (String) evento.getMaquina();
 			
 			//Informativo
-			eventosMaquina.get((Integer.parseInt(maquina)-1)).add(evento);
+			eventosMaquina.get(Integer.parseInt(maquina)).add(evento);
 			
 			
 			if(tipoEvento.equals(this.INDICADOR_FALLA)){
@@ -195,8 +238,7 @@ public class Simulacion {
 		}while (this.reloj < this.MAX_TIEMPO);
 		
 		
-		System.out.println(eventosMaquina.get(0));
-		System.out.println(eventosMaquina.get(50));
+		//System.out.println(getResumenSimulacion());
 
 	}
 	
@@ -221,5 +263,9 @@ public class Simulacion {
 			s.starSimulacion();
 		
 		}
+	
+	public Vector<Vector<Object>> getResumenSimulacion(){
+		return this.resumenSimulacion;
+	}
 
 }
