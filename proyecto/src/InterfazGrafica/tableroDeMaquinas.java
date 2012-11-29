@@ -91,7 +91,7 @@ public class tableroDeMaquinas extends JFrame{
 		for(int i= 0;i<filas;i++){
 			for  (int j=0;j<columnas;j++){
 				
-				JLabel l=new JLabel();
+				JLabel l=new JLabel(""+numero_maquina);
 				numero_maquina++;
 			
 				//l.setBackground(Color.GREEN);
@@ -114,6 +114,8 @@ public class tableroDeMaquinas extends JFrame{
 		borde.setTitleJustification(TitledBorder.LEFT);
 		panelMaquinas.setBorder(borde);
 		//panelMaquinas.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY, "Machine Set"));
+		panelMaquinas.setPreferredSize(new Dimension(850, 500));
+		panelMaquinas.setBackground(Color.WHITE);
 		panelMaquinas.setVisible(true);
 		this.add(panelMaquinas);
 		
