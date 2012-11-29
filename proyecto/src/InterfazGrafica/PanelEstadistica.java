@@ -25,23 +25,46 @@ import Utilidades.Estilos;
  */
 public class PanelEstadistica extends JPanel {
 	
-	public PanelEstadistica(Vector obj) {
+	public PanelEstadistica(Vector<Object> obj) {
 		// TODO Auto-generated constructor stub
 		super();
 		
 		
+		//El vector de objetos debe de venir organizado
+		/*
+		int index = 0;
+		int numMachAva = (Integer)(obj.get(index));
+		index++;		
+		int numRep = (Integer)(obj.get(index));;
+		index++;
+		int maxQueRep = (Integer)(obj.get(index));;
+		index++;
+		int maxQueMachAva = (Integer)(obj.get(index));;
+		index++;
+		double costValue = (Double)(obj.get(index));;
+		index++;
+		double percValue = (Double)(obj.get(index));;
+		index++;
+		*/
+		
+		int numMachAva = 1;
+		int numRep = 1;
+		int maxQueRep = 1;
+		int maxQueMachAva = 1;
+		double costValue = 1;
+		double percValue = 1;
 		
 		this.setLayout(new GridLayout( 3, 1, 10, 10 ));
-		JLabel e []= {new JLabel("1"),new JLabel("2"),new JLabel("3"),new JLabel("4")};
-		JLabel va [] = {new JLabel("a"),new JLabel("b"),new JLabel("c"),new JLabel("d"),};
-		JLabel e2 []= {new JLabel("1"),new JLabel("2"),new JLabel("3"),new JLabel("4")};
-		JLabel va2 [] = {new JLabel("a"),new JLabel("b"),new JLabel("c"),new JLabel("d"),};
-		JLabel e3 []= {new JLabel("1"),new JLabel("2"),new JLabel("3"),new JLabel("4")};
-		JLabel va3 [] = {new JLabel("a"),new JLabel("b"),new JLabel("c"),new JLabel("d"),};
+		JLabel etq1 []= {new JLabel("Number Machine Avalaible"),new JLabel("Number Repairers")};
+		JLabel val1 [] = {new JLabel(Integer.toString(numMachAva)),new JLabel(Integer.toString(numRep))};
+		JLabel etq2 []= {new JLabel("Maximum queue repair"),new JLabel("Maximum queue machines available")};
+		JLabel val2 [] = {new JLabel(Integer.toString(maxQueRep)),new JLabel(Integer.toString(maxQueMachAva))};
+		JLabel etq3 []= {new JLabel("Cost Value"),new JLabel("Percentage value")};
+		JLabel val3 [] = {new JLabel(Double.toString(costValue)),new JLabel(Double.toString(percValue*100)+" %")};
 		
-		createSeccion("Variables Desempeño",e,va);
-		createSeccion("Variables Estado",e2,va2);
-		createSeccion("Funcion",e3,va3);
+		createSeccion("Input variables",etq1,val1);
+		createSeccion("Performance variables",etq2,val2);
+		createSeccion("Cost function",etq3,val3);
 		
 		
 	}
@@ -86,7 +109,7 @@ public class PanelEstadistica extends JPanel {
 		// TODO Auto-generated method stub
 		JFrame v = new JFrame("prueba");
 		
-		v.add(new PanelEstadistica(new Vector()));
+		v.add(new PanelEstadistica(new Vector<Object>()));
 		v.setSize(400, 400);
 		v.setVisible(true);
 	}
