@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.Border;
@@ -33,6 +34,9 @@ public class tableroDeMaquinas extends JFrame{
 	JPanel panelMaquinas;
 	JPanel panelReparacion;
 	JPanel panelDisponibles,panelDatosDeEntrada;
+	JTabbedPane paneltab;
+	JPanel panelPpal;
+	
 	JScrollPane scrollReparacion,scrollDisponibles; 
 	Color color_disponible=new Color(170,225,150); 
 	Color color_no_disponible= new Color(225,150,150);
@@ -53,6 +57,12 @@ public class tableroDeMaquinas extends JFrame{
 		
 		super("Machine Simulation");
 		this.setLayout(new FlowLayout());
+		
+		
+		panelPpal= new JPanel();
+		paneltab= new JTabbedPane();
+		
+		
 		iniciarPanelMaquinas();
 		iniciarPanelReparacion();
 		iniciarPanelDisponibles();
@@ -62,12 +72,16 @@ public class tableroDeMaquinas extends JFrame{
 		Button skip= new Button("Skip ");
 		skip.setEnabled(false);
 		start.addActionListener(new manejador());
-		this.add(start);
-		this.add(skip);
+		panelPpal.add(start);
+		panelPpal.add(skip);
 		
 		
+		paneltab.add(panelPpal,"Simulation");
+		paneltab.add(new JPanel(),"Statistical");
+		this.add(paneltab);
 		
-		this.setSize(1200, 800);
+		panelPpal.setPreferredSize(new Dimension(1180, 700));
+		this.setSize(1220, 800);
 		this.setVisible(true);
 		
 		
@@ -121,7 +135,7 @@ public class tableroDeMaquinas extends JFrame{
 		panelMaquinas.setPreferredSize(new Dimension(850, 500));
 		panelMaquinas.setBackground(Color.WHITE);
 		panelMaquinas.setVisible(true);
-		this.add(panelMaquinas);
+		panelPpal.add(panelMaquinas);
 		
 	
 		
@@ -153,7 +167,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		scrollReparacion.setPreferredSize(new Dimension(150, 500));
 		
-		this.add(scrollReparacion);
+		panelPpal.add(scrollReparacion);
 		
 		
 	}
@@ -244,7 +258,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		scrollDisponibles.setPreferredSize(new Dimension(150, 500));
 		
-		this.add(scrollDisponibles);
+		panelPpal.add(scrollDisponibles);
 		
 		
 	}
@@ -290,7 +304,7 @@ public class tableroDeMaquinas extends JFrame{
 		 //panelDatosDeEntrada.add(numero_eventos);
 		 
 		 
-		 this.add(panelDatosDeEntrada);
+		 panelPpal.add(panelDatosDeEntrada);
 		
 		
 	}
