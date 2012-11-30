@@ -36,7 +36,7 @@ public class Estilos {
 	 * Variable que contiene las fuentes para las etiquetas
 	 */
 	public static Font fontLabels = new Font("Book Antiqua", Font.BOLD
-			+ Font.ITALIC, 17);
+			+ Font.ITALIC, 14);
 	/**
 	 * Variable que contiene las fuentes para los subtitulos
 	 */
