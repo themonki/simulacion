@@ -18,7 +18,11 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 public class Simulacion {
 	
 	private PriorityQueue<Evento<Integer, String, String>> listaEventos;
-	private int reloj;
+	private int reloj,reloj_calentamiento;
+	private int tiempoCalentamiento=1000;
+	
+	boolean activarVariablesDesempenio=false;
+	
 	private Generador tiempos;
 	private int colaRepacion;
 	private int colaAdicionales;
@@ -76,14 +80,14 @@ public class Simulacion {
 		});
 		this.reloj=0;
 		this.tiempos = new Generador(seed);
-		this.MAX_TIEMPO = tiempoMax;		
+		this.MAX_TIEMPO = tiempoMax+tiempoCalentamiento;		
 		this.colaRepacion=0;		
 		this.colaAdicionales= this.MAX_MAQUINAS_ADICIONALES = colaAdicionales;
 		this.colaFuncionamiento= this.MAX_MAQUINAS=colaFuncionamiento;		
 		this.reparadoresDisponibles = this.MAX_REPARADOR = cantReparadores;
 		
 		//variables de desempeño
-		this.desempenioFuncionamiento=this.MAX_MAQUINAS; //representa la suma ponderada de los cambios (cantidad de nodos * (tiempo ahora - tiempo anterior))
+		this.desempenioFuncionamiento=0; //representa la suma ponderada de los cambios (cantidad de nodos * (tiempo ahora - tiempo anterior))
 		this.desempenioColaAdicional=0;
 		this.desempenioColaReparador=0;
 		
@@ -158,6 +162,8 @@ public class Simulacion {
 			
 		}else{
 			
+			
+			if (activarVariablesDesempenio){//ESTO SE HACE PARA ACTIVAR LAS VARIABLES DESEMPEÑO UNA VEZ ACABE EL TIEMPO DE CALENTAMIENTO
 			/* DESEMPENO
 			 * FALLA UNA MAQUINA Y NO SE TIENE MAQUINAS ADICIONALES ENTONCES SE CAMBIA LA COLA DE FUNCIONAMIENTO, SE RECALCULA EL CUADRADO
 			 * */
@@ -167,6 +173,7 @@ public class Simulacion {
 			/* **************************/			
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
 			 
+			}
 			//this.puestosLibres.add(maquina);			
 		}
 		
@@ -246,8 +253,22 @@ public class Simulacion {
 		this.relojAnterior=this.reloj; 
 		//System.out.println("LEF= " + this.listaEventos);
 		do{
+			
+			
+			
 			Evento<Integer, String, String> evento = this.listaEventos.poll();
 			this.reloj=(Integer) evento.getTiempo();
+			
+			if (this.reloj > tiempoCalentamiento){
+				
+				reloj_calentamiento=this.reloj;// a pesar de que el tiempo de calentamiento es constante no sabemos el tiempo verdadero donde para.
+			    activarVariablesDesempenio=true;//activa el calculo del desempeño 
+			    relojAnterior=this.reloj;
+				
+			} 
+			
+			
+			
 			String tipoEvento = (String) evento.getTipoEvento();
 			String maquina = (String) evento.getMaquina();
 			
@@ -336,6 +357,12 @@ public class Simulacion {
 	 */
 	public void setDesempenioColaAdicional(int desempenioColaAdicional) {
 		this.desempenioColaAdicional = desempenioColaAdicional;
+	}
+	
+	
+	public void calentamiento(){
+		
+		
 	}
 
 }
