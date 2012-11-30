@@ -587,8 +587,8 @@ public class tableroDeMaquinas extends JFrame{
 		{
 			
 			int numMachAva = Integer.parseInt(numero_maquinas_extras.getText());
-			int numRepaAva = Integer.parseInt(numero_maquinas_extras.getText());
-			int maxTimerFinish = Integer.parseInt(numero_maquinas_extras.getText());
+			int numRepaAva = Integer.parseInt(numero_reparadores.getText());
+			int maxTimerFinish = Integer.parseInt(tiempo.getText());
 			
 		//agregarPanel(panelDisponibles,Integer.parseInt(numero_maquinas_extras.getText()),color_disponible);
 		//agregarPanel(panelReparacion,49,color_no_disponible);
