@@ -220,7 +220,8 @@ public class tableroDeMaquinas extends JFrame{
 				l.setOpaque(true);
 				l.setIcon(new ImageIcon("images/images.gif"));
 				l.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY));
-				l.setPreferredSize(new Dimension(75, 80));
+				//l.setHorizontalTextPosition(JLabel.CENTER);
+				//l.setPreferredSize(new Dimension(75, 80));
 				l.setName(""+numero_maquina);
 				panelMaquinas.add(l);
 				
@@ -363,6 +364,8 @@ public class tableroDeMaquinas extends JFrame{
 			l.setOpaque(true);
 			l.setIcon(new ImageIcon("images/images.gif"));
 			l.setBorder(BorderFactory.createEtchedBorder(Color.gray, Color.DARK_GRAY));
+			//l.setHorizontalTextPosition(JLabel.CENTER);
+			
 			
 			panel.add(l);						
 		

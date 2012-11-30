@@ -31,7 +31,7 @@ public class Estilos {
 	 * Variable que contiene las fuentes para los titulos
 	 */
 	public static Font fontTitulo = new Font("Book Antiqua", Font.BOLD
-			+ Font.ITALIC, 25);
+			+ Font.ITALIC, 20);
 	/**
 	 * Variable que contiene las fuentes para las etiquetas
 	 */
