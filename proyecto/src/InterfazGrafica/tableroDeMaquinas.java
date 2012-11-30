@@ -36,8 +36,8 @@ public class tableroDeMaquinas extends JFrame{
 	private JPanel panelDisponibles,panelDatosDeEntrada;
 	private JTabbedPane paneltab;
 	private JPanel panelPpal;
-	
-	private JScrollPane scrollReparacion,scrollDisponibles,panelEstadistica; 
+	private PanelEstadistica panelEstadistica;
+	private JScrollPane scrollReparacion,scrollDisponibles; 
 	private Color color_disponible=new Color(170,225,150); 
 	private Color color_no_disponible= new Color(225,150,150);
 	private Color color_reparador=Color.yellow;
@@ -82,7 +82,7 @@ public class tableroDeMaquinas extends JFrame{
 		super("Machine Simulation");
 		this.setLayout(new FlowLayout());
 		
-		panelEstadistica= new PanelEstadistica(new Vector<Object> ());
+		panelEstadistica= new PanelEstadistica();
 		
 		panelPpal= new JPanel();
 		paneltab= new JTabbedPane();
@@ -601,6 +601,8 @@ public class tableroDeMaquinas extends JFrame{
 		s.starSimulacion();
 		
 		ResumenSimulacion=s.getResumenSimulacion();
+		panelEstadistica.init(new Vector<Object>());
+		panelEstadistica.updateUI();
 		System.out.println(s.getResumenSimulacion());
 		time.start();
 		

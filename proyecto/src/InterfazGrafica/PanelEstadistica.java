@@ -28,7 +28,9 @@ public class PanelEstadistica extends JScrollPane {
 	
 	public PanelEstadistica(){
 		super();
-		this.add(new JLabel("No dispoble"));
+		principal = new JPanel();
+		principal.add(new JLabel("No dispoble"));
+		this.setViewportView(principal);
 	}
 	
 	public PanelEstadistica(Vector<Object> obj) {
@@ -36,69 +38,73 @@ public class PanelEstadistica extends JScrollPane {
 		super();
 		
 		
+		init(obj);
+		
+	}
+	
+	public void init(Vector<Object> obj){
+		
+		principal.removeAll();
 		//El vector de objetos debe de venir organizado
-		/*
-		int index = 0;
-		int numMachAva = (Integer)(obj.get(index));
-		index++;		
-		int numRep = (Integer)(obj.get(index));;
-		index++;
-		int maxQueRep = (Integer)(obj.get(index));;
-		index++;
-		int maxQueMachAva = (Integer)(obj.get(index));;
-		index++;
-		double costValue = (Double)(obj.get(index));;
-		index++;
-		double percValue = (Double)(obj.get(index));;
-		index++;
-		*/
-		
-		
-		
-		int numMachAva = 0;
-		int numRep = 0;
-		int maxQueRep = 0;
-		int aveQueRep = 0;
-		int aveQueMachAva = 0;
-		double costValue = 0;
-		double percValue = 0;
-		
-		principal.setLayout(new GridLayout( 3, 1, 10, 10 ));
-		JLabel etq1 []= {
-				new JLabel("Number Machine Avalaible"),
-				new JLabel("Number Repairers")
+				/*
+				int index = 0;
+				int numMachAva = (Integer)(obj.get(index));
+				index++;		
+				int numRep = (Integer)(obj.get(index));;
+				index++;
+				int maxQueRep = (Integer)(obj.get(index));;
+				index++;
+				int maxQueMachAva = (Integer)(obj.get(index));;
+				index++;
+				double costValue = (Double)(obj.get(index));;
+				index++;
+				double percValue = (Double)(obj.get(index));;
+				index++;
+				*/
+				
+				
+				
+				int numMachAva = 0;
+				int numRep = 0;
+				int maxQueRep = 0;
+				int aveQueRep = 0;
+				int aveQueMachAva = 0;
+				double costValue = 0;
+				double percValue = 0;
+				
+				principal.setLayout(new GridLayout( 3, 1, 10, 10 ));
+				JLabel etq1 []= {
+						new JLabel("Number Machine Avalaible"),
+						new JLabel("Number Repairers")
+						};
+				JLabel val1 [] = {
+						new JLabel(Integer.toString(numMachAva)),
+						new JLabel(Integer.toString(numRep))
+						};
+				JLabel etq2 []= {
+						new JLabel("Maximum queue repair"),
+						new JLabel("Average queue reapir"),
+						new JLabel("Average queue Machine Avalaible")
+						};
+				JLabel val2 [] = {
+						new JLabel(Integer.toString(maxQueRep)),
+						new JLabel(Integer.toString(aveQueRep)),
+						new JLabel(Integer.toString(aveQueMachAva))
+						};
+				JLabel etq3 []= {
+						new JLabel("Cost Value"),
+						new JLabel("Percentage value")
+						};
+				JLabel val3 [] = {
+						new JLabel(Double.toString(costValue)),
+						new JLabel(Double.toString(percValue*100)+" %")
 				};
-		JLabel val1 [] = {
-				new JLabel(Integer.toString(numMachAva)),
-				new JLabel(Integer.toString(numRep))
-				};
-		JLabel etq2 []= {
-				new JLabel("Maximum queue repair"),
-				new JLabel("Average queue reapir"),
-				new JLabel("Average queue Machine Avalaible")
-				};
-		JLabel val2 [] = {
-				new JLabel(Integer.toString(maxQueRep)),
-				new JLabel(Integer.toString(aveQueRep)),
-				new JLabel(Integer.toString(aveQueMachAva))
-				};
-		JLabel etq3 []= {
-				new JLabel("Cost Value"),
-				new JLabel("Percentage value")
-				};
-		JLabel val3 [] = {
-				new JLabel(Double.toString(costValue)),
-				new JLabel(Double.toString(percValue*100)+" %")
-		};
-		
-		createSeccion("Input variables",etq1,val1);
-		createSeccion("Performance variables",etq2,val2);
-		createSeccion("Cost function",etq3,val3);
-		
-		this.setViewportView(principal);
-		//this.setPreferredSize(new Dimension(150, 300));
-
-		
+				
+				createSeccion("Input variables",etq1,val1);
+				createSeccion("Performance variables",etq2,val2);
+				createSeccion("Cost function",etq3,val3);
+				
+				this.setViewportView(principal);
 	}
 	
 	public void createSeccion(String nameSeccion,JLabel etiquetas [], JLabel valores[]){
