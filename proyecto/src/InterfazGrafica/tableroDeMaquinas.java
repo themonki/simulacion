@@ -35,9 +35,9 @@ public class tableroDeMaquinas extends JFrame{
 	private JPanel panelReparacion;
 	private JPanel panelDisponibles,panelDatosDeEntrada;
 	private JTabbedPane paneltab;
-	private JPanel panelPpal,panelEstadistica;
+	private JPanel panelPpal;
 	
-	private JScrollPane scrollReparacion,scrollDisponibles; 
+	private JScrollPane scrollReparacion,scrollDisponibles,panelEstadistica; 
 	private Color color_disponible=new Color(170,225,150); 
 	private Color color_no_disponible= new Color(225,150,150);
 	private Color color_reparador=Color.yellow;
