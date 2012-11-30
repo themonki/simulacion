@@ -40,7 +40,7 @@ public class Simulacion {
 	
 	//variable desempeño
 	private int relojAnterior;
-	private int desempenioFuncionamiento;
+	private int desempenioSumFuncionamiento;
 	private int desempenioColaReparador;
 	private int desempenioColaAdicional;
 	
@@ -87,7 +87,7 @@ public class Simulacion {
 		this.reparadoresDisponibles = this.MAX_REPARADOR = cantReparadores;
 		
 		//variables de desempeño
-		this.desempenioFuncionamiento=0; //representa la suma ponderada de los cambios (cantidad de nodos * (tiempo ahora - tiempo anterior))
+		this.desempenioSumFuncionamiento=0; //representa la suma ponderada de los cambios (cantidad de nodos * (tiempo ahora - tiempo anterior))
 		this.desempenioColaAdicional=0;
 		this.desempenioColaReparador=0;
 		
@@ -129,22 +129,30 @@ public class Simulacion {
 					maquina));
 			
 			// Información UI
+			if (activarVariablesDesempenio)
+			
+			{
 			Vector<Object> evento= new Vector<Object>();
 			evento.add(maquina);
 			evento.add(this.REPARACION);
 			evento.add(this.reloj);
+			
 			this.resumenSimulacion.add(evento);
+			
+			}
 		}
 		else{
 			this.colaRepacion++; //Se suma a la cola de repacion
 			if(this.colaRepacion>this.desempenioColaReparador)this.desempenioColaReparador=this.colaRepacion;
 			this.maquinasReparacion.add(maquina);
 			// Información UI
+			if (activarVariablesDesempenio){
 			Vector<Object> evento= new Vector<Object>();
 			evento.add(maquina);
 			evento.add(this.COLAREPARACION);
 			evento.add(this.reloj);
 			this.resumenSimulacion.add(evento);
+			}
 		}
 		
 		if(this.colaAdicionales>0){
@@ -154,11 +162,13 @@ public class Simulacion {
 					this.maquinasAdicionales.peek()));
 			
 			// Información UI
+			if (activarVariablesDesempenio){
 			Vector<Object> evento= new Vector<Object>();
 			evento.add(this.maquinasAdicionales.poll());
 			evento.add(this.REEMPLAZO);
 			evento.add(this.reloj);
 			this.resumenSimulacion.add(evento);
+			}
 			
 		}else{
 			
@@ -167,8 +177,10 @@ public class Simulacion {
 			/* DESEMPENO
 			 * FALLA UNA MAQUINA Y NO SE TIENE MAQUINAS ADICIONALES ENTONCES SE CAMBIA LA COLA DE FUNCIONAMIENTO, SE RECALCULA EL CUADRADO
 			 * */
-			this.desempenioFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
-			//System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioFuncionamiento );
+				
+			//System.out.println(desempenioFuncionamiento);	
+			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
+			System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
 			this.relojAnterior=this.reloj;
 			/* **************************/			
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
@@ -190,9 +202,13 @@ public class Simulacion {
 			/* DESEMPENO
 			 * SE REPARO UNA MAQUINA Y SE TIENE UN HUECO ENTONCES SE CAMBIA LA COLA DE FUNCIONAMIENTO, SE RECALCULA EL CUADRADO
 			 * */
-			this.desempenioFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
-			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.relojAnterior +" - "+this.reloj  + ") = Value: "+ this.desempenioFuncionamiento );
-			this.relojAnterior=this.reloj;
+			if (activarVariablesDesempenio){
+			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
+			
+			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
+			
+			}
+			//this.relojAnterior=this.reloj;
 			/* **************************/
 			this.colaFuncionamiento++;
 
@@ -200,11 +216,14 @@ public class Simulacion {
 					this.INDICADOR_FALLA, 
 					 maquina));
 			// Información UI
+			if(activarVariablesDesempenio){
 			Vector<Object> evento= new Vector<Object>();
 			evento.add(maquina);
 			evento.add(this.REEMPLAZO);
 			evento.add(this.reloj);
 			this.resumenSimulacion.add(evento);
+			
+			}
 			
 			//this.puestosLibres.poll(); //Puede servir para que cuando se pase a la parte grafica se sepa que lugar reemplazar
 		}else{//si esta completo, se coloca como adicional
@@ -213,11 +232,13 @@ public class Simulacion {
 			this.maquinasAdicionales.add(maquina);
 			
 			// Información UI
+			if(activarVariablesDesempenio){
 			Vector<Object> evento= new Vector<Object>();
 			evento.add(maquina);
 			evento.add(this.COLAADICIONAL);
 			evento.add(this.reloj);
 			this.resumenSimulacion.add(evento);
+			}
 		}
 				
 		if(this.colaRepacion>0){//se tienen maquinas a reparar
@@ -225,11 +246,13 @@ public class Simulacion {
 					this.INDICADOR_REPARACION, this.maquinasReparacion.peek()));
 			
 			// Información UI
+			if (activarVariablesDesempenio){
 			Vector<Object> evento= new Vector<Object>();
 			evento.add(this.maquinasReparacion.poll());
 			evento.add(this.REPARACION);
 			evento.add(this.reloj);
 			this.resumenSimulacion.add(evento);
+			}
 			
 			this.colaRepacion--;
 		}else{// cola del reparador libre
@@ -259,11 +282,11 @@ public class Simulacion {
 			Evento<Integer, String, String> evento = this.listaEventos.poll();
 			this.reloj=(Integer) evento.getTiempo();
 			
-			if (this.reloj > tiempoCalentamiento){
+			if (this.reloj > tiempoCalentamiento && !activarVariablesDesempenio){
 				
-				reloj_calentamiento=this.reloj;// a pesar de que el tiempo de calentamiento es constante no sabemos el tiempo verdadero donde para.
+				reloj_calentamiento=relojAnterior;// a pesar de que el tiempo de calentamiento es constante no sabemos el tiempo verdadero donde para.
 			    activarVariablesDesempenio=true;//activa el calculo del desempeño 
-			    relojAnterior=this.reloj;
+			    //relojAnterior=this.reloj;
 				
 			} 
 			
@@ -283,11 +306,17 @@ public class Simulacion {
 				imprimir(evento);
 			}
 			
+			relojAnterior=this.reloj;
+			
 
 		}while (this.reloj < this.MAX_TIEMPO);
 		
 		
-		//System.out.println(getResumenSimulacion());
+		double desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
+		
+		
+		
+		System.out.println("fina::"+(desempenioTotal*100));
 
 	}
 	
@@ -310,6 +339,7 @@ public class Simulacion {
 		//Pruebas:
 			Simulacion s = new Simulacion(12345, 50,1,1,500);
 			s.starSimulacion();
+			System.out.println("desempeño:: "+(s.getDesempenioFuncionamiento()));
 		
 		}
 	
@@ -321,7 +351,7 @@ public class Simulacion {
 	 * @return the desempenioFuncionamiento
 	 */
 	public int getDesempenioFuncionamiento() {
-		return desempenioFuncionamiento;
+		return desempenioSumFuncionamiento;
 	}
 
 	/**
@@ -342,7 +372,7 @@ public class Simulacion {
 	 * @param desempenioFuncionamiento the desempenioFuncionamiento to set
 	 */
 	public void setDesempenioFuncionamiento(int desempenioFuncionamiento) {
-		this.desempenioFuncionamiento = desempenioFuncionamiento;
+		this.desempenioSumFuncionamiento = desempenioFuncionamiento;
 	}
 
 	/**
