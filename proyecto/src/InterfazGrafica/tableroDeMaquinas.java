@@ -1,12 +1,9 @@
 package InterfazGrafica;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -15,7 +12,6 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import Simulacion.Simulacion;
@@ -77,6 +72,8 @@ public class tableroDeMaquinas extends JFrame{
 
 	private JLabel maquinas_set_label;
 	
+	private tableroDeMaquinas tbmInit;
+	
 	public tableroDeMaquinas (){
 		
 		
@@ -102,9 +99,28 @@ public class tableroDeMaquinas extends JFrame{
 		Button start= new Button("Start Simulation");
 		Button skip= new Button("Skip ");
 		skip.setEnabled(false);
+		Button restart = new Button("Restart");
+		restart.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tbmInit.dispose();
+				tbmInit=null;
+				
+				tbmInit = new tableroDeMaquinas();
+				tbmInit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				
+				
+			}
+		});
+		
+		JPanel jpButtons = new JPanel(new GridLayout(3,1,10,10));
 		start.addActionListener(new manejador());
-		panelPpal.add(start);
-		panelPpal.add(skip);
+		jpButtons.add(start);
+		jpButtons.add(skip);
+		jpButtons.add(restart);
+		
+		panelPpal.add(jpButtons);
 		
 		iniciarDatosDeEstado();
 		
@@ -139,7 +155,7 @@ public class tableroDeMaquinas extends JFrame{
 			}
 		});
 		
-		
+		this.tbmInit=this;
 		
 		
 		
@@ -462,10 +478,14 @@ public class tableroDeMaquinas extends JFrame{
 		
 		
 		
-		 numero_maquinas_extras_estado= new JTextField(10);		
-		 tiempo_estado= new JTextField(10);		 
+		 numero_maquinas_extras_estado= new JTextField(10);
+		 numero_maquinas_extras_estado.setEditable(false);
+		 tiempo_estado= new JTextField(10);
+		 tiempo_estado.setEditable(false);
 		 cola_reparacion_estado= new JTextField(10);
+		 cola_reparacion_estado.setEditable(false);
 		 maquinas_set= new JTextField(10);
+		 maquinas_set.setEditable(false);
 		 				
 		
 		 numero_maquinas_extras_label_estado= new JLabel("Avalaibles:");
@@ -534,11 +554,11 @@ public class tableroDeMaquinas extends JFrame{
 		
 		validador valida= new validador();
 		String mensaje="" ;
-		mensaje+=valida.validar("Number Machine Avalaible",numero_maquinas_extras.getText(),true ,1, 20);
+		mensaje+=valida.validar("Number Machine Avalaible",numero_maquinas_extras.getText(),true ,1, 50);
 		
-		mensaje+=valida.validar("Number Repairers",numero_reparadores.getText(),true ,1, 20);
+		mensaje+=valida.validar("Number Repairers",numero_reparadores.getText(),true ,1, 50);
 	
-		mensaje+=valida.validar("Timer Finish",tiempo.getText(),true ,10, 100);
+		mensaje+=valida.validar("Timer Finish",tiempo.getText(),true ,10, 100000);
 		
 		//mensaje+=valida.validar("Events Number",numero_eventos.getText(),true ,10, 100);
 		
@@ -566,9 +586,13 @@ public class tableroDeMaquinas extends JFrame{
 		if(validar().equals(""))
 		{
 			
+			int numMachAva = Integer.parseInt(numero_maquinas_extras.getText());
+			int numRepaAva = Integer.parseInt(numero_maquinas_extras.getText());
+			int maxTimerFinish = Integer.parseInt(numero_maquinas_extras.getText());
+			
 		//agregarPanel(panelDisponibles,Integer.parseInt(numero_maquinas_extras.getText()),color_disponible);
 		//agregarPanel(panelReparacion,49,color_no_disponible);
-		Simulacion s = new Simulacion(12345, 50,1,1,700);
+		Simulacion s = new Simulacion(12345, 50,numMachAva,numRepaAva,maxTimerFinish);
 		s.starSimulacion();
 		
 		ResumenSimulacion=s.getResumenSimulacion();
