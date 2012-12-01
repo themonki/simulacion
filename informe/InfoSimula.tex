@@ -116,7 +116,10 @@ Puntos claves:
 \end{itemize}
 
 
-Al iniciar la simulación se genera un evento de fallo por cada una de las máquinas de la fábrica. Estos eventos se generan con un  espacio de $20$ horas. Esto es con el fin de evitar la situación: \emph{Todas las máquinas fallan a la vez}. Una vez se tiene este conjunto de eventos, se realiza el período del calentamiento, este consiste en realizar las acciones seg\'un el evento siguiente en la lista de eventos futuros hasta cumplir un tiempo, el cual hemos determinado 30 semanas, durante el calentamiento las variables de desempeño no están activadas, pero si se tiene en cuenta las colas y estados de éstas. Alcanzado este tiempo de calentamiento se activan las variables de desempeño, se usan las colas tal cual quedaron y se realizan las acciones pertinenetes seg\'un el tiepo de evento que se extraiga de la lista de eventos futuros esto se realiza por un tiempo $t$ que se establezca para análisis del sistema. Al finalizar se debe calcular la función de costo y realacionarla con las variables de desempeño para poder comparar dicha simulación con otros escenarios.\\
+Al iniciar la simulación se genera un evento de fallo por cada una de las máquinas de la fábrica. Estos eventos se generan con un  espacio de $20$ horas. Esto es con el fin de evitar la situación: \emph{Todas las máquinas fallan a la vez}. Una vez se tiene este conjunto de eventos, se realiza el período del calentamiento,B\'asico}
+\subsection{Escenerio: An\'alisis m\'aquinas adicionales}
+\subsection{Escenario: An\'alisis cantidad reparadores}
+\subsection{Escenario: An\'alisis combinatoria m\'aquinas adicionales y cantidad reparadores} este consiste en realizar las acciones seg\'un el evento siguiente en la lista de eventos futuros hasta cumplir un tiempo, el cual hemos determinado 30 semanas, durante el calentamiento las variables de desempeño no están activadas, pero si se tiene en cuenta las colas y estados de éstas. Alcanzado este tiempo de calentamiento se activan las variables de desempeño, se usan las colas tal cual quedaron y se realizan las acciones pertinenetes seg\'un el tiepo de evento que se extraiga de la lista de eventos futuros esto se realiza por un tiempo $t$ que se establezca para análisis del sistema. Al finalizar se debe calcular la función de costo y realacionarla con las variables de desempeño para poder comparar dicha simulación con otros escenarios.\\
 
 Se determinó un tiempo de 30 semanas desarrollando el siguiente análisis. Las máquinas tienen un evento de fallo que se produce una vez estén activas en una distribución uniforme de $160\pm30$ horas lo que es equivalente a $4\pm0.75$ semanas (tener encuenta que una semana corresponde al trabajo de $8*5$  horas). Dado los primeros $50$ eventos de fallo generados al iniciar la simulación, estos se generaron con un espacio de $20$ horas lo que es equivalente a $0.5$ semanas. Ahora bien $50*0.5$ siendo $50$ la cantidad de eventos y $0.5$ el tiempo con el que se generan los eventos (en semanas), nos da $25$ semanas para que posiblemente se halla ejecutado el último de los $50$ eventos generados al principio, sin embargo para extenderlo y tener seguridad de su ejecución se suman $5$ semanas más al tiempo de calentamiento quedando finalmente en $30$ semanas, esta extención de tiempo también da la oportunidad que se hallan creado una cantidad suficientes de eventos tanto de falla como de reparación. Así pues tendrémos un sistema estable el cual analizar.\\
 
@@ -221,11 +224,34 @@ El tiempo que dura una repaci\'on sigue una distribuci\'on uniforme $8\pm3$ hora
 	 \begin{verbatim}
 	 Evento<Tiempo, Tipo, Maquina>
 	 \end{verbatim}
+	 Con esta estructura de evento se tiene información necesaria para realizarle el seguimiento a la máquina, recordemos que todas las m\'aquinas tienen las mismas probabilidades de fallar pero estas son posibles en la medida que la m\'aquina est\'e funcionando. 
+	 
 	 \item \textbf{Lista de eventos futuros}\\
-	 Para la lista de eventos futuros se utilizó la estructura \emph{Priority Queue} de java, a la cual se le debi\'o implementar la interfaz de comparaci\'on. Pues como se sabe los eventos no eran estructuras b\'asicas de java.
+	 Para la lista de eventos futuros se utilizó la estructura \emph{Priority Queue} de java, a la cual se le debi\'o implementar la interfaz de comparaci\'on. Pues como se sabe los eventos no eran estructuras b\'asicas de java. La comparaci\'on era dado dos eventos se determinaba cual era el menor usando el tiempo de cada evento y comparando cual era el menor, este era el factor de organizaci\'on. 
+	 
  	 \item \textbf{Colas}\\
+ 	 \begin{itemize}
+ 	 \item \textbf{Cola máquinas adicionales}
+ 	 Para llevar el conteo cada paso del reloj, se usó un entero que era afectado según el evento y estado del sistema.\\
+ 	 Para saber que máquina reasumia cuando se requeria se creó una estructura FIFO \emph{Queue} de java, en la cual las máquinas cuando eran reparadas ingresaban y cuando eran necesarias se sacaban para que entraran a reemplazar siguiendo la regla \emph{primeras en entrar primeras en salir}.
+ 	 
+ 	 \item \textbf{Cola espera para reparación}
+ 	 En este caso tambi\'en se us\'o un entero para contabilizar como cambiaba la cola de espera para reparaci\'on. \\
+ 	 
+ 	 Para saber que m\'aquina segu\'ia para ser reparada se us\'o una estructura FIFO \emph{Queue} de java, lo que se buscaba con esta estructura era que las m\'aquinas no esperaran tanto para ser reparadas y que todas sean reeparadas.
+ 	 \end{itemize}
  	 
  	 \item \textbf{Variables de desempeño}\\
+ 	 Para estas variables se usaron doubles y se iban actualizando de acuardo a lo planteado en la descripción de eventos. Usamos para calcular el promedio el área bajo la curva.
+ 	 
+ 	 \begin{figure}
+ 	  	\centering
+ 	   		\includegraphics[scale=0.5]{promedio.png} 
+     	\caption{Calculo promedio, \'area bajo la curva.}
+  		\label{fig:promedios}
+ 	 \end{figure}
+ 	 
+ 	 En el ejemplo de la Figura \ref{fig:promedios} consiste en hallar el área de cada cuadrado y sumarlos luego se divide por el $100\%$ este puede ser, por ejemplo en el desempeño de la f\'abrica  $50*$Reloj\_Final.
  	 
 \end{itemize}
 
