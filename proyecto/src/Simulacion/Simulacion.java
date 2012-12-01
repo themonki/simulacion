@@ -189,7 +189,7 @@ public class Simulacion {
 				
 			//System.out.println(desempenioFuncionamiento);	
 			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
-			//System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
+			System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
 			this.relojAnterior=this.reloj;
 			/* **************************/			
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
@@ -215,7 +215,7 @@ public class Simulacion {
 			 * */
 			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
 			
-			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
+			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
 			
 			
 			this.relojAnterior=this.reloj;
@@ -342,6 +342,8 @@ public class Simulacion {
 
 		}while (this.reloj < this.MAX_TIEMPO);
 		
+		this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
+		
 		
 		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
 		
@@ -371,9 +373,10 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,1,3,50);
+			Simulacion s = new Simulacion(12345, 50,10,4,10);
 			s.starSimulacion();
-			//System.out.println("desempeño:: "+(s.getDesempenioFuncionamiento()));
+			
+			System.out.println("desempeño:: "+(s.getDesempenioTotal()));
 		
 		}
 	
