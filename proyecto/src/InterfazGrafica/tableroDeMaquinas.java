@@ -600,10 +600,58 @@ public class tableroDeMaquinas extends JFrame{
 		Simulacion s = new Simulacion(12345, 50,numMachAva,numRepaAva,maxTimerFinish);
 		s.starSimulacion();
 		
+		
+		
+		
+		//---------------------------------------------------------------------------------------
+		int count_size=s.getMaquinasAdicionales().size();
+		System.out.println("maquinas adicionales :::"+ count_size);
+		System.out.println( s.getMaquinasAdicionales());
+		
+		for (int i=0;i<count_size;i++)
+		{
+			
+			agregarPanel(panelDisponibles, s.getMaquinasAdicionales().poll(), color_disponible);
+			
+			
+			
+		}
+		
+		
+		for (int i=0;i<s.getMaquinasConReparador().size();i++){
+			
+			agregarPanel(panelReparador, s.getMaquinasConReparador().get(i), color_reparador);
+			
+			
+		}
+		
+		System.out.println("maquinas con reparador :::"+ s.getMaquinasConReparador().size());
+		System.out.println(s.getMaquinasConReparador());
+		
+		count_size=s.getMaquinasEnColaReparacion().size();
+		for (int i=0;i<count_size;i++){
+			
+			String f= s.getMaquinasEnColaReparacion().peek();
+			agregarPanel(panelReparacion, s.getMaquinasEnColaReparacion().poll(), color_no_disponible);
+			//System.out.println(f);
+			
+		}
+		
+		//  48
+		
+		System.out.println("maquinas con cola reparacion :::"+ count_size);
+		System.out.println(s.getMaquinasEnColaReparacion());
+		
+		
+		
+		//--------------------------------------------------------------------------------------
+		
 		ResumenSimulacion=s.getResumenSimulacion();
+		
+		System.out.println(ResumenSimulacion);
 		panelEstadistica.init(new Vector<Object>());
 		panelEstadistica.updateUI();
-		System.out.println(s.getResumenSimulacion());
+		
 		time.start();
 		
 		}
