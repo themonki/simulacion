@@ -601,6 +601,18 @@ public class tableroDeMaquinas extends JFrame{
 		s.starSimulacion();
 		
 		
+		//---------------------------------------------------------------------------------------
+		
+		for (int i=1;i<=numMachAva;i++){
+			
+			//String f= s.getMaquinasEnColaReparacion().peek();
+			agregarPanel(panelMaquinas,""+(49+i) , color_disponible);
+			//System.out.println(f);
+			
+		}
+		
+		
+		
 		
 		
 		//---------------------------------------------------------------------------------------
@@ -634,6 +646,9 @@ public class tableroDeMaquinas extends JFrame{
 			//System.out.println(f);
 			
 		}
+		
+		
+		
 		
 		//  48
 		

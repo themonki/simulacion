@@ -18,7 +18,7 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 public class Simulacion {
 	
 	private PriorityQueue<Evento<Integer, String, String>> listaEventos;
-	private int reloj,reloj_calentamiento;
+	private int reloj,reloj_calentamiento,reloj_anterior_reparadores;
 	private int tiempoCalentamiento=1000;
 	
 	boolean activarVariablesDesempenio=false;
@@ -49,6 +49,10 @@ public class Simulacion {
 	//variable desempeño
 	private int relojAnterior;
 	private int desempenioSumFuncionamiento;
+	
+	private int desempenioSumReparadores_ocupacion;//para calcular el promedio de ocupacion de todos los reparadores 
+	
+
 	private int desempenioColaReparador;
 	private int desempenioColaAdicional;
 	
@@ -62,15 +66,21 @@ public class Simulacion {
     private String COLAADICIONAL="irAColaAdicional";
     private String REEMPLAZO="irAFabrica";
 	private double desempenioTotal;
+	private double desempenioSumReparadores_ocupacion_total;
 
 	
-	public double getDesempenioTotal() {
-		return desempenioTotal;
+	
+
+	public double getDesempenioSumReparadores_ocupacion_total() {
+		return desempenioSumReparadores_ocupacion_total;
 	}
 
-	public void setDesempenioTotal(double desempenioTotal) {
-		this.desempenioTotal = desempenioTotal;
+
+	public void setDesempenioSumReparadores_ocupacion_total(
+			double desempenioSumReparadores_ocupacion_total) {
+		this.desempenioSumReparadores_ocupacion_total = desempenioSumReparadores_ocupacion_total;
 	}
+
 
 	/**
 	 * @param seed Indica la semilla para las distribuciones
@@ -147,6 +157,15 @@ public class Simulacion {
 		
 		if(this.reparadoresDisponibles>0){
 			this.maquinasConReparador.add(maquina); //Maquina que esta atendiendo un reparador
+			//System.out.println(this.desempenioSumReparadores_ocupacion);
+			this.desempenioSumReparadores_ocupacion += (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
+			System.out.println("Evento: "+this.INDICADOR_FALLA+ " reparadores: " + (this.MAX_REPARADOR-this.reparadoresDisponibles)+" * Time: (" +this.reloj +" - "+this.reloj_anterior_reparadores  + ") = Value dre : "+ this.desempenioSumReparadores_ocupacion );
+			
+			
+			reloj_anterior_reparadores=reloj;
+			
+			
+			
 			this.reparadoresDisponibles--;
 			//Evento de reparacion
 			this.listaEventos.add(new Evento<Integer, String, String>(this.reloj+this.tiempos.tiempoReparacion(), 
@@ -215,9 +234,7 @@ public class Simulacion {
 			 * */
 			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
 			
-			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
-			
-			
+		
 			this.relojAnterior=this.reloj;
 			/* **************************/
 			this.colaFuncionamiento++;
@@ -254,7 +271,21 @@ public class Simulacion {
 			this.colaRepacion--;
 			
 		}else{// cola del reparador libre
+			
+			
+			this.desempenioSumReparadores_ocupacion +=  (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
+			
+			
+			
+			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " reparadores: " + (this.MAX_REPARADOR-this.reparadoresDisponibles)+" * Time: (" +this.reloj +" - "+this.reloj_anterior_reparadores  + ") = Value dre : "+ this.desempenioSumReparadores_ocupacion );
+			
+			
+			reloj_anterior_reparadores=reloj;
 			this.reparadoresDisponibles++;
+			
+			
+			
+			
 		}
 	}
 	
@@ -282,10 +313,20 @@ public class Simulacion {
 			
 			if (this.reloj > tiempoCalentamiento && !activarVariablesDesempenio){
 				
-				reloj_calentamiento=relojAnterior;// a pesar de que el tiempo de calentamiento es constante no sabemos el tiempo verdadero donde para.
-			    activarVariablesDesempenio=true;//activa el calculo del desempeño 
+				reloj_calentamiento=this.reloj;// a pesar de que el tiempo de calentamiento es constante no sabemos el tiempo verdadero donde para.
+			   
+				relojAnterior=this.reloj;
+				//reloj_anterior_reparadores=relojAnterior;
+				
+				
+				activarVariablesDesempenio=true;//activa el calculo del desempeño 
 			    //relojAnterior=this.reloj;
 			    this.desempenioSumFuncionamiento=0;
+			    
+			    System.out.println("estoy aqui");
+			    this.desempenioSumReparadores_ocupacion=0;
+			    System.out.println("estoy aqui"+desempenioSumReparadores_ocupacion);
+			    
 			    this.resumenSimulacion.clear();
 			    
 			    int size= this.maquinasAdicionales.size();
@@ -300,6 +341,8 @@ public class Simulacion {
 			    
 			    for (int i=0;i<size;i++)
 			    this.maquinasConReparadorCalentamiento.add( this.maquinasConReparador.get(i)) ;
+			    
+			    
 			    
 			    
 			    
@@ -342,9 +385,16 @@ public class Simulacion {
 
 		}while (this.reloj < this.MAX_TIEMPO);
 		
+		this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
+		this.desempenioSumReparadores_ocupacion=+ (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
 		
+		desempenioSumReparadores_ocupacion_total=+ (double) this.desempenioSumReparadores_ocupacion/(double) (((this.reloj-this.reloj_calentamiento)*this.MAX_REPARADOR));
+		
+		//System.out.println( "sum" + this.desempenioSumReparadores_ocupacion+" max repa"+(this.MAX_REPARADOR-this.reparadoresDisponibles)+" reloj" +(reloj-reloj_anterior_reparadores) );
+		
+		try {
 		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
-		
+		} catch (Exception e){}
 		
 		/*System.out.println(resumenSimulacion);
 		System.out.println("fina::"+(desempenioTotal*100));
@@ -371,9 +421,12 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,1,3,50);
+			Simulacion s = new Simulacion(12345, 50,10,4,10);
 			s.starSimulacion();
-			//System.out.println("desempeño:: "+(s.getDesempenioFuncionamiento()));
+			
+			//System.out.println("desempeño:: "+(s.getDesempenioTotal()*100));
+			
+			//System.out.println("desempeño:: reparadores  "+(s.getDesempenioSumReparadores_ocupacion_total()));
 		
 		}
 	
@@ -482,5 +535,22 @@ public class Simulacion {
 	public void setMaquinasConReparadorCalentamiento(
 			Vector<String> maquinasConReparadorCalentamiento) {
 		this.maquinasConReparadorCalentamiento = maquinasConReparadorCalentamiento;
+	}
+	
+	
+	public int getDesempenioSumReparadores_ocupacion() {
+		return desempenioSumReparadores_ocupacion;
+	}
+
+	public void setDesempenioSumReparadores_ocupacion(int desempenioSumReparadores_ocupacion) {
+		this.desempenioSumReparadores_ocupacion = desempenioSumReparadores_ocupacion;
+	}
+	
+	public double getDesempenioTotal() {
+		return desempenioTotal;
+	}
+
+	public void setDesempenioTotal(double desempenioTotal) {
+		this.desempenioTotal = desempenioTotal;
 	}
 }
