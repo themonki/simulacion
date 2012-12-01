@@ -79,7 +79,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		
 		
-		super("Machine Simulation");
+		super("Simulación de Maquinas");
 		this.setLayout(new FlowLayout());
 		
 		panelEstadistica= new PanelEstadistica();
@@ -98,10 +98,10 @@ public class tableroDeMaquinas extends JFrame{
 		iniciarDatosDeEntrada();
 		
 		
-		Button start= new Button("Start Simulation");
+		Button start= new Button("Iniciar Simulación");
 		Button skip= new Button("Skip ");
 		skip.setEnabled(false);
-		Button restart = new Button("Restart");
+		Button restart = new Button("Reiniciar");
 		restart.addActionListener(new ActionListener() {
 			
 			@Override
@@ -126,8 +126,8 @@ public class tableroDeMaquinas extends JFrame{
 		
 		iniciarDatosDeEstado();
 		
-		paneltab.add(panelPpal,"Simulation");
-		paneltab.add(panelEstadistica,"Statistical");
+		paneltab.add(panelPpal,"Simulación");
+		paneltab.add(panelEstadistica,"Estadística");
 		this.add(paneltab);
 		
 		panelPpal.setPreferredSize(new Dimension(1180, 700));
@@ -233,7 +233,7 @@ public class tableroDeMaquinas extends JFrame{
 			
 		}
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Machine Set");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Maquinas Funcionando");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -262,7 +262,7 @@ public class tableroDeMaquinas extends JFrame{
 		panelReparacion.setLayout(box);			
 		scrollReparacion= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Repair Set");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Cola de Reparación");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -290,7 +290,7 @@ public class tableroDeMaquinas extends JFrame{
 		panelReparador.setLayout(box);			
 		scrollReparador= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Reparator");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Reparador");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -406,7 +406,7 @@ public class tableroDeMaquinas extends JFrame{
 			
 		scrollDisponibles= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Availables");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Disponibles");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -426,7 +426,7 @@ public class tableroDeMaquinas extends JFrame{
 	public void iniciarDatosDeEntrada(){
 		panelDatosDeEntrada= new JPanel(new GridLayout(4,2,10,10));
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Incoming Data");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Datos de Entrada");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -441,15 +441,15 @@ public class tableroDeMaquinas extends JFrame{
 		 numero_eventos= new JTextField(10) ;
 		 
 		 
-		 tiempo_label= new JLabel("Timer Finish");
+		 tiempo_label= new JLabel("Tiempo de Finalización");
 		 tiempo_label.setFont(Estilos.fontLabels);
 		 eventos_label= new JLabel("Events Number");
 		 eventos_label.setFont(Estilos.fontLabels);		 
 				
 		
-		 numero_maquinas_extras_label= new JLabel("Number Machine Avalaible");
+		 numero_maquinas_extras_label= new JLabel("Numero de Maquinas Disponibles");
 		 numero_maquinas_extras_label.setFont(Estilos.fontLabels);
-		 numero_reparadores_label= new JLabel("Number Repairers");
+		 numero_reparadores_label= new JLabel("Numero de Reparadores");
 		 numero_reparadores_label.setFont(Estilos.fontLabels);
 		 
 		 
@@ -474,7 +474,7 @@ public class tableroDeMaquinas extends JFrame{
 	public void iniciarDatosDeEstado(){
 		panelDatosDeEstado= new JPanel(new GridLayout(5,2,10,10));
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "State");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Estado");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -493,13 +493,13 @@ public class tableroDeMaquinas extends JFrame{
 		 maquinas_set.setEditable(false);
 		 				
 		
-		 numero_maquinas_extras_label_estado= new JLabel("Avalaibles:");
+		 numero_maquinas_extras_label_estado= new JLabel("Disponibles:");
 		 numero_maquinas_extras_label_estado.setFont(Estilos.fontLabels);
 		 
-		 tiempo_estado_label= new JLabel("Actual Time:");
+		 tiempo_estado_label= new JLabel("Tiempo Actual:");
 		 tiempo_estado_label.setFont(Estilos.fontLabels);
 		 
-		 cola_reparacion_estado_label = new JLabel("Repair Queu:");
+		 cola_reparacion_estado_label = new JLabel("Cola de Reparación:");
 		 cola_reparacion_estado_label.setFont(Estilos.fontLabels);
 		 
 		 maquinas_set_label= new JLabel("Machine Set:");
@@ -604,35 +604,33 @@ public class tableroDeMaquinas extends JFrame{
 		
 		
 		//---------------------------------------------------------------------------------------
-		int count_size=s.getMaquinasAdicionales().size();
-		System.out.println("maquinas adicionales :::"+ count_size);
-		System.out.println( s.getMaquinasAdicionales());
+		int count_size=s.getMaquinasAdicionalesCalentamiento().size();
 		
 		for (int i=0;i<count_size;i++)
 		{
 			
-			agregarPanel(panelDisponibles, s.getMaquinasAdicionales().poll(), color_disponible);
+			agregarPanel(panelDisponibles, s.getMaquinasAdicionalesCalentamiento().poll(), color_disponible);
 			
 			
 			
 		}
 		
 		
-		for (int i=0;i<s.getMaquinasConReparador().size();i++){
+		for (int i=0;i<s.getMaquinasConReparadorCalentamiento().size();i++){
 			
-			agregarPanel(panelReparador, s.getMaquinasConReparador().get(i), color_reparador);
+			agregarPanel(panelReparador, s.getMaquinasConReparadorCalentamiento().get(i), color_reparador);
 			
 			
 		}
 		
-		System.out.println("maquinas con reparador :::"+ s.getMaquinasConReparador().size());
-		System.out.println(s.getMaquinasConReparador());
+		System.out.println("Caliente Reparador:::"+ s.getMaquinasConReparadorCalentamiento());
 		
-		count_size=s.getMaquinasEnColaReparacion().size();
+		
+		count_size=s.getMaquinasEnColaRepacionCalentamiento().size();
 		for (int i=0;i<count_size;i++){
 			
-			String f= s.getMaquinasEnColaReparacion().peek();
-			agregarPanel(panelReparacion, s.getMaquinasEnColaReparacion().poll(), color_no_disponible);
+			//String f= s.getMaquinasEnColaReparacion().peek();
+			agregarPanel(panelReparacion, s.getMaquinasEnColaRepacionCalentamiento().poll(), color_no_disponible);
 			//System.out.println(f);
 			
 		}
@@ -640,7 +638,7 @@ public class tableroDeMaquinas extends JFrame{
 		//  48
 		
 		System.out.println("maquinas con cola reparacion :::"+ count_size);
-		System.out.println(s.getMaquinasEnColaReparacion());
+		System.out.println(s.getMaquinasEnColaRepacionCalentamiento());
 		
 		
 		
@@ -649,7 +647,8 @@ public class tableroDeMaquinas extends JFrame{
 		ResumenSimulacion=s.getResumenSimulacion();
 		
 		System.out.println(ResumenSimulacion);
-		panelEstadistica.init(new Vector<Object>());
+		
+		panelEstadistica.init(s.getDesempenioTotal());
 		panelEstadistica.updateUI();
 		
 		time.start();
