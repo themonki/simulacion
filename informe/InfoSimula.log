@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.23)  1 DEC 2012 15:00
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.23)  1 DEC 2012 15:44
 entering extended mode
  %&-line parsing enabled.
 **InfoSimula.tex
@@ -490,18 +490,13 @@ Overfull \hbox (22.57248pt too wide) in paragraph at lines 101--102
 de m^^Saquinas adi-cionales dis-pues-tas a su-plan-tar(REEMPLAZAR)
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
-
- []
-
 [2 <./Simulacion.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
@@ -510,26 +505,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
+
+ []
+
 <Simulacion_flujo.png, id=18, 408.52625pt x 1054.94125pt>
 File: Simulacion_flujo.png Graphic file (type png)
 
 <use Simulacion_flujo.png>
 
-LaTeX Warning: Float too large for page by 4.20787pt on input line 133.
+LaTeX Warning: Float too large for page by 4.20787pt on input line 136.
 
 [3] [4 <./Simulacion_flujo.png>]
-<EventoFallo.png, id=27, 766.865pt x 344.28625pt>
-File: EventoFallo.png Graphic file (type png)
- <use EventoFallo.png>
-<EventoReparacion.png, id=28, 789.95125pt x 391.4625pt>
-File: EventoReparacion.png Graphic file (type png)
-
-<use EventoReparacion.png>
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 146--148
 
  []
 
-[5 <./EventoFallo.png> <./EventoReparacion.png>] [6] (./InfoSimula.aux) ) 
+[5] <EventoFallo.png, id=31, 766.865pt x 344.28625pt>
+File: EventoFallo.png Graphic file (type png)
+ <use EventoFallo.png>
+<EventoReparacion.png, id=32, 789.95125pt x 391.4625pt>
+File: EventoReparacion.png Graphic file (type png)
+
+<use EventoReparacion.png>
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+[6 <./EventoFallo.png> <./EventoReparacion.png>] [7] (./InfoSimula.aux) ) 
 Here is how much of TeX's memory you used:
  4139 strings out of 495061
  53217 string characters out of 1182620
@@ -537,7 +541,7 @@ Here is how much of TeX's memory you used:
  7287 multiletter control sequences out of 15000+50000
  10023 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,7n,32p,1116b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,7n,32p,1125b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/
 share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf
 -texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fo
@@ -547,9 +551,9 @@ ts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
 hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on InfoSimula.pdf (6 pages, 247033 bytes).
+Output written on InfoSimula.pdf (7 pages, 249158 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
+ 71 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
