@@ -106,36 +106,67 @@ Para solucionar este problema la fábrica ha dispuesto de máquinas adicionales 
 
 Puntos claves:
 \begin{itemize}
+\item Se debe trabajar con una lista de eventos futuros.
 \item Cada máquina de la fábrica tiene la probabilidad de fallar en un periodo de $160\pm30$ horas con una distribución uniforme.
+\item Una vez un reparador inicia la repación de una máquina esta reparación puede tomarle $8\pm3$ horas 
 \item La cantidad de reparadores puede variar según los escenarios planteados.
 \item La cantidad de máquinas adicionales puede variar según los escenarios planteados.
 \item Es adecuado realizar un tiempo de calentamiento ya que existe formación de colas.
 \item Una máquina que se esté reparando o esté esperando para ser reparada no puede generar un evento de fallo, pues no está en funcionamiento. 
 \end{itemize}
 
-Al iniciar la simulación se genera un evento de fallo por cada una de las máquinas de la fábrica. Estos eventos se generan con un  espacio de $20$ horas. Esto es con el fin de evitar la situación: \emph{Todas las máquinas fallan a la vez}. Una vez se tiene este conjunto de eventos, se realiza el período del calentamiento, este consiste en realizar la simulación hasta 
+Al iniciar la simulación se genera un evento de fallo por cada una de las máquinas de la fábrica. Estos eventos se generan con un  espacio de $20$ horas. Esto es con el fin de evitar la situación: \emph{Todas las máquinas fallan a la vez}. Una vez se tiene este conjunto de eventos, se realiza el período del calentamiento, este consiste en realizar las acciones segun el evento siguiente en la lista de eventos futuros hasta cumplir un tiempo, el cual hemos determinado 30 semanas, durante el calentamiento las variables de desempeño no están activadas, pero si se tiene en cuenta las colas y estados de éstas. Alcanzado este tiempo de calentamiento se activan las variables de desempeño, se usan las colas tal cual quedaron y se realizan las acciones pertinenetes segun el tiepo de evento que se extraiga de la lista de eventos futuros esto se realiza por un tiempo $t$ que se establezca para análisis del sistema. Al finalizar se debe calcular la función de costo y realacionarla con las variables de desempeño para poder comparar dicha simulación con otros escenarios.\\
+
+Se determinó un tiempo de 30 semanas desarrollando el siguiente análisis. Las máquinas tienen un evento de fallo que se produce una vez estén activas en una distribución uniforme de $160\pm30$ horas lo que es equivalente a $4\pm0.75$ semanas (tener encuenta que una semana corresponde al trabajo de $8*5$  horas). Dado los primeros $50$ eventos de fallo generados al iniciar la simulación, estos se generaron con un espacio de $20$ horas lo que es equivalente a $0.5$ semanas. Ahora bien $50*0.5$ siendo $50$ la cantidad de eventos y $0.5$ el tiempo con el que se generan los eventos (en semanas), nos da $25$ semanas para que posiblemente se halla ejecutado el último de los $50$ eventos generados al principio, sin embargo para extenderlo y tener seguridad de su ejecución se suman $5$ semanas más al tiempo de calentamiento quedando finalmente en $30$ semanas, esta extención de tiempo también da la oportunidad que se hallan creado una cantidad suficientes de eventos tanto de falla como de reparación. Así pues tendrémos un sistema estable el cual analizar.\\
+
+
+%%AQUIIIIIIIIIIIIIII GRAFICA CALENTAMIENTO, SISTEMA ESTABLE
+
+Con el tiempo de calentamiento lo que se busca es crear un ambiente donde las colas y eventos ya estén más estables para ahí si calcular las variables de desempeño. También se busca eliminar el sesgo que ocasionan las observaciones en tiempo de transición del modelo (Cuando se inicia una simulación sin tiempo de calentamiento). \\
+
+
+A continuación se muestra un diagrama de flujo de la simulación en general.\\
+
+\begin{figure}
+  \centering
+    \includegraphics[scale=0.6]{Simulacion_flujo.png}
+  \caption{Diagrama de flujo de la simulacin en general.}
+  \label{fig:simulacion}
+\end{figure}
+
+\newpage 
 
 
 \subsection{Eventos.}
 
-\begin{itemize}
+Según la describción del problema, se identificaron dos eventos estos son
+
+\begin{enumerate}
 \item Fallo de una máquina.
+
+
+
 \item Reparación de una máquina.
-\end{itemize}
+
+\end{enumerate}
+
 
 Diagramas de flujo de los eventos:
-\begin{center}
 
-\includegraphics[scale=0.47]{fallaMaquina.png}
+\begin{figure}
+  \centering
+  	\includegraphics[scale=0.47]{EventoFallo.png} 
+  \caption{Evento: Se presenta una falla en una de las máquina.}
+  \label{fig:eventofallo}
+\end{figure}
 
-Figura2. \emph{Evento: Se presenta una falla en una de las máquina.}
-\end{center}
-\begin{center}
+\begin{figure}
+  \centering
+  	\includegraphics[scale=0.47]{EventoReparacion.png} 
+  \caption{Evento: Se realiza la reparación de una de las máquinas dañadas.}
+  \label{fig:eventoreparacion}
+\end{figure}
 
-\includegraphics[scale=0.47]{reparar.png}
-
-Figura3. \emph{Evento: Se realiza la reparación de una de las máquinas dañadas.}
-\end{center}
 
 
 
