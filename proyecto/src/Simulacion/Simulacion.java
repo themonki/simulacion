@@ -315,6 +315,7 @@ public class Simulacion {
 				
 				reloj_calentamiento=this.reloj;// a pesar de que el tiempo de calentamiento es constante no sabemos el tiempo verdadero donde para.
 			   
+				relojAnterior=this.reloj;
 				//reloj_anterior_reparadores=relojAnterior;
 				
 				
@@ -387,12 +388,13 @@ public class Simulacion {
 		this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
 		this.desempenioSumReparadores_ocupacion=+ (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
 		
-		desempenioSumReparadores_ocupacion_total=+ (double) this.desempenioSumReparadores_ocupacion/(double)(((this.reloj-this.reloj_calentamiento)*this.MAX_REPARADOR));
+		desempenioSumReparadores_ocupacion_total=+ (double) this.desempenioSumReparadores_ocupacion/(double) (((this.reloj-this.reloj_calentamiento)*this.MAX_REPARADOR));
 		
 		//System.out.println( "sum" + this.desempenioSumReparadores_ocupacion+" max repa"+(this.MAX_REPARADOR-this.reparadoresDisponibles)+" reloj" +(reloj-reloj_anterior_reparadores) );
 		
+		try {
 		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
-		
+		} catch (Exception e){}
 		
 		/*System.out.println(resumenSimulacion);
 		System.out.println("fina::"+(desempenioTotal*100));
