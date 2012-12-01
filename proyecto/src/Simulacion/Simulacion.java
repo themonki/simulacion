@@ -38,6 +38,12 @@ public class Simulacion {
 	private Queue<String> maquinasEnColaReparacion;
 	private Vector<String> maquinasConReparador;
 	
+	//Informacion para UI
+	private Queue<String> maquinasAdicionalesCalentamiento;
+	private Queue<String> maquinasEnColaRepacionCalentamiento;
+	private Vector<String> maquinasConReparadorCalentamiento;	
+	
+	
 	//private Queue<String> puestosLibres; //Maquinas que no pudieron ser reemplazadas No es necesario para interfaz grafica
 	
 	//variable desempeño
@@ -107,6 +113,11 @@ public class Simulacion {
 		this.maquinasConReparador = new Vector<String>();
 		//this.puestosLibres = new LinkedList<String>();
 		
+		//Informacion para UI
+		this.maquinasAdicionalesCalentamiento = new LinkedList<String>();
+		this.maquinasConReparadorCalentamiento= new Vector<String>();
+		this.maquinasEnColaRepacionCalentamiento = new LinkedList<String>();
+		
 		//Inicializar maquinas adicionales
 		for(int i=0; i< this.colaAdicionales; i++){
 			this.maquinasAdicionales.add(""+(this.MAX_MAQUINAS+i)); 
@@ -127,6 +138,7 @@ public class Simulacion {
 		
 	}
 	
+
 	/**
 	 * Función que crea un evento de fallo de una maquina en el sistema
 	 * 
@@ -275,7 +287,10 @@ public class Simulacion {
 			    //relojAnterior=this.reloj;
 			    this.desempenioSumFuncionamiento=0;
 			    this.resumenSimulacion.clear();
-			    System.out.println(this.getMaquinasConReparador());
+			    this.maquinasAdicionalesCalentamiento = this.maquinasAdicionales;
+			    this.maquinasConReparadorCalentamiento = this.maquinasConReparador;
+			    this.maquinasEnColaRepacionCalentamiento = this.maquinasEnColaReparacion;
+			    //System.out.println(this.getMaquinasConReparador());
 				
 			} 
 			
@@ -329,7 +344,7 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,1,1,500);
+			Simulacion s = new Simulacion(12345, 50,1,3,50);
 			s.starSimulacion();
 			System.out.println("desempeño:: "+(s.getDesempenioFuncionamiento()));
 		
@@ -413,5 +428,32 @@ public class Simulacion {
 
 	public void setMaquinasConReparador(Vector<String> maquinasConReparador) {
 		this.maquinasConReparador = maquinasConReparador;
+	}
+	
+	public Queue<String> getMaquinasAdicionalesCalentamiento() {
+		return maquinasAdicionalesCalentamiento;
+	}
+
+	public void setMaquinasAdicionalesCalentamiento(
+			Queue<String> maquinasAdicionalesCalentamiento) {
+		this.maquinasAdicionalesCalentamiento = maquinasAdicionalesCalentamiento;
+	}
+
+	public Queue<String> getMaquinasEnColaRepacionCalentamiento() {
+		return maquinasEnColaRepacionCalentamiento;
+	}
+
+	public void setMaquinasEnColaRepacionCalentamiento(
+			Queue<String> maquinasEnColaRepacionCalentamiento) {
+		this.maquinasEnColaRepacionCalentamiento = maquinasEnColaRepacionCalentamiento;
+	}
+
+	public Vector<String> getMaquinasConReparadorCalentamiento() {
+		return maquinasConReparadorCalentamiento;
+	}
+
+	public void setMaquinasConReparadorCalentamiento(
+			Vector<String> maquinasConReparadorCalentamiento) {
+		this.maquinasConReparadorCalentamiento = maquinasConReparadorCalentamiento;
 	}
 }
