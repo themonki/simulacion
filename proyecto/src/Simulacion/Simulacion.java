@@ -177,7 +177,7 @@ public class Simulacion {
 				
 			//System.out.println(desempenioFuncionamiento);	
 			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
-			System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
+			//System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
 			this.relojAnterior=this.reloj;
 			/* **************************/			
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
@@ -203,7 +203,7 @@ public class Simulacion {
 			 * */
 			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
 			
-			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
+			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
 			
 			
 			this.relojAnterior=this.reloj;
@@ -275,7 +275,7 @@ public class Simulacion {
 			    //relojAnterior=this.reloj;
 			    this.desempenioSumFuncionamiento=0;
 			    this.resumenSimulacion.clear();
-			    System.out.println(this.getMaquinasConReparador());
+			    //System.out.println(this.getMaquinasConReparador());
 				
 			} 
 			
@@ -304,11 +304,11 @@ public class Simulacion {
 		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
 		
 		
-		System.out.println(resumenSimulacion);
+		/*System.out.println(resumenSimulacion);
 		System.out.println("fina::"+(desempenioTotal*100));
 		System.out.println("maquinas con el reparador: " + this.getMaquinasConReparador());
 		System.out.println("maquinas adicionales: " +this.getMaquinasAdicionales());
-		System.out.println("maquinas en cola de reparacion: " +this.getMaquinasEnColaReparacion());
+		System.out.println("maquinas en cola de reparacion: " +this.getMaquinasEnColaReparacion());*/
 
 	}
 	
@@ -331,7 +331,7 @@ public class Simulacion {
 		//Pruebas:
 			Simulacion s = new Simulacion(12345, 50,1,1,500);
 			s.starSimulacion();
-			System.out.println("desempeño:: "+(s.getDesempenioFuncionamiento()));
+			//System.out.println("desempeño:: "+(s.getDesempenioFuncionamiento()));
 		
 		}
 	
