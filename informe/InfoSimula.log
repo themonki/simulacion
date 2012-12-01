@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.30)  29 NOV 2012 22:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.23)  30 NOV 2012 17:16
 entering extended mode
  %&-line parsing enabled.
 **InfoSimula.tex
@@ -490,26 +490,26 @@ Overfull \hbox (22.57248pt too wide) in paragraph at lines 101--102
 de m^^Saquinas adi-cionales dis-pues-tas a su-plan-tar(REEMPLAZAR)
  []
 
-<fallaMaquina.png, id=13, 759.83875pt x 327.2225pt>
+[2 <./Simulacion.png>] <fallaMaquina.png, id=18, 759.83875pt x 327.2225pt>
 File: fallaMaquina.png Graphic file (type png)
- <use fallaMaquina.png>
-[2 <./Simulacion.png>] <reparar.png, id=19, 744.7825pt x 283.0575pt>
+
+<use fallaMaquina.png> <reparar.png, id=19, 744.7825pt x 283.0575pt>
 File: reparar.png Graphic file (type png)
 
 <use reparar.png>
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
 [3 <./fallaMaquina.png> <./reparar.png>] [4] (./InfoSimula.aux) ) 
 Here is how much of TeX's memory you used:
  4128 strings out of 495061
- 52967 string characters out of 1182621
+ 52967 string characters out of 1182620
  120876 words of memory out of 3000000
  7277 multiletter control sequences out of 15000+50000
  10023 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,7n,32p,698b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,7n,32p,700b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/te
 xmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive
 /fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type
@@ -518,7 +518,7 @@ fonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
 17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on InfoSimula.pdf (4 pages, 201601 bytes).
+Output written on InfoSimula.pdf (4 pages, 203449 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

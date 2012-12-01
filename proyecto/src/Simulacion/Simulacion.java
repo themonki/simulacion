@@ -35,7 +35,9 @@ public class Simulacion {
 	private String INDICADOR_FALLA="F";
 	private String INDICADOR_REPARACION="R";
 	private Queue<String> maquinasAdicionales;
-	private Queue<String> maquinasReparacion;
+	private Queue<String> maquinasEnColaReparacion;
+	private Vector<String> maquinasConReparador;
+	
 	//private Queue<String> puestosLibres; //Maquinas que no pudieron ser reemplazadas No es necesario para interfaz grafica
 	
 	//variable desempeño
@@ -92,7 +94,8 @@ public class Simulacion {
 		this.desempenioColaReparador=0;
 		
 		this.maquinasAdicionales = new LinkedList<String>();
-		this.maquinasReparacion = new LinkedList<String>();
+		this.maquinasEnColaReparacion = new LinkedList<String>();
+		this.maquinasConReparador = new Vector<String>();
 		//this.puestosLibres = new LinkedList<String>();
 		
 		//Inicializar maquinas adicionales
@@ -122,6 +125,7 @@ public class Simulacion {
 	public void eventoFallo(String maquina){	
 		
 		if(this.reparadoresDisponibles>0){
+			this.maquinasConReparador.add(maquina); //Maquina que esta atendiendo un reparador
 			this.reparadoresDisponibles--;
 			//Evento de reparacion
 			this.listaEventos.add(new Evento<Integer, String, String>(this.reloj+this.tiempos.tiempoReparacion(), 
@@ -130,26 +134,17 @@ public class Simulacion {
 			
 			// Información UI
 			
-			Vector<Object> evento= new Vector<Object>();
-			evento.add(maquina);
-			evento.add(this.REPARACION);
-			evento.add(this.reloj);
-			
-			this.resumenSimulacion.add(evento);
+			this.addEventoResumenSimulacion(maquina, this.REPARACION);
 			
 			
 		}
 		else{
 			this.colaRepacion++; //Se suma a la cola de repacion
 			if(this.colaRepacion>this.desempenioColaReparador)this.desempenioColaReparador=this.colaRepacion;
-			this.maquinasReparacion.add(maquina);
-			// Información UI
+			this.maquinasEnColaReparacion.add(maquina);
 			
-			Vector<Object> evento= new Vector<Object>();
-			evento.add(maquina);
-			evento.add(this.COLAREPARACION);
-			evento.add(this.reloj);
-			this.resumenSimulacion.add(evento);
+			// Información UI
+			this.addEventoResumenSimulacion(maquina, this.COLAREPARACION);
 			
 		}
 		
@@ -160,12 +155,7 @@ public class Simulacion {
 					this.maquinasAdicionales.peek()));
 			
 			// Información UI
-			
-			Vector<Object> evento= new Vector<Object>();
-			evento.add(this.maquinasAdicionales.poll());
-			evento.add(this.REEMPLAZO);
-			evento.add(this.reloj);
-			this.resumenSimulacion.add(evento);
+			this.addEventoResumenSimulacion(this.maquinasAdicionales.poll(), this.REEMPLAZO);
 			
 			
 		}else{
@@ -194,6 +184,8 @@ public class Simulacion {
 	 * Función que genera el evento de reparación de una maquina en el sistema
 	 */
 	public void eventoReparacion(String maquina){
+		
+		this.maquinasConReparador.remove(maquina); //Maquina que deja de reparar un reparador
 			
 		if(this.colaFuncionamiento< this.MAX_MAQUINAS){//tenemos espacio para ponerla a funcionar y se supone no se tienen maquinas adiconales
 			
@@ -212,13 +204,9 @@ public class Simulacion {
 			listaEventos.add(new Evento<Integer, String, String>(this.reloj+ this.tiempos.tiempoFalloMaquina(), 
 					this.INDICADOR_FALLA, 
 					 maquina));
-			// Información UI
-			Vector<Object> evento= new Vector<Object>();
-			evento.add(maquina);
-			evento.add(this.REEMPLAZO);
-			evento.add(this.reloj);
-			this.resumenSimulacion.add(evento);
 			
+			// Información UI
+			this.addEventoResumenSimulacion(maquina, this.REEMPLAZO);			
 			
 			
 			//this.puestosLibres.poll(); //Puede servir para que cuando se pase a la parte grafica se sepa que lugar reemplazar
@@ -228,28 +216,22 @@ public class Simulacion {
 			this.maquinasAdicionales.add(maquina);
 			
 			// Información UI
-			Vector<Object> evento= new Vector<Object>();
-			evento.add(maquina);
-			evento.add(this.COLAADICIONAL);
-			evento.add(this.reloj);
-			this.resumenSimulacion.add(evento);
+			this.addEventoResumenSimulacion(maquina, this.COLAADICIONAL);
 			
 		}
 				
 		if(this.colaRepacion>0){//se tienen maquinas a reparar
 			this.listaEventos.add(new Evento<Integer, String, String> (this.reloj+this.tiempos.tiempoReparacion(),
-					this.INDICADOR_REPARACION, this.maquinasReparacion.peek()));
+					this.INDICADOR_REPARACION, this.maquinasEnColaReparacion.peek()));
+			
+			this.maquinasConReparador.add(this.maquinasEnColaReparacion.peek()); //Maquina que pasa a estar con reparador
 			
 			// Información UI
-			
-			Vector<Object> evento= new Vector<Object>();
-			evento.add(this.maquinasReparacion.poll());
-			evento.add(this.REPARACION);
-			evento.add(this.reloj);
-			this.resumenSimulacion.add(evento);
+			this.addEventoResumenSimulacion(this.maquinasEnColaReparacion.poll(), this.REPARACION);
 			
 			
 			this.colaRepacion--;
+			
 		}else{// cola del reparador libre
 			this.reparadoresDisponibles++;
 		}
@@ -284,6 +266,7 @@ public class Simulacion {
 			    //relojAnterior=this.reloj;
 			    this.desempenioSumFuncionamiento=0;
 			    this.resumenSimulacion.clear();
+			    System.out.println(this.getMaquinasConReparador());
 				
 			} 
 			
@@ -314,6 +297,9 @@ public class Simulacion {
 		
 		System.out.println(resumenSimulacion);
 		System.out.println("fina::"+(desempenioTotal*100));
+		System.out.println("maquinas con el reparador: " + this.getMaquinasConReparador());
+		System.out.println("maquinas adicionales: " +this.getMaquinasAdicionales());
+		System.out.println("maquinas en cola de reparacion: " +this.getMaquinasEnColaReparacion());
 
 	}
 	
@@ -386,10 +372,37 @@ public class Simulacion {
 		this.desempenioColaAdicional = desempenioColaAdicional;
 	}
 	
-	
-	public void calentamiento(){
+	private void addEventoResumenSimulacion(String maquina, String estado){
+		Vector<Object> evento= new Vector<Object>();
+		evento.add(maquina);
+		evento.add(estado);
+		evento.add(this.reloj);
 		
+		this.resumenSimulacion.add(evento);
 		
 	}
 
+	public Queue<String> getMaquinasAdicionales() {
+		return maquinasAdicionales;
+	}
+
+	public void setMaquinasAdicionales(Queue<String> maquinasAdicionales) {
+		this.maquinasAdicionales = maquinasAdicionales;
+	}
+
+	public Queue<String> getMaquinasEnColaReparacion() {
+		return maquinasEnColaReparacion;
+	}
+
+	public void setMaquinasEnColaReparacion(Queue<String> maquinasEnColaReparacion) {
+		this.maquinasEnColaReparacion = maquinasEnColaReparacion;
+	}
+
+	public Vector<String> getMaquinasConReparador() {
+		return maquinasConReparador;
+	}
+
+	public void setMaquinasConReparador(Vector<String> maquinasConReparador) {
+		this.maquinasConReparador = maquinasConReparador;
+	}
 }

@@ -98,9 +98,23 @@ Figura1. \emph{Comportamiento del Sistema}
 
 La fábrica quiere mantener el stock de maquinaria principal en funcionamiento continuo por lo menos en un 96\% o 98\%. El problema que se tiene es que las máquinas son componentes que pueden presentar fallas, y estas afectan de manera general a la producción de la fábrica.\\
 
-Para solucionar este problema la fábrica ha dispuesto de máquinas adicionales dispuestas a suplantar(REEMPLAZAR) las máquinas que se dañen durante el proceso, que tienen a fallar luego de $16\pm6$ horas. También se cuenta con un equipo de mantenimiento que puede reparar, las máquinas que se dañen, en aproximadamente $8\pm3$ horas. Sin embargo no siempre son suficientes las máquinas auxiliares y la cantidad de personal para atender las máquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 maquinas. Por esta razón la fábrica quiere determinar cuántas máquinas adicionales y cuánto personal es el necesario para cumplir la meta.
+Para solucionar este problema la fábrica ha dispuesto de máquinas adicionales dispuestas a suplantar(REEMPLAZAR) las máquinas que se dañen durante el proceso, que tienen a fallar luego de $160\pm20$ horas. También se cuenta con un equipo de mantenimiento que puede reparar, las máquinas que se dañen, en aproximadamente $8\pm3$ horas. Sin embargo no siempre son suficientes las máquinas auxiliares y la cantidad de personal para atender las máquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 maquinas. Por esta razón la fábrica quiere determinar cuántas máquinas adicionales y cuánto personal es el necesario para cumplir la meta.
 
 \section{Modelo de Simulación.}
+
+\subsection{Simulación en general}
+
+Puntos claves:
+\begin{itemize}
+\item Cada máquina de la fábrica tiene la probabilidad de fallar en un periodo de $160\pm20$ horas con una distribución uniforme.
+\item La cantidad de reparadores puede variar según los escenarios planteados.
+\item La cantidad de máquinas adicionales puede variar según los escenarios planteados.
+\item Es adecuado realizar un tiempo de calentamiento ya que existe formación de colas.
+\item Una máquina que se esté reparando o esté esperando para ser reparada no puede generar un evento de fallo, pues no está en funcionamiento. 
+\end{itemize}
+
+Al iniciar la simulación se genera un evento de fallo por cada una de las máquinas de la fábrica. Estos eventos se generan con un  espacio de $20$ horas. Esto es con el fin de evitar la situación: \emph{Todas las máquinas fallan a la vez}.
+
 
 \subsection{Eventos.}
 
