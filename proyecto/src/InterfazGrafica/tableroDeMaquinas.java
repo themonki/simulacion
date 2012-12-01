@@ -262,7 +262,7 @@ public class tableroDeMaquinas extends JFrame{
 		panelReparacion.setLayout(box);			
 		scrollReparacion= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Cola de Reparación");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Cola de Re.");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -447,7 +447,7 @@ public class tableroDeMaquinas extends JFrame{
 		 eventos_label.setFont(Estilos.fontLabels);		 
 				
 		
-		 numero_maquinas_extras_label= new JLabel("Numero de Maquinas Disponibles");
+		 numero_maquinas_extras_label= new JLabel("Numero de Disponibles");
 		 numero_maquinas_extras_label.setFont(Estilos.fontLabels);
 		 numero_reparadores_label= new JLabel("Numero de Reparadores");
 		 numero_reparadores_label.setFont(Estilos.fontLabels);
@@ -502,7 +502,7 @@ public class tableroDeMaquinas extends JFrame{
 		 cola_reparacion_estado_label = new JLabel("Cola de Reparación:");
 		 cola_reparacion_estado_label.setFont(Estilos.fontLabels);
 		 
-		 maquinas_set_label= new JLabel("Machine Set:");
+		 maquinas_set_label= new JLabel("Maquinas Funcionando:");
 		 maquinas_set_label.setFont(Estilos.fontLabels);
 		 
 		 
