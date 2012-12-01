@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[12pt]{article}
 \usepackage[right=2cm,left=2cm,top=2cm,bottom=3cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
@@ -98,7 +98,7 @@ Figura1. \emph{Comportamiento del Sistema}
 
 La fábrica quiere mantener el stock de maquinaria principal en funcionamiento continuo por lo menos en un 96\% o 98\%. El problema que se tiene es que las máquinas son componentes que pueden presentar fallas, y estas afectan de manera general a la producción de la fábrica.\\
 
-Para solucionar este problema la fábrica ha dispuesto de máquinas adicionales dispuestas a suplantar(REEMPLAZAR) las máquinas que se dañen durante el proceso, que tienen a fallar luego de $160\pm30$ horas. También se cuenta con un equipo de mantenimiento que puede reparar, las máquinas que se dañen, en aproximadamente $8\pm3$ horas. Sin embargo no siempre son suficientes las máquinas auxiliares y la cantidad de personal para atender las máquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 máquinas. Por esta razón la fábrica quiere determinar cuántas máquinas adicionales y cuánto personal es el necesario para cumplir la meta.
+Para solucionar este problema la fábrica ha dispuesto de máquinas adicionales dispuestas a reemplazar las máquinas que se dañen durante el proceso, que tienen a fallar luego de $160\pm30$ horas. También se cuenta con un equipo de mantenimiento que puede reparar, las máquinas que se dañen, en aproximadamente $8\pm3$ horas. Sin embargo no siempre son suficientes las máquinas auxiliares y la cantidad de personal para atender las máquinas que fallan y mantener la utilidad requerida de funcionamiento de las 50 máquinas. Por esta razón la fábrica quiere determinar cuántas máquinas adicionales y cuánto personal es el necesario para cumplir la meta.
 
 \section{Modelo de Simulación.}
 
@@ -146,10 +146,14 @@ Según la describción de la simulaci\'on en general, se identificaron dos event
 \item \textbf{Fallo de una máquina.}\\
 Cuándo una máquina falla se debe verfificar si existe máquina adicional que la reemplace para no perdudicar el rendimiento de la fábrica, si existe tal máquina que la pueda reemplazar entonces el número de m\'aquinas adicionales diminuye en uno y se genera un evento de fallo para la m\'aquina que asumi\'o el puesto, esta acci\'on tambi\'en afecta la variable de desempeño de la cola promedio de m\'aquinas adicionales; sino es as\'i se disminuye en uno la cantidad de m\'aquinas que est\'an trabajando en la f\'abrica esto afecta la variable de desempeño de rendimiento de la f\'abrica. \\
 
-Lo siguiente es verificar si hay disponible un reparador para iniciar la reparaci\'on, si es as\'i el reparador inicia la repaci\'on y se genera el evento de repaci\'on correspondiente a dicha m\'aquina, tambi\'en se debe disminuir el n\'umero de reparadores disponibles. Si no hab\'ia reparadores disponibles, la m\'aquina debe pasar a la cola de reparaci\'on y esperar hasta poder ser reparada, la cola de repaci\'on aumenta en una unidad adem\'as esta acci\'on afecta la variable de desempeño relacionada con la cola de reparaci\'on promedio.
+Lo siguiente es verificar si hay disponible un reparador para iniciar la reparaci\'on, si es as\'i el reparador inicia la repaci\'on y se genera el evento de repaci\'on correspondiente a dicha m\'aquina, tambi\'en se debe disminuir el n\'umero de reparadores disponibles, esta acción afecta la variable de desempeño relacionada con el promedio de ocupación de los reparadores. Si no hab\'ia reparadores disponibles, la m\'aquina debe pasar a la cola de reparaci\'on y esperar hasta poder ser reparada, la cola de repaci\'on aumenta en una unidad adem\'as esta acci\'on afecta la variable de desempeño relacionada con la cola de reparaci\'on promedio.
 
 
-\item \textbf{Reparación de una máquina.}
+\item \textbf{Reparación de una máquina.}\\
+
+Cuando una m\'aquina ha sido reparada se debe verificar si hay una estaci\'on para reemplazar en la f\'abrica, si es as\'i esta m\'aquina reasume y se genera su correspondiente evento de fallo, se aumenta en uno la cantidad de máquinas que están funcionando, además esto afecta la variable de desempeño relacionada con el desempeño de la fábrica; sino había una estación que reasumir, la máquina pasa a la cola de máquinas adicionales y ésta acción afecta la variable de desempeño relacionada con la cola promedio de la cola de máquinas adicionales.\\
+
+Lo siguiente a verificar es si existen m\'as m\'aquinas para ser reparadas, si es así se inicia la reparaci\'on con la m\'aquina que sigue en ser reparada y se genera un evento de reparaci\'on relacionado con dicha m\'aquina, esta acci\'on afecta la variable de desempeño relacionada con la cola promedio de reparaci\'on. Sino hab\'ia m\'as m\'aquinas para ser reparadas se aumenta en uno la cantidad de reparadores disponibles y se afecta la variable de desempeño relacionada con el promedio de ocupación de reparadores.
 
 \end{enumerate}
 
@@ -181,23 +185,18 @@ La unidad de tiempo que se va a emplear es la hora. El reloj va a avanzar de acu
 
 La simulación termina cuando:
 \begin{enumerate}
-\item El reloj del sistema a llegado a un valor indicado.
+\item El reloj del sistema a llegado a un valor indicado (tiempo final).
 \item No hay mas eventos futuros en la lista de eventos.
 \end{enumerate}
 
 \subsection{Comportamiento de los Datos.}
 
 \begin{itemize}
-\item \textbf{Fallo de una máquina:}\\
-Se verifica si existe un reparador disponible, si lo hay éste pasa a estar ocupado reparando la máquina que falló; sino la máquina pasa a una cola de espera para ser reparada.
-Además se debe precisar: si hay una máquina adicional disponible esta debe reemplazar la máquina que falló, sino la hay el rendimiento disminuye en una unidad (una máquina menos trabajando).
+\item \textbf{Tiempo entre los fallos de una m\'aquina}\\
+El tiempo en que ocurre un evento de falla sigue una distribución uniforme $160\pm30$ horas, es decir,  $U(130,190)$.
 
-
-\item \textbf{Reparación de una máquina:}\\
-Si al terminar una reparación hay máquinas en espera de reparación el técnico inicia una nueva reparación, por lo que la cola de espera disminuye en una unidad. También se debe verificar si
-la máquina reparada entra en la lista de máquinas adicionales o pasa a reemplazar una máquina que halla fallado.
-
-Si al terminar una reparación no hay más máquinas que reparar se desocupa el técnico de reparación.
+\item \textbf{Tiempo duraci\'on reparaci\'on de una m\'aquina}\\
+El tiempo que dura una repaci\'on sigue una distribuci\'on uniforme $8\pm3$ horas, es decir, $U(5,11)$.
 
 \end{itemize}
 
@@ -205,10 +204,30 @@ Si al terminar una reparación no hay más máquinas que reparar se desocupa el 
 
 \section{Diseño y Analisis de Escenarios.}
 
+\subsection{Escenario: B\'asico}
+\subsection{Escenerio: An\'alisis m\'aquinas adicionales}
+\subsection{Escenario: An\'alisis cantidad reparadores}
+\subsection{Escenario: An\'alisis combinatoria m\'aquinas adicionales y cantidad reparadores}
+
+
 
 \section{Implementación del Modelo.}
 
+\subsection{Estructura de datos}
+\begin{itemize}
 
+	 \item \textbf{Eventos}\\
+	 Para los eventos se uso un template 
+	 \begin{verbatim}
+	 Evento<Tiempo, Tipo, Maquina>
+	 \end{verbatim}
+	 \item \textbf{Lista de eventos futuros}\\
+	 Para la lista de eventos futuros se utilizó la estructura \emph{Priority Queue} de java, a la cual se le debi\'o implementar la interfaz de comparaci\'on. Pues como se sabe los eventos no eran estructuras b\'asicas de java.
+ 	 \item \textbf{Colas}\\
+ 	 
+ 	 \item \textbf{Variables de desempeño}\\
+ 	 
+\end{itemize}
 
 
 \section{Conclusiones.}
