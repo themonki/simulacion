@@ -55,8 +55,17 @@ public class Simulacion {
     private String COLAREPARACION="irAColaReparacion";
     private String COLAADICIONAL="irAColaAdicional";
     private String REEMPLAZO="irAFabrica";
+	private double desempenioTotal;
 
 	
+	public double getDesempenioTotal() {
+		return desempenioTotal;
+	}
+
+	public void setDesempenioTotal(double desempenioTotal) {
+		this.desempenioTotal = desempenioTotal;
+	}
+
 	/**
 	 * @param seed Indica la semilla para las distribuciones
 	 * @param colaFuncionamiento indica la cantidad de maquinas que deben de estar funcionando
@@ -292,7 +301,7 @@ public class Simulacion {
 		}while (this.reloj < this.MAX_TIEMPO);
 		
 		
-		double desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
+		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
 		
 		
 		System.out.println(resumenSimulacion);
