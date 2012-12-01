@@ -4,10 +4,12 @@
 package InterfazGrafica;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,16 +35,16 @@ public class PanelEstadistica extends JScrollPane {
 		this.setViewportView(principal);
 	}
 	
-	public PanelEstadistica(Vector<Object> obj) {
+	public PanelEstadistica(double percValuearg) {
 		// TODO Auto-generated constructor stub
 		super();
 		
 		
-		init(obj);
+		init( percValuearg);
 		
 	}
 	
-	public void init(Vector<Object> obj){
+	public void init(double percValuearg){
 		
 		principal.removeAll();
 		//El vector de objetos debe de venir organizado
@@ -70,47 +72,58 @@ public class PanelEstadistica extends JScrollPane {
 				int aveQueRep = 0;
 				int aveQueMachAva = 0;
 				double costValue = 0;
-				double percValue = 0;
+				double percValue = percValuearg;
 				
-				principal.setLayout(new GridLayout( 3, 1, 10, 10 ));
+				principal.setLayout(new GridLayout(3,1,20,20));
+				
+				//BoxLayout o= new BoxLayout(principal, BoxLayout.Y_AXIS);
+				
+				
 				JLabel etq1 []= {
-						new JLabel("Number Machine Avalaible"),
-						new JLabel("Number Repairers")
+						new JLabel("Numero de Maquinas Disponibles"),
+						new JLabel("Numero de Reaparadores")
 						};
 				JLabel val1 [] = {
 						new JLabel(Integer.toString(numMachAva)),
 						new JLabel(Integer.toString(numRep))
 						};
 				JLabel etq2 []= {
-						new JLabel("Maximum queue repair"),
-						new JLabel("Average queue reapir"),
-						new JLabel("Average queue Machine Avalaible")
+						new JLabel("Maxima cola de Reparación"),
+						new JLabel("Cola de Reparacion Promedia"),
+						new JLabel("Cola de Maquinas Disponibles Promedio"),
+						new JLabel("Porcentaje de Funcionamiento Maquinas")
 						};
 				JLabel val2 [] = {
 						new JLabel(Integer.toString(maxQueRep)),
 						new JLabel(Integer.toString(aveQueRep)),
-						new JLabel(Integer.toString(aveQueMachAva))
+						new JLabel(Integer.toString(aveQueMachAva)),
+						new JLabel(Double.toString(percValue*100)+" %")
+						
 						};
 				JLabel etq3 []= {
 						new JLabel("Cost Value"),
-						new JLabel("Percentage value")
+						
 						};
 				JLabel val3 [] = {
 						new JLabel(Double.toString(costValue)),
-						new JLabel(Double.toString(percValue*100)+" %")
+						
 				};
 				
-				createSeccion("Input variables",etq1,val1);
-				createSeccion("Performance variables",etq2,val2);
-				createSeccion("Cost function",etq3,val3);
+				createSeccion("Datos de Entrada::",etq1,val1);
+				createSeccion("Variables de Rendimiento::",etq2,val2);
+				createSeccion("Funcion de Costo::",etq3,val3);
 				
-				this.setViewportView(principal);
+				
+				JPanel aux=new JPanel(); 
+				aux.add(principal);
+				this.setViewportView(aux);
 	}
 	
 	public void createSeccion(String nameSeccion,JLabel etiquetas [], JLabel valores[]){
 		int cantidad=valores.length;
 		
 		JPanel tmp = new JPanel();
+		
 		tmp.setLayout(new GridLayout( cantidad, 2, 10, 10 ));
 		
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
@@ -148,7 +161,7 @@ public class PanelEstadistica extends JScrollPane {
 		// TODO Auto-generated method stub
 		JFrame v = new JFrame("prueba");
 		
-		v.add(new PanelEstadistica(new Vector<Object>()));
+		v.add(new PanelEstadistica(0));
 		v.setSize(400, 400);
 		v.setVisible(true);
 	}

@@ -287,9 +287,36 @@ public class Simulacion {
 			    //relojAnterior=this.reloj;
 			    this.desempenioSumFuncionamiento=0;
 			    this.resumenSimulacion.clear();
-			    this.maquinasAdicionalesCalentamiento = this.maquinasAdicionales;
-			    this.maquinasConReparadorCalentamiento = this.maquinasConReparador;
-			    this.maquinasEnColaRepacionCalentamiento = this.maquinasEnColaReparacion;
+			    
+			    int size= this.maquinasAdicionales.size();
+			    
+			    Object [] arreglo_con_maquinas_adicionales = this.maquinasAdicionales.toArray();
+			    
+			    for (int i=0;i<size;i++)
+			    this.maquinasAdicionalesCalentamiento.add((String) arreglo_con_maquinas_adicionales[i]) ;
+			    
+			    size=this.maquinasConReparador.size();
+			    
+			    
+			    for (int i=0;i<size;i++)
+			    this.maquinasConReparadorCalentamiento.add( this.maquinasConReparador.get(i)) ;
+			    
+			    
+			    
+			    
+			    size=this.maquinasEnColaReparacion.size();
+			    
+			    Object [] maquinasEnColaReparacion_arreglo=  this.maquinasEnColaReparacion.toArray();
+			    for (int i=0;i<size;i++)
+			    this.maquinasEnColaRepacionCalentamiento.add((String) maquinasEnColaReparacion_arreglo[i]);  
+			    
+			    
+			    //this.maquinasAdicionales.clear();
+			    //this.maquinasConReparador.clear();
+			    //this.maquinasEnColaReparacion.clear();
+			    
+			    
+			    
 			    //System.out.println(this.getMaquinasConReparador());
 				
 			} 
