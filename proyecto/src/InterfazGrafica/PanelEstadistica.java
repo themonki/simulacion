@@ -35,16 +35,16 @@ public class PanelEstadistica extends JScrollPane {
 		this.setViewportView(principal);
 	}
 	
-	public PanelEstadistica(double percValuearg) {
+	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva) {
 		// TODO Auto-generated constructor stub
 		super();
 		
 		
-		init( percValuearg);
+		init( percValuearg,numMachAva,numRepaAva);
 		
 	}
 	
-	public void init(double percValuearg){
+	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg){
 		
 		principal.removeAll();
 		//El vector de objetos debe de venir organizado
@@ -66,8 +66,8 @@ public class PanelEstadistica extends JScrollPane {
 				
 				
 				
-				int numMachAva = 0;
-				int numRep = 0;
+				int numMachAva = numMachAvaarg;
+				int numRep = numRepaAvaarg;
 				int maxQueRep = 0;
 				int aveQueRep = 0;
 				int aveQueMachAva = 0;
@@ -159,11 +159,11 @@ public class PanelEstadistica extends JScrollPane {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		JFrame v = new JFrame("prueba");
+		/*JFrame v = new JFrame("prueba");
 		
 		v.add(new PanelEstadistica(0));
 		v.setSize(400, 400);
-		v.setVisible(true);
+		v.setVisible(true);*/
 	}
 
 }

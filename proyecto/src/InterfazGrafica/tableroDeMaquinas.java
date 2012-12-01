@@ -262,7 +262,7 @@ public class tableroDeMaquinas extends JFrame{
 		panelReparacion.setLayout(box);			
 		scrollReparacion= new JScrollPane();
 		TitledBorder borde =BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Cola de Re.");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Cola de  Re.");
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -648,7 +648,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		System.out.println(ResumenSimulacion);
 		
-		panelEstadistica.init(s.getDesempenioTotal());
+		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva);
 		panelEstadistica.updateUI();
 		
 		time.start();
