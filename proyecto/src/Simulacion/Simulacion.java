@@ -49,6 +49,8 @@ public class Simulacion {
 	//variable desempeño
 	private int relojAnterior;
 	private int desempenioSumFuncionamiento;
+	
+	private int desempenioSumReparadores;
 	private int desempenioColaReparador;
 	private int desempenioColaAdicional;
 	
