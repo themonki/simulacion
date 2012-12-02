@@ -663,7 +663,9 @@ public class tableroDeMaquinas extends JFrame{
 		
 		System.out.println(ResumenSimulacion);
 		
-		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva);
+		int costo = maxTimerFinish*(numMachAva + 10*numRepaAva);
+		
+		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva,s.getDesempenioSumReparadores_ocupacion_total(),costo);
 		panelEstadistica.updateUI();
 		
 		time.start();

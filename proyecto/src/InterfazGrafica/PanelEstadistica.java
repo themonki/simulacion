@@ -6,6 +6,7 @@ package InterfazGrafica;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.text.DecimalFormat;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -35,16 +36,16 @@ public class PanelEstadistica extends JScrollPane {
 		this.setViewportView(principal);
 	}
 	
-	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva) {
+	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva,double DesempenioSumReparadores_ocupacion_total,int costo) {
 		// TODO Auto-generated constructor stub
 		super();
 		
 		
-		init( percValuearg,numMachAva,numRepaAva);
+		init( percValuearg,numMachAva,numRepaAva,DesempenioSumReparadores_ocupacion_total,costo);
 		
 	}
 	
-	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg){
+	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg, double DesempenioSumReparadores_ocupacion_total, int costo){
 		
 		principal.removeAll();
 		//El vector de objetos debe de venir organizado
@@ -71,8 +72,13 @@ public class PanelEstadistica extends JScrollPane {
 				int maxQueRep = 0;
 				int aveQueRep = 0;
 				int aveQueMachAva = 0;
-				double costValue = 0;
+				double costValue = costo;
 				double percValue = percValuearg;
+				double porcentaje_ocupacion_reparadores=DesempenioSumReparadores_ocupacion_total;
+				
+				DecimalFormat decimal= new DecimalFormat("0.00");
+				
+				
 				
 				principal.setLayout(new GridLayout(3,1,20,20));
 				
@@ -91,13 +97,15 @@ public class PanelEstadistica extends JScrollPane {
 						new JLabel("Maxima cola de Reparación"),
 						new JLabel("Cola de Reparacion Promedia"),
 						new JLabel("Cola de Maquinas Disponibles Promedio"),
-						new JLabel("Porcentaje de Funcionamiento Maquinas")
+						new JLabel("Porcentaje de Funcionamiento Maquinas"),
+						new JLabel("Porcentaje de ocupacion de los Reparadores")
 						};
 				JLabel val2 [] = {
 						new JLabel(Integer.toString(maxQueRep)),
 						new JLabel(Integer.toString(aveQueRep)),
 						new JLabel(Integer.toString(aveQueMachAva)),
-						new JLabel(Double.toString(percValue*100)+" %")
+						new JLabel(decimal.format(percValue*100)+"%"),
+						new JLabel(decimal.format(porcentaje_ocupacion_reparadores*100)+"%")
 						
 						};
 				JLabel etq3 []= {
