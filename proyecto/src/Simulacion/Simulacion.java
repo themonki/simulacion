@@ -157,9 +157,9 @@ public class Simulacion {
 		
 		if(this.reparadoresDisponibles>0){
 			this.maquinasConReparador.add(maquina); //Maquina que esta atendiendo un reparador
-			//System.out.println(this.desempenioSumReparadores_ocupacion);
+			////System.out.println(this.desempenioSumReparadores_ocupacion);
 			this.desempenioSumReparadores_ocupacion += (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
-			System.out.println("Evento: "+this.INDICADOR_FALLA+ " reparadores: " + (this.MAX_REPARADOR-this.reparadoresDisponibles)+" * Time: (" +this.reloj +" - "+this.reloj_anterior_reparadores  + ") = Value dre : "+ this.desempenioSumReparadores_ocupacion );
+			//System.out.println("Evento: "+this.INDICADOR_FALLA+ " reparadores: " + (this.MAX_REPARADOR-this.reparadoresDisponibles)+" * Time: (" +this.reloj +" - "+this.reloj_anterior_reparadores  + ") = Value dre : "+ this.desempenioSumReparadores_ocupacion );
 			
 			
 			reloj_anterior_reparadores=reloj;
@@ -206,9 +206,9 @@ public class Simulacion {
 			 * FALLA UNA MAQUINA Y NO SE TIENE MAQUINAS ADICIONALES ENTONCES SE CAMBIA LA COLA DE FUNCIONAMIENTO, SE RECALCULA EL CUADRADO
 			 * */
 				
-			//System.out.println(desempenioFuncionamiento);	
+			////System.out.println(desempenioFuncionamiento);	
 			this.desempenioSumFuncionamiento+=this.colaFuncionamiento*(this.reloj-this.relojAnterior);
-			//System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
+			////System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaFuncionamiento +" * Time: (" +this.reloj +" - "+this.relojAnterior  + ") = Value: "+ this.desempenioSumFuncionamiento );
 			this.relojAnterior=this.reloj;
 			/* **************************/			
 			this.colaFuncionamiento--; //Si no hay maquinas adicionales se resta a la cola de funcionamiento
@@ -277,7 +277,7 @@ public class Simulacion {
 			
 			
 			
-			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " reparadores: " + (this.MAX_REPARADOR-this.reparadoresDisponibles)+" * Time: (" +this.reloj +" - "+this.reloj_anterior_reparadores  + ") = Value dre : "+ this.desempenioSumReparadores_ocupacion );
+			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " reparadores: " + (this.MAX_REPARADOR-this.reparadoresDisponibles)+" * Time: (" +this.reloj +" - "+this.reloj_anterior_reparadores  + ") = Value dre : "+ this.desempenioSumReparadores_ocupacion );
 			
 			
 			reloj_anterior_reparadores=reloj;
@@ -303,7 +303,7 @@ public class Simulacion {
 			//imprimir(uno);
 		}
 		this.relojAnterior=this.reloj; 
-		//System.out.println("LEF= " + this.listaEventos);
+		////System.out.println("LEF= " + this.listaEventos);
 		do{
 			
 			
@@ -325,10 +325,10 @@ public class Simulacion {
 			    //relojAnterior=this.reloj;
 			    this.desempenioSumFuncionamiento=0;
 			    
-			    System.out.println("estoy aqui " +this.reloj+"--" +tiempoCalentamiento);
+			    //System.out.println("estoy aqui " +this.reloj+"--" +tiempoCalentamiento);
 			    this.desempenioSumReparadores_ocupacion=0;
-			    System.out.println("estoy aqui"+desempenioSumReparadores_ocupacion);
-			    System.out.println(" cantidad de disponibles"+ this.reparadoresDisponibles);
+			    //System.out.println("estoy aqui"+desempenioSumReparadores_ocupacion);
+			    //System.out.println(" cantidad de disponibles"+ this.reparadoresDisponibles);
 			    
 			    this.resumenSimulacion.clear();
 			    
@@ -363,7 +363,7 @@ public class Simulacion {
 			    
 			    
 			    
-			    //System.out.println(this.getMaquinasConReparador());
+			    ////System.out.println(this.getMaquinasConReparador());
 				
 			} 
 			
@@ -393,28 +393,28 @@ public class Simulacion {
 		this.desempenioSumFuncionamiento += this.colaFuncionamiento*(this.reloj-this.relojAnterior);
 		
 		this.desempenioSumReparadores_ocupacion += (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
-		System.out.println("reloj "+reloj+"reloj anterior reparadores"+reloj_anterior_reparadores+"reloj calentamiento "+this.reloj_calentamiento);
+		//System.out.println("reloj "+reloj+"reloj anterior reparadores"+reloj_anterior_reparadores+"reloj calentamiento "+this.reloj_calentamiento);
 		
 		desempenioSumReparadores_ocupacion_total += (double) this.desempenioSumReparadores_ocupacion/(double) (((this.reloj-this.reloj_calentamiento)*this.MAX_REPARADOR));
 		
-		//System.out.println( "sum" + this.desempenioSumReparadores_ocupacion+" max repa"+(this.MAX_REPARADOR-this.reparadoresDisponibles)+" reloj" +(reloj-reloj_anterior_reparadores) );
+		////System.out.println( "sum" + this.desempenioSumReparadores_ocupacion+" max repa"+(this.MAX_REPARADOR-this.reparadoresDisponibles)+" reloj" +(reloj-reloj_anterior_reparadores) );
 		
 		
 			
 			
 		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
 		
-		System.out.println("desempenioSumReparadores_ocupacion "+desempenioSumReparadores_ocupacion);
-		System.out.println("tiempo "+this.reloj+"-"+this.reloj_calentamiento);
+		//System.out.println("desempenioSumReparadores_ocupacion "+desempenioSumReparadores_ocupacion);
+		//System.out.println("tiempo "+this.reloj+"-"+this.reloj_calentamiento);
 		
 		
 		} catch (Exception e){}
 		
-		/*System.out.println(resumenSimulacion);
-		System.out.println("fina::"+(desempenioTotal*100));
-		System.out.println("maquinas con el reparador: " + this.getMaquinasConReparador());
-		System.out.println("maquinas adicionales: " +this.getMaquinasAdicionales());
-		System.out.println("maquinas en cola de reparacion: " +this.getMaquinasEnColaReparacion());*/
+		/*//System.out.println(resumenSimulacion);
+		//System.out.println("fina::"+(desempenioTotal*100));
+		//System.out.println("maquinas con el reparador: " + this.getMaquinasConReparador());
+		//System.out.println("maquinas adicionales: " +this.getMaquinasAdicionales());
+		//System.out.println("maquinas en cola de reparacion: " +this.getMaquinasEnColaReparacion());*/
 
 	}
 	
@@ -422,7 +422,7 @@ public class Simulacion {
 	 * @param e
 	 */
 	private void imprimir(Evento<Integer, String, String> e){
-		/*System.out.println(" " + this.reloj + ", E=" + e.getTipoEvento()+ ", M= " + e.getMaquina()+ ", CA=" + this.colaAdicionales + 
+		/*//System.out.println(" " + this.reloj + ", E=" + e.getTipoEvento()+ ", M= " + e.getMaquina()+ ", CA=" + this.colaAdicionales + 
 				", CR=" + this.colaRepacion + ", CF=" + this.colaFuncionamiento+ ", NR=" + this.reparadoresDisponibles +", LEF=" + this.listaEventos.toString()
 				+ ", MA= " + this.maquinasAdicionales + ", MR= " + this.maquinasReparacion + "PL= " + this.puestosLibres);
 	*/}
@@ -438,9 +438,9 @@ public class Simulacion {
 			Simulacion s = new Simulacion(12345, 50,10,1,100)  ;
 			s.starSimulacion();
 			
-			System.out.println("desempeño:: "+(s.getDesempenioTotal()*100));
+			//System.out.println("desempeño:: "+(s.getDesempenioTotal()*100));
 			
-			System.out.println("desempeño:: reparadores  "+(s.getDesempenioSumReparadores_ocupacion_total()));
+			//System.out.println("desempeño:: reparadores  "+(s.getDesempenioSumReparadores_ocupacion_total()));
 		
 		}
 	
