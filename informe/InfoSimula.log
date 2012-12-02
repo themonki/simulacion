@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.23)  1 DEC 2012 18:40
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.23)  1 DEC 2012 19:32
 entering extended mode
  %&-line parsing enabled.
 **InfoSimula.tex
@@ -399,7 +399,14 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 )
 \Gin@req@height=\dimen121
 \Gin@req@width=\dimen122
-) (./InfoSimula.aux)
+) (./InfoSimula.aux
+
+LaTeX Warning: Label `fig:simulacion' multiply defined.
+
+
+LaTeX Warning: Label `fig:simulacion' multiply defined.
+
+)
 \openout1 = `InfoSimula.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
@@ -485,47 +492,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--100
  []
 
 [2 <./Simulacion.png>]
-! Too many }'s.
-l.119 ...a el período del calentamiento,B\'asico}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
-
+[3] <graf1.png, id=20, 940.51375pt x 453.695pt>
+File: graf1.png Graphic file (type png)
+ <use graf1.png>
+Overfull \hbox (63.82861pt too wide) in paragraph at lines 127--128
+ [][] 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
-
+<graf2.png, id=21, 957.5775pt x 423.5825pt>
+File: graf2.png Graphic file (type png)
+ <use graf2.png>
+Overfull \hbox (74.06694pt too wide) in paragraph at lines 134--135
+ [][] 
  []
 
-<Simulacion_flujo.png, id=20, 408.52625pt x 1054.94125pt>
-File: Simulacion_flujo.png Graphic file (type png)
-
-<use Simulacion_flujo.png>
-
-LaTeX Warning: Float too large for page by 7.09674pt on input line 139.
-
-[4] [5 <./Simulacion_flujo.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 149--151
-
+<graf3.png, id=22, 1016.79875pt x 539.01375pt>
+File: graf3.png Graphic file (type png)
+ <use graf3.png>
+Overfull \hbox (109.59998pt too wide) in paragraph at lines 141--142
+ [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
-
+<graf4.png, id=23, 992.70876pt x 442.65375pt>
+File: graf4.png Graphic file (type png)
+ <use graf4.png>
+Overfull \hbox (95.14586pt too wide) in paragraph at lines 148--149
+ [][] 
  []
 
 
@@ -533,55 +534,97 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
-[6] <EventoFallo.png, id=31, 879.285pt x 344.28625pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
+
+ []
+
+<Simulacion_flujo.png, id=24, 408.52625pt x 1054.94125pt>
+File: Simulacion_flujo.png Graphic file (type png)
+
+<use Simulacion_flujo.png>
+
+LaTeX Warning: Float too large for page by 7.09674pt on input line 167.
+
+[4 <./graf1.png>] [5 <./graf2.png> <./graf3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 177--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+[6 <./graf4.png>] [7 <./Simulacion_flujo.png>] [8]
+<EventoFallo.png, id=46, 879.285pt x 344.28625pt>
 File: EventoFallo.png Graphic file (type png)
  <use EventoFallo.png>
-<EventoReparacion.png, id=32, 789.95125pt x 391.4625pt>
+<EventoReparacion.png, id=47, 789.95125pt x 391.4625pt>
 File: EventoReparacion.png Graphic file (type png)
 
 <use EventoReparacion.png>
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
-[7 <./EventoFallo.png> <./EventoReparacion.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
+[9 <./EventoFallo.png> <./EventoReparacion.png>] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 234.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 272.
 
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 234.
- [8]
-Underfull \hbox (badness 10000) in paragraph at lines 238--240
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 272.
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--278
 
  []
 
-<promedio.png, id=43, 384.43625pt x 242.9075pt>
+<promedio.png, id=56, 384.43625pt x 242.9075pt>
 File: promedio.png Graphic file (type png)
- <use promedio.png> [9 <./promedio.png>] (./InfoSimula.aux) ) 
+ <use promedio.png>
+Underfull \hbox (badness 10000) in paragraph at lines 299--300
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
+
+ []
+
+[12 <./promedio.png>] (./InfoSimula.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4166 strings out of 495061
- 53677 string characters out of 1182620
- 122934 words of memory out of 3000000
- 7311 multiletter control sequences out of 15000+50000
+ 4190 strings out of 495061
+ 53979 string characters out of 1182620
+ 122974 words of memory out of 3000000
+ 7331 multiletter control sequences out of 15000+50000
  11103 words of font info for 40 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,7n,32p,1116b,295s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on InfoSimula.pdf (9 pages, 232628 bytes).
+ 27i,7n,32p,1281b,295s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pf
+b>
+Output written on InfoSimula.pdf (12 pages, 338675 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
+ 88 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
