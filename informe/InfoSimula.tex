@@ -124,28 +124,28 @@ Se determinó un tiempo de 30 semanas desarrollando el siguiente análisis. Las 
 
 \begin{figure}
   \centering
-	\includegraphics[scale=0.6]{graf1.png} 
+	\includegraphics[scale=0.4]{graf1.png} 
   \caption{Calentamiento con m\'aximo de tiempo $1000$}
   \label{fig:cal1}
 \end{figure}
 
 \begin{figure}
   \centering
-	\includegraphics[scale=0.6]{graf2.png} 
-  \caption{Simulaci\'on despu\'es del calentamiento de $2000$ horas de tiempo $500$}
+	\includegraphics[scale=0.4]{graf2.png} 
+  \caption{Simulaci\'on despu\'es del calentamiento de $1000$ horas de tiempo $500$}
   \label{fig:descal1}
 \end{figure}
 
 \begin{figure}
   \centering
-	\includegraphics[scale=0.6]{graf3.png} 
+	\includegraphics[scale=0.4]{graf3.png} 
   \caption{Calentamiento con m\'aximo de tiempo $2000$}
   \label{fig:descal2}
 \end{figure}
 
 \begin{figure}
   \centering
-	\includegraphics[scale=0.6]{graf4.png} 
+	\includegraphics[scale=0.4]{graf4.png} 
   \caption{Simulaci\'on despu\'es del calentamiento de $2000$ horas de tiempo $500$}
   \label{fig:cal2}
 \end{figure}
@@ -254,6 +254,19 @@ Para este escenario se varia la cantidad de reparadores y máquinas adicionales.
 
 \subsection{Pruebas}
 
+Con los escenarios planteados se realizaron las respectivas pruebas obteniendo los siguientes resultados.
+
+\begin{figure}[h]
+  \centering
+	\includegraphics[scale=0.5]{graf5.png} 
+  \caption{Pruebas con los distintos escenarios}
+  \label{fig:pruebas}
+\end{figure}
+
+Facilmente en la gr\'afica se pueden ver los resultados para todos los escenarios. Esta describe el promedio del rendimiento para $1000$ simulaciones para cada uno de los casos (Un solo reparador y se aumenta el n\'umero de adicionales, luego se aumenta el reparador y se realiza el mismo proceso) variando en cada una de esas $1000$ simulaciones la semilla con el fin de obtener un valor mas acertado a la simulaci\'on. Las dem\'as variables de entrada se mantienen constantes.\\
+
+Se puede observar que la variable que principalmente logra mejorar el rendimiento del sistema es el reparador, y que las m\'aquinas adicionales poco ayudan a mejorar, solo se nota una leve ayuda cuando ya los valores del desempeño llegan a cerca de $93\%$. 
+
 \section{Implementación del Modelo.}
 
 \subsection{Estructura de datos}
@@ -302,7 +315,15 @@ En el problema de las fallas de las máquinas se puede ver como el sistema en un
 
 Viendo el comportamiento del sistema, se puede ver que aumentando la cantidad de reparadores, el rendimiento de la fábrica mejora considerablemente, al contrario del aumento de máquinas adicionales que solo afectan muy poco el rendimiento.\\
 
-Las m\'aquinas adicionales no afectan fuertemente pues ellas también fallan con la misma distribución uniforme que las m\'aquinas de la f\'abrica. Si estas tuvieran un tiempo posible de fallo mucho más grande que las m\'aquina de la fábrica tal vez representarían una mejora en el rendimiento. La m\'aquinas adicionales tambi\'en se encolan esperando para ser atendidas por los reparadores.
+Las m\'aquinas adicionales no afectan fuertemente pues ellas también fallan con la misma distribución uniforme que las m\'aquinas de la f\'abrica. Si estas tuvieran un tiempo posible de fallo mucho más grande que las m\'aquina de la fábrica tal vez representarían una mejora en el rendimiento. La m\'aquinas adicionales tambi\'en se encolan esperando para ser atendidas por los reparadores.\\
+
+
+Para comparar resultados nos vimos en la necesidad de definir una funci\'on de costos la cual depende del n\'umero de m\'aquinas adicionales disponibles y el n\'umero de reparadores se defini\'o como: tiemposimulacion * (10*reparadores + maquinas) de esta manera comparabamos las simulaciones y defin\'iamos cual era mejor, tomando en  cuenta el desempeño obtenido y el costo.\\
+
+
+El tiempo de calentamiento favorece a la simulaci\'on pues reduce el sesgo que se genera cuando se quiere analizar un estado del sistema que ya ha superado el inicio. Con el calentamiento tratamos de tener un sistema estable para la simulaci\'on para poder realizar un an\'alisis m\'as adecuado.
+
+
 
 
 
