@@ -652,9 +652,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		//  48
 		
-		System.out.println("maquinas con cola reparacion :::"+ count_size);
-		System.out.println(s.getMaquinasEnColaRepacionCalentamiento());
-		
+	
 		
 		
 		//--------------------------------------------------------------------------------------
@@ -665,7 +663,7 @@ public class tableroDeMaquinas extends JFrame{
 		
 		int costo = maxTimerFinish*(numMachAva + 10*numRepaAva);
 		
-		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva,s.getDesempenioSumReparadores_ocupacion_total(),costo);
+		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva,s.getDesempenioSumReparadores_ocupacion_total(),costo,s.getDesempenioColaPromedio_total(),s.getDesempenioColaReparador());
 		panelEstadistica.updateUI();
 		
 		time.start();

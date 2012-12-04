@@ -36,16 +36,16 @@ public class PanelEstadistica extends JScrollPane {
 		this.setViewportView(principal);
 	}
 	
-	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva,double DesempenioSumReparadores_ocupacion_total,int costo) {
+	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva,double DesempenioSumReparadores_ocupacion_total,int costo, double ColaPromedio, int ColaReparador) {
 		// TODO Auto-generated constructor stub
 		super();
 		
 		
-		init( percValuearg,numMachAva,numRepaAva,DesempenioSumReparadores_ocupacion_total,costo);
+		init( percValuearg,numMachAva,numRepaAva,DesempenioSumReparadores_ocupacion_total,costo,ColaPromedio,ColaReparador);
 		
 	}
 	
-	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg, double DesempenioSumReparadores_ocupacion_total, int costo){
+	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg, double DesempenioSumReparadores_ocupacion_total, int costo,double ColaPromedio,int ColaReparador){
 		
 		principal.removeAll();
 		//El vector de objetos debe de venir organizado
@@ -69,8 +69,8 @@ public class PanelEstadistica extends JScrollPane {
 				
 				int numMachAva = numMachAvaarg;
 				int numRep = numRepaAvaarg;
-				int maxQueRep = 0;
-				int aveQueRep = 0;
+				int maxQueRep = ColaReparador;
+				double  aveQueRep = ColaPromedio;
 				int aveQueMachAva = 0;
 				double costValue = costo;
 				double percValue = percValuearg;
@@ -102,7 +102,7 @@ public class PanelEstadistica extends JScrollPane {
 						};
 				JLabel val2 [] = {
 						new JLabel(Integer.toString(maxQueRep)),
-						new JLabel(Integer.toString(aveQueRep)),
+						new JLabel(decimal.format(aveQueRep)),
 						new JLabel(Integer.toString(aveQueMachAva)),
 						new JLabel(decimal.format(percValue*100)+"%"),
 						new JLabel(decimal.format(porcentaje_ocupacion_reparadores*100)+"%")

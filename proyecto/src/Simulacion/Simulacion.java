@@ -18,7 +18,7 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 public class Simulacion {
 	
 	private PriorityQueue<Evento<Integer, String, String>> listaEventos;
-	private int reloj,reloj_calentamiento,reloj_anterior_reparadores;
+	private int reloj,reloj_calentamiento,reloj_anterior_reparadores,reloj_anterior_cola_promedio;
 	private int tiempoCalentamiento=1000;
 	
 	boolean activarVariablesDesempenio=false;
@@ -51,10 +51,17 @@ public class Simulacion {
 	private int desempenioSumFuncionamiento;
 	
 	private int desempenioSumReparadores_ocupacion;//para calcular el promedio de ocupacion de todos los reparadores 
+	private int desempenioColaPromedio;
 	
 
 	private int desempenioColaReparador;
 	private int desempenioColaAdicional;
+	
+	private double desempenioTotal;
+	private double desempenioSumReparadores_ocupacion_total;
+	private double desempenioColaPromedio_total;
+
+	
 	
 	// Revisar eventos por maquina
     private Vector<Vector<Evento<Integer, String, String>>> eventosMaquina;
@@ -65,9 +72,8 @@ public class Simulacion {
     private String COLAREPARACION="irAColaReparacion";
     private String COLAADICIONAL="irAColaAdicional";
     private String REEMPLAZO="irAFabrica";
-	private double desempenioTotal;
-	private double desempenioSumReparadores_ocupacion_total;
-
+    
+    
 	
 	
 
@@ -179,6 +185,15 @@ public class Simulacion {
 			
 		}
 		else{
+			
+			desempenioColaPromedio+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_promedio);
+			 System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
+				
+			
+			reloj_anterior_cola_promedio=this.reloj;
+			
+			
+		  
 			this.colaRepacion++; //Se suma a la cola de repacion
 			if(this.colaRepacion>this.desempenioColaReparador)this.desempenioColaReparador=this.colaRepacion;
 			this.maquinasEnColaReparacion.add(maquina);
@@ -267,6 +282,11 @@ public class Simulacion {
 			// Información UI
 			this.addEventoResumenSimulacion(this.maquinasEnColaReparacion.poll(), this.REPARACION);
 			
+			desempenioColaPromedio+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_promedio);
+			
+			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
+				
+			reloj_anterior_cola_promedio=this.reloj;
 			
 			this.colaRepacion--;
 			
@@ -317,8 +337,11 @@ public class Simulacion {
 			   
 				relojAnterior=this.reloj;
 				
+				reloj_anterior_cola_promedio=this.reloj;
+				
 				reloj_anterior_reparadores=this.reloj;
 				//reloj_anterior_reparadores=relojAnterior;
+				desempenioColaPromedio=0;
 				
 				
 				activarVariablesDesempenio=true;//activa el calculo del desempeño 
@@ -393,16 +416,25 @@ public class Simulacion {
 		this.desempenioSumFuncionamiento += this.colaFuncionamiento*(this.reloj-this.relojAnterior);
 		
 		this.desempenioSumReparadores_ocupacion += (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
+		
+		this.desempenioColaPromedio+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_promedio);
+		 System.out.println("Evento: fuera "+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
+			
+		
 		//System.out.println("reloj "+reloj+"reloj anterior reparadores"+reloj_anterior_reparadores+"reloj calentamiento "+this.reloj_calentamiento);
 		
 		desempenioSumReparadores_ocupacion_total += (double) this.desempenioSumReparadores_ocupacion/(double) (((this.reloj-this.reloj_calentamiento)*this.MAX_REPARADOR));
 		
+		
+		this.setDesempenioColaPromedio_total((double) this.desempenioColaPromedio / (double) (this.reloj-this.reloj_calentamiento));
 		////System.out.println( "sum" + this.desempenioSumReparadores_ocupacion+" max repa"+(this.MAX_REPARADOR-this.reparadoresDisponibles)+" reloj" +(reloj-reloj_anterior_reparadores) );
 		
 		
 			
 			
 		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
+		
+		
 		
 		//System.out.println("desempenioSumReparadores_ocupacion "+desempenioSumReparadores_ocupacion);
 		//System.out.println("tiempo "+this.reloj+"-"+this.reloj_calentamiento);
@@ -435,13 +467,14 @@ public class Simulacion {
 		{
 		
 		//Pruebas:
-			Simulacion s = new Simulacion(12345, 50,10,1,100)  ;
+			Simulacion s = new Simulacion(12345, 50,0,1,100)  ;
 			s.starSimulacion();
 			
 			//System.out.println("desempeño:: "+(s.getDesempenioTotal()*100));
 			
-			//System.out.println("desempeño:: reparadores  "+(s.getDesempenioSumReparadores_ocupacion_total()));
+			System.out.println("desempeño:: reparadores  "+(s.getDesempenioColaPromedio_total()));
 		
+
 		}
 	
 	public Vector<Vector<Object>> getResumenSimulacion(){
@@ -566,5 +599,15 @@ public class Simulacion {
 
 	public void setDesempenioTotal(double desempenioTotal) {
 		this.desempenioTotal = desempenioTotal;
+	}
+
+
+	public double getDesempenioColaPromedio_total() {
+		return desempenioColaPromedio_total;
+	}
+
+
+	public void setDesempenioColaPromedio_total(double desempenioColaPromedio_total) {
+		this.desempenioColaPromedio_total = desempenioColaPromedio_total;
 	}
 }
