@@ -23,7 +23,7 @@ public class Main {
 
 	
 		
-		System.out.println("hola");
+		//System.out.println("hola");
 		
 		tableroDeMaquinas tm = new tableroDeMaquinas();
 		tm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

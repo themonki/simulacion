@@ -357,7 +357,7 @@ public class tableroDeMaquinas extends JFrame{
 				
 				l = new JLabel(idMaquina);
 				l.setName(idMaquina);
-				System.out.println(idMaquina);
+				//System.out.println("id maquina "+idMaquina);
 				
 			}
 		
@@ -559,11 +559,11 @@ public class tableroDeMaquinas extends JFrame{
 		
 		validador valida= new validador();
 		String mensaje="" ;
-		mensaje+=valida.validar("Number Machine Avalaible",numero_maquinas_extras.getText(),true ,1, 50);
+		mensaje+=valida.validar("Number Machine Avalaible",numero_maquinas_extras.getText(),true ,0, 100000);
 		
-		mensaje+=valida.validar("Number Repairers",numero_reparadores.getText(),true ,1, 50);
+		mensaje+=valida.validar("Number Repairers",numero_reparadores.getText(),true ,1, 100000);
 	
-		mensaje+=valida.validar("Timer Finish",tiempo.getText(),true ,10, 100000);
+		mensaje+=valida.validar("Timer Finish",tiempo.getText(),true ,2, 100000);
 		
 		//mensaje+=valida.validar("Events Number",numero_eventos.getText(),true ,10, 100);
 		
@@ -635,7 +635,7 @@ public class tableroDeMaquinas extends JFrame{
 			
 		}
 		
-		System.out.println("Caliente Reparador:::"+ s.getMaquinasConReparadorCalentamiento());
+		//System.out.println("Caliente Reparador:::"+ s.getMaquinasConReparadorCalentamiento());
 		
 		
 		count_size=s.getMaquinasEnColaRepacionCalentamiento().size();
@@ -659,11 +659,12 @@ public class tableroDeMaquinas extends JFrame{
 		
 		ResumenSimulacion=s.getResumenSimulacion();
 		
-		System.out.println(ResumenSimulacion);
+		//System.out.println(ResumenSimulacion);
 		
 		int costo = maxTimerFinish*(numMachAva + 10*numRepaAva);
 		
-		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva,s.getDesempenioSumReparadores_ocupacion_total(),costo,s.getDesempenioColaPromedio_total(),s.getDesempenioColaReparador());
+		panelEstadistica.init(s.getDesempenioTotal(),numMachAva,numRepaAva,s.getDesempenioSumReparadores_ocupacion_total(),costo,
+				s.getDesempenioColaPromedioReparador_total(),s.getDesempenioColaReparador(), s.getDesempenioColaPromedioAdicional_total());
 		panelEstadistica.updateUI();
 		
 		time.start();

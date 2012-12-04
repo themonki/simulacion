@@ -36,16 +36,18 @@ public class PanelEstadistica extends JScrollPane {
 		this.setViewportView(principal);
 	}
 	
-	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva,double DesempenioSumReparadores_ocupacion_total,int costo, double ColaPromedio, int ColaReparador) {
+	public PanelEstadistica(double percValuearg,int numMachAva ,int numRepaAva,double DesempenioSumReparadores_ocupacion_total,int costo, 
+			double ColaPromedio, int ColaReparador,double colaPromedioAdicional) {
 		// TODO Auto-generated constructor stub
 		super();
 		
 		
-		init( percValuearg,numMachAva,numRepaAva,DesempenioSumReparadores_ocupacion_total,costo,ColaPromedio,ColaReparador);
+		init( percValuearg,numMachAva,numRepaAva,DesempenioSumReparadores_ocupacion_total,costo,ColaPromedio,ColaReparador, colaPromedioAdicional);
 		
 	}
 	
-	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg, double DesempenioSumReparadores_ocupacion_total, int costo,double ColaPromedio,int ColaReparador){
+	public void init(double percValuearg ,int numMachAvaarg ,int numRepaAvaarg, double desempenioSumReparadores_ocupacion_total, int costo,
+			double colaPromedioReparador,int colaReparador, double colaPromedioAdicional){
 		
 		principal.removeAll();
 		//El vector de objetos debe de venir organizado
@@ -69,12 +71,12 @@ public class PanelEstadistica extends JScrollPane {
 				
 				int numMachAva = numMachAvaarg;
 				int numRep = numRepaAvaarg;
-				int maxQueRep = ColaReparador;
-				double  aveQueRep = ColaPromedio;
-				int aveQueMachAva = 0;
+				int maxQueRep = colaReparador;
+				double  aveQueRep = colaPromedioReparador;
+				double aveQueMachAva = colaPromedioAdicional;
 				double costValue = costo;
 				double percValue = percValuearg;
-				double porcentaje_ocupacion_reparadores=DesempenioSumReparadores_ocupacion_total;
+				double porcentaje_ocupacion_reparadores=desempenioSumReparadores_ocupacion_total;
 				
 				DecimalFormat decimal= new DecimalFormat("0.00");
 				
@@ -103,7 +105,7 @@ public class PanelEstadistica extends JScrollPane {
 				JLabel val2 [] = {
 						new JLabel(Integer.toString(maxQueRep)),
 						new JLabel(decimal.format(aveQueRep)),
-						new JLabel(Integer.toString(aveQueMachAva)),
+						new JLabel(decimal.format(aveQueMachAva)),
 						new JLabel(decimal.format(percValue*100)+"%"),
 						new JLabel(decimal.format(porcentaje_ocupacion_reparadores*100)+"%")
 						

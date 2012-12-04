@@ -18,7 +18,7 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 public class Simulacion {
 	
 	private PriorityQueue<Evento<Integer, String, String>> listaEventos;
-	private int reloj,reloj_calentamiento,reloj_anterior_reparadores,reloj_anterior_cola_promedio;
+	private int reloj,reloj_calentamiento,reloj_anterior_reparadores,reloj_anterior_cola_reparador_promedio,reloj_anterior_cola_adicional_promedio;
 	private int tiempoCalentamiento=1000;
 	
 	boolean activarVariablesDesempenio=false;
@@ -51,15 +51,17 @@ public class Simulacion {
 	private int desempenioSumFuncionamiento;
 	
 	private int desempenioSumReparadores_ocupacion;//para calcular el promedio de ocupacion de todos los reparadores 
-	private int desempenioColaPromedio;
+	private int desempenioColaPromedioReparador;
+	private int desempenioColaPromedioAdicional;
 	
 
-	private int desempenioColaReparador;
-	private int desempenioColaAdicional;
+	private int desempenioColaReparador;// Maximo valor
+	private int desempenioColaAdicional;// Maximo Valor
 	
-	private double desempenioTotal;
+	private double desempenioFabrica_total;
 	private double desempenioSumReparadores_ocupacion_total;
-	private double desempenioColaPromedio_total;
+	private double desempenioColaPromedioReparador_total;
+	private double desempenioColaPromedioAdicional_total;
 
 	
 	
@@ -124,6 +126,10 @@ public class Simulacion {
 		this.desempenioColaAdicional=0;
 		this.desempenioColaReparador=0;
 		
+		this.reloj_anterior_cola_adicional_promedio=0;
+		this.desempenioColaPromedioAdicional_total=0;
+		this.desempenioColaPromedioAdicional=0;
+		
 		this.maquinasAdicionales = new LinkedList<String>();
 		this.maquinasEnColaReparacion = new LinkedList<String>();
 		this.maquinasConReparador = new Vector<String>();
@@ -186,11 +192,11 @@ public class Simulacion {
 		}
 		else{
 			
-			desempenioColaPromedio+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_promedio);
-			 System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
+			desempenioColaPromedioReparador+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_reparador_promedio);
+			// System.out.println("Evento: "+this.INDICADOR_FALLA+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
 				
 			
-			reloj_anterior_cola_promedio=this.reloj;
+			reloj_anterior_cola_reparador_promedio=this.reloj;
 			
 			
 		  
@@ -204,6 +210,8 @@ public class Simulacion {
 		}
 		
 		if(this.colaAdicionales>0){
+			this.desempenioColaPromedioAdicional+=this.colaAdicionales*(this.reloj-this.reloj_anterior_cola_adicional_promedio);
+			this.reloj_anterior_cola_adicional_promedio=this.reloj;
 			this.colaAdicionales--; //Si hay maquinas adicionales se reasume.
 			listaEventos.add(new Evento<Integer, String, String>(this.reloj+ this.tiempos.tiempoFalloMaquina(), 
 					this.INDICADOR_FALLA, 
@@ -264,6 +272,8 @@ public class Simulacion {
 			
 			//this.puestosLibres.poll(); //Puede servir para que cuando se pase a la parte grafica se sepa que lugar reemplazar
 		}else{//si esta completo, se coloca como adicional
+			this.desempenioColaPromedioAdicional+=this.colaAdicionales*(this.reloj-this.reloj_anterior_cola_adicional_promedio);
+			this.reloj_anterior_cola_adicional_promedio=this.reloj;
 			this.colaAdicionales++;
 			if(this.colaAdicionales>this.desempenioColaAdicional)this.desempenioColaAdicional=this.colaAdicionales;
 			this.maquinasAdicionales.add(maquina);
@@ -282,11 +292,11 @@ public class Simulacion {
 			// Información UI
 			this.addEventoResumenSimulacion(this.maquinasEnColaReparacion.poll(), this.REPARACION);
 			
-			desempenioColaPromedio+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_promedio);
+			desempenioColaPromedioReparador+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_reparador_promedio);
 			
-			System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
+			//System.out.println("Evento: "+this.INDICADOR_REPARACION+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
 				
-			reloj_anterior_cola_promedio=this.reloj;
+			reloj_anterior_cola_reparador_promedio=this.reloj;
 			
 			this.colaRepacion--;
 			
@@ -337,12 +347,13 @@ public class Simulacion {
 			   
 				relojAnterior=this.reloj;
 				
-				reloj_anterior_cola_promedio=this.reloj;
+				reloj_anterior_cola_reparador_promedio=this.reloj;
 				
 				reloj_anterior_reparadores=this.reloj;
 				//reloj_anterior_reparadores=relojAnterior;
-				desempenioColaPromedio=0;
-				
+				desempenioColaPromedioReparador=0;
+				this.desempenioColaPromedioAdicional=0;
+				this.desempenioColaPromedioAdicional_total=0;
 				
 				activarVariablesDesempenio=true;//activa el calculo del desempeño 
 			    //relojAnterior=this.reloj;
@@ -417,8 +428,8 @@ public class Simulacion {
 		
 		this.desempenioSumReparadores_ocupacion += (this.MAX_REPARADOR-this.reparadoresDisponibles)*(reloj-reloj_anterior_reparadores);
 		
-		this.desempenioColaPromedio+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_promedio);
-		 System.out.println("Evento: fuera "+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
+		this.desempenioColaPromedioReparador+=(this.colaRepacion)*(this.reloj-this.reloj_anterior_cola_reparador_promedio);
+		 //System.out.println("Evento: fuera "+ " Cola: " + this.colaRepacion +" * Time: (" +this.reloj +" - "+this.reloj_anterior_cola_promedio  + ") = Value: "+ this.desempenioColaPromedio );
 			
 		
 		//System.out.println("reloj "+reloj+"reloj anterior reparadores"+reloj_anterior_reparadores+"reloj calentamiento "+this.reloj_calentamiento);
@@ -426,13 +437,14 @@ public class Simulacion {
 		desempenioSumReparadores_ocupacion_total += (double) this.desempenioSumReparadores_ocupacion/(double) (((this.reloj-this.reloj_calentamiento)*this.MAX_REPARADOR));
 		
 		
-		this.setDesempenioColaPromedio_total((double) this.desempenioColaPromedio / (double) (this.reloj-this.reloj_calentamiento));
+		this.setDesempenioColaPromedioReparador_total((double) this.desempenioColaPromedioReparador / (double) (this.reloj-this.reloj_calentamiento));
 		////System.out.println( "sum" + this.desempenioSumReparadores_ocupacion+" max repa"+(this.MAX_REPARADOR-this.reparadoresDisponibles)+" reloj" +(reloj-reloj_anterior_reparadores) );
 		
-		
+		this.desempenioColaPromedioAdicional_total= (double)(this.desempenioColaPromedioAdicional) / (double) (this.reloj-this.reloj_calentamiento);
+
 			
 			
-		desempenioTotal=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
+		desempenioFabrica_total=(double)(desempenioSumFuncionamiento)/(double)(((this.reloj-this.reloj_calentamiento)*50));
 		
 		
 		
@@ -472,7 +484,7 @@ public class Simulacion {
 			
 			//System.out.println("desempeño:: "+(s.getDesempenioTotal()*100));
 			
-			System.out.println("desempeño:: reparadores  "+(s.getDesempenioColaPromedio_total()));
+			//System.out.println("desempeño:: reparadores  "+(s.getDesempenioColaPromedio_total()));
 		
 
 		}
@@ -594,20 +606,37 @@ public class Simulacion {
 	}
 	
 	public double getDesempenioTotal() {
-		return desempenioTotal;
+		return desempenioFabrica_total;
 	}
 
 	public void setDesempenioTotal(double desempenioTotal) {
-		this.desempenioTotal = desempenioTotal;
+		this.desempenioFabrica_total = desempenioTotal;
 	}
 
 
-	public double getDesempenioColaPromedio_total() {
-		return desempenioColaPromedio_total;
+	public double getDesempenioColaPromedioReparador_total() {
+		return desempenioColaPromedioReparador_total;
 	}
 
 
-	public void setDesempenioColaPromedio_total(double desempenioColaPromedio_total) {
-		this.desempenioColaPromedio_total = desempenioColaPromedio_total;
+	public void setDesempenioColaPromedioReparador_total(double desempenioColaPromedio_total) {
+		this.desempenioColaPromedioReparador_total = desempenioColaPromedio_total;
+	}
+
+
+	/**
+	 * @return the desempenioColaPromedioAdicional_total
+	 */
+	public double getDesempenioColaPromedioAdicional_total() {
+		return desempenioColaPromedioAdicional_total;
+	}
+
+
+	/**
+	 * @param desempenioColaPromedioAdicional_total the desempenioColaPromedioAdicional_total to set
+	 */
+	public void setDesempenioColaPromedioAdicional_total(
+			double desempenioColaPromedioAdicional_total) {
+		this.desempenioColaPromedioAdicional_total = desempenioColaPromedioAdicional_total;
 	}
 }
