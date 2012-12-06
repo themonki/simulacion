@@ -989,7 +989,7 @@ Evento de fallo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea1391/Documentos/Univalle/Simulacion/simulacion/informe/EventoFallo.png
+	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/EventoFallo.png
 	scale 35
 
 \end_inset
@@ -1004,7 +1004,7 @@ Evento de reparación
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea1391/Documentos/Univalle/Simulacion/simulacion/informe/EventoReparacion.png
+	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/EventoReparacion.png
 	scale 35
 
 \end_inset
@@ -1086,7 +1086,7 @@ La unidad de tiempo empleada es la hora.
 \end_layout
 
 \begin_layout Itemize
-La condición de para de la simulación es en un tiempo dado.
+La condición de parada de la simulación es en un tiempo dado.
 \end_layout
 
 \begin_layout Section
@@ -1166,7 +1166,37 @@ Resultados
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea1391/Documentos/Univalle/Simulacion/simulacion/informe/graf5.png
+	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/graf5.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Resultados 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/graf1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Resultados 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/graf3.png
 	scale 30
 
 \end_inset
