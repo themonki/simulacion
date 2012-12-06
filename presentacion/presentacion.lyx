@@ -989,7 +989,7 @@ Evento de fallo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/EventoFallo.png
+	filename ../informe/EventoFallo.png
 	scale 35
 
 \end_inset
@@ -1004,7 +1004,7 @@ Evento de reparación
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/EventoReparacion.png
+	filename ../informe/EventoReparacion.png
 	scale 35
 
 \end_inset
@@ -1166,7 +1166,7 @@ Resultados
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/graf5.png
+	filename ../informe/graf5.png
 	scale 30
 
 \end_inset
@@ -1181,7 +1181,7 @@ Resultados
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/graf1.png
+	filename ../informe/graf1.png
 	scale 30
 
 \end_inset
@@ -1196,7 +1196,7 @@ Resultados
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/andrea/Documentos/UNIVALLE/Simulacion/proyecto2012/simulacion/informe/graf3.png
+	filename ../informe/graf3.png
 	scale 30
 
 \end_inset
