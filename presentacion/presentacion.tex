@@ -1,0 +1,281 @@
+%% LyX 2.0.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[spanish]{beamer}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % this default might be overridden by plain title style
+ \newcommand\makebeamertitle{\frame{\maketitle}}%
+ \AtBeginDocument{
+   \let\origtableofcontents=\tableofcontents
+   \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+   \def\gobbletableofcontents#1{\origtableofcontents}
+ }
+ \long\def\lyxframe#1{\@lyxframe#1\@lyxframestop}%
+ \def\@lyxframe{\@ifnextchar<{\@@lyxframe}{\@@lyxframe<*>}}%
+ \def\@@lyxframe<#1>{\@ifnextchar[{\@@@lyxframe<#1>}{\@@@lyxframe<#1>[]}}
+ \def\@@@lyxframe<#1>[{\@ifnextchar<{\@@@@@lyxframe<#1>[}{\@@@@lyxframe<#1>[<*>][}}
+ \def\@@@@@lyxframe<#1>[#2]{\@ifnextchar[{\@@@@lyxframe<#1>[#2]}{\@@@@lyxframe<#1>[#2][]}}
+ \long\def\@@@@lyxframe<#1>[#2][#3]#4\@lyxframestop#5\lyxframeend{%
+   \frame<#1>[#2][#3]{\frametitle{#4}#5}}
+ \def\lyxframeend{} % In case there is a superfluous frame end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+
+\makeatother
+
+\usepackage{babel}
+\addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+\begin{document}
+
+
+
+
+
+\title{Falla de Máquinas}
+
+
+\author{María Andrea Cruz Blandón \and Edgar Andrés Moncada Taborda \and
+Luis Felipe Vargas Rojas}
+
+
+\institute{Escuela de ingeniería de sistemas y computación\\
+Universidad del Valle \and }
+
+
+\date[CFP 2003
+
+]{Presentación proyecto simulación de eventos discretos, 2012}
+
+\makebeamertitle
+
+
+%\pgfdeclareimage[height=0.5cm]{institution-logo}{institución-logo-nombrearchivo}
+
+%\logo{\pgfuseimage{institution-logo}}
+
+
+
+\AtBeginSubsection[]{
+
+  \frame<beamer>{ 
+
+    \frametitle{Índice}   
+
+    \tableofcontents[currentsection,currentsubsection] 
+
+  }
+
+}
+
+
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\lyxframeend{}\lyxframe{Índice}
+
+\tableofcontents{}
+
+
+
+
+\lyxframeend{}\section{El Problema}
+
+
+\lyxframeend{}\subsection[Problema básico]{Fallo de máquinas }
+
+
+\lyxframeend{}\lyxframe{Fallo de máquinas}
+
+
+\framesubtitle{}
+
+Una fábrica cuenta con 50 máquinas que funcionan 5 días a la semana
+y 8 horas cada día. El problema es que las máquinas pueden fallar.\\
+
+Se cuenta con máquinas adicionales que reemplacen a las máquinas dañadas.\\
+
+Se cuenta con empleados que reparan cada uno una máquina.\\
+
+
+\lyxframeend{}\subsection{Meta}
+
+
+\lyxframeend{}\lyxframe{Meta}
+\begin{block}
+<1->{Meta}
+
+La fábrica quiere saber ¿Cuántos empleados y máquinas adicionales
+debe tener para que la fábrica mantenga funcionando continuamente
+entre un 96\% a 98\% de las 50 máquinas?
+\end{block}
+
+\lyxframeend{}\section{Modelo}
+
+
+\lyxframeend{}\lyxframe{ Modelo}
+
+
+\subtitle{Puntos claves}
+\begin{itemize}
+\item Se trabajó con una lista de eventos futuros. Cada máquina de la fábrica
+tiene la probabilidad de fallar en un periodo de 160 \textpm{} 30
+horas con una distribución uniforme.
+\item Una vez un reparador inicia la reparación de una máquina esta reparación
+puede tomarle 8 \textpm{} 3 horas con una distribución uniforme. 
+\item La cantidad de reparadores puede variar según los escenarios planteados. 
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Modelo}
+
+
+\subtitle{Puntos claves}
+\begin{itemize}
+\item La cantidad de máquinas adicionales puede variar según los escenarios
+planteados. 
+\item Es adecuado realizar un tiempo de calentamiento ya que existe formación
+de colas.
+\item Una máquina que se está reparando o está esperando para ser reparada
+no puede generar un evento de fallo, pues no está en funcionamiento.
+\end{itemize}
+
+\lyxframeend{}\subsection{Variables}
+
+
+\lyxframeend{}\lyxframe{Variables }
+\begin{block}
+<1->{Variables de entrada}
+\begin{itemize}
+\item <2->Cantidad de reparadores
+\item <3->Máquinas adicionales
+\end{itemize}
+\end{block}
+
+\begin{block}
+<4->{Variables de estado}
+\begin{itemize}
+\item <5->Reloj
+\item <6->Cola de reparación
+\item <7->Máquinas funcionando
+\item <8->Máquinas adicionales
+\end{itemize}
+\end{block}
+
+
+
+\lyxframeend{}\lyxframe{Variables }
+\begin{block}
+<1->{Variables de desempeño}
+\begin{itemize}
+\item <1->Porcentaje de funcionamiento de la fábrica
+\item <2->Cola promedio de espera para reparación
+\item <3->Cola de máquinas adicionales promedio 
+\item <4->Cola máxima de espera para reparación
+\end{itemize}
+\end{block}
+
+
+
+\lyxframeend{}\subsection{Eventos}
+
+
+\lyxframeend{}\lyxframe{Evento de fallo}
+
+\begin{center}
+\includegraphics[scale=0.35]{/home/andrea1391/Documentos/Univalle/Simulacion/simulacion/informe/EventoFallo}
+\par\end{center}
+
+
+\lyxframeend{}\lyxframe{Evento de reparación}
+
+\begin{center}
+\includegraphics[scale=0.35]{/home/andrea1391/Documentos/Univalle/Simulacion/simulacion/informe/EventoReparacion}
+\par\end{center}
+
+
+\lyxframeend{}\section{Escenarios}
+
+
+\lyxframeend{}\lyxframe{Escenarios}
+\begin{itemize}
+\item \textbf{Básico}: 1 reparador, 0 Adicionales.
+\item \textbf{Máquinas Adicionales}: 1 reparador, $n$ Adicionales
+\item \textbf{Reparadores}: $n$ reparadores, 1 Adicionales
+\item \textbf{Combinatorio}
+\end{itemize}
+
+\lyxframeend{}\section{Detalles de la simulación}
+
+
+\lyxframeend{}\lyxframe{Detalles}
+\begin{itemize}
+\item La unidad de tiempo empleada es la hora. 
+\item La condición de para de la simulación es en un tiempo dado.
+\end{itemize}
+
+\lyxframeend{}\section{Resultados}
+
+
+\lyxframeend{}\lyxframe{Resultados }
+\begin{itemize}
+\item El problema de fallo de máquinas , requiere de que se analice con
+calentamiento, pues es un sistema que tarda en estabilizarse y tiene
+formación de colas. 
+\item Viendo el comportamiento del sistema, se puede ver que aumentando
+la cantidad de reparadores, el rendimiento de la fábrica mejora considerablemente,
+al contrario del aumento de máquinas adicionales que sólo afectan
+muy poco el rendimiento.
+\item Definir una función de costo es adecuado para comparar los distintos
+escenarios, y poder elegir el adecuado de acuerdo a las necesidades.
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Resultados }
+\begin{itemize}
+\item Se opta por elegir el escenario donde tenemos 3 reparadores y 2 máquina
+adicional el cual tiene un costo de 16000 y un promedio de funcionamiento
+de $97,00 \% $ que es el de menor costo que alcanza la meta. 
+\item El tiempo de calentamiento favorece a la simulación pues reduce el
+sesgo que se genera cuando se quiere analizar un estado del sistema
+que ya ha superado el inicio. Con el calentamiento tratamos de tener
+un sistema estable para la simulación para poder realizar un análisis
+más adecuado.
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Resultados }
+\begin{itemize}
+\item Las máquinas adicionales también fallan con igual distribución de
+tiempo de fallo que las máquinas de la fábrica lo que no permite que
+estas impacten positivamente al desempeño de la fábrica. Si estas
+máquinas adicionales tuvieran una distribución de tiempo de fallo
+mayor que las máquinas de la fábrica afectarían más el desempeño.
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Resultados }
+
+\begin{center}
+\includegraphics[scale=0.3]{/home/andrea1391/Documentos/Univalle/Simulacion/simulacion/informe/graf5}
+\par\end{center}
+
+
+\lyxframeend{}
+\end{document}
