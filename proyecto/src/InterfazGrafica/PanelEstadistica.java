@@ -3,21 +3,14 @@
  */
 package InterfazGrafica;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.text.DecimalFormat;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
-import javax.swing.SwingConstants;
 
 import Utilidades.Estilos;
 
@@ -32,7 +25,7 @@ public class PanelEstadistica extends JScrollPane {
 	public PanelEstadistica(){
 		super();
 		principal = new JPanel();
-		principal.add(new JLabel("No dispoble"));
+		principal.add(new JLabel("No disponible"));
 		this.setViewportView(principal);
 	}
 	

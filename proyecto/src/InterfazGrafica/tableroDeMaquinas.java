@@ -44,7 +44,7 @@ public class tableroDeMaquinas extends JFrame{
 	private int filas=5;
 	private int columnas=10;
 	
-	private JTextField numero_maquinas_extras,tiempo,numero_eventos;
+	private JTextField numero_maquinas_extras,tiempo;
 	private JTextField numero_reparadores;
 	
 	private JLabel numero_maquinas_extras_label,tiempo_label,eventos_label;
@@ -204,8 +204,6 @@ public class tableroDeMaquinas extends JFrame{
 
 
 	public void iniciarPanelMaquinas (){
-		
-		GridLayout grilla= new GridLayout(filas, columnas,10,10);
 		
 		panelMaquinas= new JPanel();
 		
@@ -438,7 +436,7 @@ public class tableroDeMaquinas extends JFrame{
 		 numero_maquinas_extras= new JTextField(10);
 		 numero_reparadores= new JTextField(10);
 		 tiempo= new JTextField(10);
-		 numero_eventos= new JTextField(10) ;
+		 new JTextField(10);
 		 
 		 
 		 tiempo_label= new JLabel("Tiempo de Finalización");
