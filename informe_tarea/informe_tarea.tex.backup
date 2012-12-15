@@ -124,7 +124,7 @@ Realizando el experimento con 10-Reinas:
 
 \begin{figure}[h]
  \centering
- \includegraphics[scale=0.5]{./probabilidad10.jpg}
+ \includegraphics[scale=0.5]{probabilidad10.jpg}
  % probabilidad10.jpg: 642x361 pixel, 72dpi, 22.65x12.74 cm, bb=0 0 642 361
  \caption{Probabilidad de obtener éxito 10-Reinas}
  \label{fig:probabilidad10}
@@ -132,9 +132,9 @@ Realizando el experimento con 10-Reinas:
 
 \begin{figure}[h]
  \centering
- \includegraphics[scale=0.5]{./probabilidadOrden10.jpg}
+ \includegraphics[scale=0.5]{probabilidadOrden10.jpg}
  % probabilidadOrden10.jpg: 665x402 pixel, 72dpi, 23.46x14.18 cm, bb=0 0 665 402
- \caption{Intentos ordenados por probabilidades obtenidas en cada intento.}
+ \caption{Intentos ordenados por probabilidades obtenidas en cada intento. 10-Reinas}
  \label{fig:probaOrd10}
 \end{figure}
 
@@ -149,7 +149,7 @@ Realizando el experimento con 10-Reinas:
 
 \begin{figure}[h]
  \centering
- \includegraphics[scale=0.5]{./fracasos10.jpg}
+ \includegraphics[scale=0.5]{fracasos10.jpg}
  % fracasos10.jpg: 642x370 pixel, 72dpi, 22.65x13.05 cm, bb=0 0 642 370
  \caption{Número de fracasos obtenidos en cada uno de los 1000 intentos antes de obtener el éxito. 10-Reinas}
  \label{fig:fracasos10}
@@ -157,21 +157,140 @@ Realizando el experimento con 10-Reinas:
 
 \begin{figure}[h]
  \centering
- \includegraphics[scale=0.5]{./fracasosOrd10.jpg}
+ \includegraphics[scale=0.5]{fracasosOrd10.jpg}
  % fracasosOrd10.jpg: 665x361 pixel, 72dpi, 23.46x12.74 cm, bb=0 0 665 361
  \caption{Intentos ordenados por el número de fracasos obtenidos antes del éxito. 10-Reinas}
  \label{fig:fracasos10Ord}
 \end{figure}
 
-\item Número de reinas insertadas en cada intento (fracaso-éxito), se obtuvo en promedio: $$.
+\item Número de reinas insertadas en cada intento (fracaso-éxito), se obtuvo en promedio: $7,753$
+\item Intervalo de confianza:
+  Desviación estándar: 0,739 \\
+  Promedio obtenido (X): 7,753\\
+  Intervalo: $ 7,707  \leq \mu \leq 7,799$ \\
 
+\item Con el número de fracasos promedio y numero de reinas insertadas promedio obtenemos que en promedio se insertan por intento (hasta obtener éxito) $119,660$ reinas.
+\item Gráfica que muestra comportamiento uniforme alrededor de 7 reinas insertadas en cada intento (fracaso-éxito)
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{reinas10.jpg}
+ % reinas10.jpg: 816x1056 pixel, 72dpi, 28.79x37.25 cm, bb=0 0 816 1056
+ \caption{Reinas promedio insertadas en cada intento. 10-Reinas}
+ \label{fig:rinas10}
+\end{figure}
+
+\item Promedio de posibles lugares para generar la posición aleatoria, el obtenido fue de: $3,846$
+\item Intervalo de confianza:
+  Desviación estándar: 0,166 \\
+  Promedio obtenido (X): 3,846\\
+  Intervalo: $ 3,836 \leq \mu \leq 3,856$ \\
+
+\item En la gráfica podemos observar cierta uniformidad respecto al número de espacios explorados en promedio para poder asignar una posición aleatoria a una reina. este número resulta
+bastante cercano al encontrado en el experimento con 8-Reinas.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{posibles10.jpg}
+ % posibles10.jpg: 665x386 pixel, 72dpi, 23.46x13.62 cm, bb=0 0 665 386
+ \caption{Promedio posibles lugares para asignar una posición aleatoria a una reina. 10-Reinas}
+ \label{fig:posibles10}
+\end{figure}
+
+\end{itemize}
+
+Realizando el experimento con 12-Reinas:
+
+\begin{itemize}
+ \item Probabilidad de éxito obtenida: $0,130\%$
+ \item Intervalo de confianza: \\
+  Desviación estándar: 0,212 \\
+  Promedio obtenido (X): 0,130\\
+  Intervalo: $ 0,117 \leq \mu \leq 0,143$ \\
+ \item Gráficos de probabilidades obtenidas en los 1000 intentos.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{probabilidad15.jpg}
+ % probabilidad15.jpg: 665x400 pixel, 72dpi, 23.46x14.11 cm, bb=0 0 665 400
+ \caption{Probablidades obtenidas en los 1000 intentos. 15-Reinas}
+ \label{fig:prob15}
+\end{figure}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{./probabilidadOrden15.jpg}
+ % probabilidadOrden15.jpg: 674x386 pixel, 72dpi, 23.78x13.62 cm, bb=0 0 674 386
+ \caption{Intentos ordenados por probabilidad obtenidad. 15-Reinas}
+ \label{fig:prob15Ord}
+\end{figure}
+
+\item Fracasos antes del éxito se obtuvo como promedio: $27,624$
+\item Máximo número de fracasos obtenidos: $313$
+\item Intervalo de confianza: \\
+  Desviación estándar: 29,955 \\
+  Promedio obtenido (X): 27,624\\
+  Intervalo: $ 25,767  \leq \mu \leq 29,481$ \\
+
+\item Gráficos de número de fracasos antes del éxito.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{fracasos15.jpg}
+ % fracasos10.jpg: 642x370 pixel, 72dpi, 22.65x13.05 cm, bb=0 0 642 370
+ \caption{Número de fracasos obtenidos en cada uno de los 1000 intentos antes de obtener el éxito. 15-Reinas}
+ \label{fig:fracasos15}
+\end{figure}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{fracasosOrd15.jpg}
+ % fracasosOrd10.jpg: 665x361 pixel, 72dpi, 23.46x12.74 cm, bb=0 0 665 361
+ \caption{Intentos ordenados por el número de fracasos obtenidos antes del éxito. 15-Reinas}
+ \label{fig:fracasos15Ord}
+\end{figure}
+
+\item Número de reinas insertadas en cada intento (fracaso-éxito), se obtuvo en promedio: $11,814$
+\item Intervalo de confianza:
+  Desviación estándar: 0,846 \\
+  Promedio obtenido (X): 11,814\\
+  Intervalo: $ 11,762  \leq \mu \leq 11,866$ \\
+
+\item Con el número de fracasos promedio y numero de reinas insertadas promedio obtenemos que en promedio se insertan por intento (hasta obtener éxito) $326,350$ reinas.
+\item Gráfica que muestra comportamiento uniforme alrededor de 11 reinas insertadas en cada intento (fracaso-éxito)
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{reinas15.jpg}
+ % reinas10.jpg: 816x1056 pixel, 72dpi, 28.79x37.25 cm, bb=0 0 816 1056
+ \caption{Reinas promedio insertadas en cada intento. 15-Reinas}
+ \label{fig:rinas10}
+\end{figure}
+
+\item Promedio de posibles lugares para generar la posición aleatoria, el obtenido fue de: $5,564$
+\item Intervalo de confianza:
+  Desviación estándar: 0,226 \\
+  Promedio obtenido (X): 5,564\\
+  Intervalo: $ 5,550 \leq \mu \leq 5,578$ \\
+
+\item En la gráfica podemos observar cierta uniformidad respecto al número de espacios explorados en promedio para poder asignar una posición aleatoria a una reina.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.5]{posibles15.jpg}
+ % posibles10.jpg: 665x386 pixel, 72dpi, 23.46x13.62 cm, bb=0 0 665 386
+ \caption{Promedio posibles lugares para asignar una posición aleatoria a una reina. 15-Reinas}
+ \label{fig:posibles10}
+\end{figure}
 
 \end{itemize}
 
 
+\textbf{Conclusiones}\\
 
-Realizando el experimento con 12-Reinas:
-
+\begin{itemize}
+ \item 
+\end{itemize}
 
 
 

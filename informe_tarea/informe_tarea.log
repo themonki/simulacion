@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.6.9)  15 DEC 2012 17:15
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.6.9)  15 DEC 2012 18:32
 entering extended mode
  %&-line parsing enabled.
 **informe_tarea.tex
@@ -67,7 +67,14 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(./informe_tarea.aux)
+(./informe_tarea.aux
+
+LaTeX Warning: Label `fig:rinas10' multiply defined.
+
+
+LaTeX Warning: Label `fig:posibles10' multiply defined.
+
+)
 \openout1 = `informe_tarea.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -124,43 +131,29 @@ File: promedios.jpg Graphic file (type jpg)
 <probabilidadOrdenadas.jpg, id=2, 628.3475pt x 355.3275pt>
 File: probabilidadOrdenadas.jpg Graphic file (type jpg)
 
-<use probabilidadOrdenadas.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./promedios.jpg>]
-<fracasos.jpg, id=13, 644.4075pt x 370.38374pt>
+<use probabilidadOrdenadas.jpg> <fracasos.jpg, id=3, 644.4075pt x 370.38374pt>
 File: fracasos.jpg Graphic file (type jpg)
- <use fracasos.jpg>
-<fracasosOrden.jpg, id=14, 644.4075pt x 394.47375pt>
+
+<use fracasos.jpg> <fracasosOrden.jpg, id=4, 644.4075pt x 394.47375pt>
 File: fracasosOrden.jpg Graphic file (type jpg)
- <use fracasosOrden.jpg>
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<reinaspromedio.jpg, id=15, 659.46375pt x 366.36874pt>
+<use fracasosOrden.jpg> <reinaspromedio.jpg, id=5, 659.46375pt x 366.36874pt>
 File: reinaspromedio.jpg Graphic file (type jpg)
 
 <use reinaspromedio.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./probabilidadOrdenadas.jpg> <./fracasos.jpg>]
-<promediosposibles.jpg, id=19, 644.4075pt x 371.3875pt>
+<promediosposibles.jpg, id=6, 644.4075pt x 371.3875pt>
 File: promediosposibles.jpg Graphic file (type jpg)
 
 <use promediosposibles.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
+[1
 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./promedios.jpg> <./pr
+obabilidadOrdenadas.jpg>] [3 <./fracasos.jpg> <./fracasosOrden.jpg>] [4 <./rein
+aspromedio.jpg> <./promediosposibles.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 85--87
 
  []
@@ -185,7 +178,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--99
 
  []
 
-[3 <./fracasosOrden.jpg>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 100--101
 
  []
@@ -210,83 +203,113 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--123
 
  []
 
-<probabilidad10.jpg, id=28, 644.4075pt x 362.35374pt>
+<probabilidad10.jpg, id=26, 644.4075pt x 362.35374pt>
 File: probabilidad10.jpg Graphic file (type jpg)
  <use probabilidad10.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<probabilidadOrden10.jpg, id=29, 667.49374pt x 403.5075pt>
+<probabilidadOrden10.jpg, id=27, 667.49374pt x 403.5075pt>
 File: probabilidadOrden10.jpg Graphic file (type jpg)
 
-<use probabilidadOrden10.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
+<use probabilidadOrden10.jpg> [5] [6 <./probabilidad10.jpg> <./probabilidadOrde
+n10.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 143--147
 
  []
 
-[4 <./reinaspromedio.jpg>] <fracasos10.jpg, id=33, 644.4075pt x 371.3875pt>
+<fracasos10.jpg, id=39, 644.4075pt x 371.3875pt>
 File: fracasos10.jpg Graphic file (type jpg)
-
-<use fracasos10.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<fracasosOrd10.jpg, id=34, 667.49374pt x 362.35374pt>
+ <use fracasos10.jpg>
+<fracasosOrd10.jpg, id=40, 667.49374pt x 362.35374pt>
 File: fracasosOrd10.jpg Graphic file (type jpg)
  <use fracasosOrd10.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 167--171
 
  []
 
-<reinas10.jpg, id=35, 667.49374pt x 371.3875pt>
+<reinas10.jpg, id=41, 667.49374pt x 371.3875pt>
 File: reinas10.jpg Graphic file (type jpg)
  <use reinas10.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 184--188
 
  []
 
-<posibles10.jpg, id=36, 667.49374pt x 387.4475pt>
+[7 <./fracasos10.jpg>] [8 <./fracasosOrd10.jpg> <./reinas10.jpg>]
+<posibles10.jpg, id=49, 667.49374pt x 387.4475pt>
 File: posibles10.jpg Graphic file (type jpg)
- <use posibles10.jpg> [5 <./promediosposibles.jpg>]
+ <use posibles10.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 206--210
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
-[6 <./probabilidad10.jpg>] [7 <./probabilidadOrden10.jpg> <./fracasos10.jpg>]
-[8 <./fracasosOrd10.jpg> <./reinas10.jpg>] [9 <./posibles10.jpg>]
-(./informe_tarea.aux) ) 
+<probabilidad15.jpg, id=50, 667.49374pt x 401.5pt>
+File: probabilidad15.jpg Graphic file (type jpg)
+ <use probabilidad15.jpg>
+<./probabilidadOrden15.jpg, id=51, 676.5275pt x 387.4475pt>
+File: ./probabilidadOrden15.jpg Graphic file (type jpg)
+
+<use ./probabilidadOrden15.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 230--234
+
+ []
+
+<fracasos15.jpg, id=52, 651.43375pt x 382.42876pt>
+File: fracasos15.jpg Graphic file (type jpg)
+ <use fracasos15.jpg>
+<fracasosOrd15.jpg, id=53, 644.4075pt x 382.42876pt>
+File: fracasosOrd15.jpg Graphic file (type jpg)
+ <use fracasosOrd15.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 254--258
+
+ []
+
+[9 <./posibles10.jpg>] [10 <./probabilidad15.jpg> <./probabilidadOrden15.jpg>]
+[11 <./fracasos15.jpg> <./fracasosOrd15.jpg>]
+<reinas15.jpg, id=63, 667.49374pt x 362.35374pt>
+File: reinas15.jpg Graphic file (type jpg)
+ <use reinas15.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 271--275
+
+ []
+
+<posibles15.jpg, id=64, 667.49374pt x 362.35374pt>
+File: posibles15.jpg Graphic file (type jpg)
+ <use posibles15.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+
+ []
+
+[12 <./reinas15.jpg>]
+Overfull \hbox (3.75061pt too wide) in paragraph at lines 297--299
+\OT1/cmr/m/n/10 specto a en-con-trar una soluci^^Son ^^Soptima sin em-bargo par
+a en-tradas peque~nas
+ []
+
+[13 <./posibles15.jpg>] (./informe_tarea.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 1758 strings out of 495061
- 23182 string characters out of 1182622
- 78109 words of memory out of 3000000
- 4949 multiletter control sequences out of 15000+50000
- 7280 words of font info for 26 fonts, out of 3000000 for 9000
+ 1794 strings out of 495061
+ 23877 string characters out of 1182622
+ 79190 words of memory out of 3000000
+ 4978 multiletter control sequences out of 15000+50000
+ 7588 words of font info for 27 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  25i,8n,20p,334b,587s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on informe_tarea.pdf (9 pages, 487964 bytes).
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb>
+Output written on informe_tarea.pdf (13 pages, 672284 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
+ 111 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
