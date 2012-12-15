@@ -33,7 +33,7 @@ public class Fermat_extendido {
 		
 		if (Math.pow(x,t)%number==1) return true;
 		else {
-			for (int i=0;i<=s;i++){
+			for (int i=0;i<s;i++){
 				
 				if(Math.pow(x,Math.pow(2,i)*t)%number == number-1   ) return true;
 				
