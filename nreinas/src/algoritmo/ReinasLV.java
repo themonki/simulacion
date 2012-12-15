@@ -186,7 +186,7 @@ public class ReinasLV {
 		float probabilidadprom=0;
 		for(int i=0; i<1000; i++)
 		{
-			ReinasLV r = new ReinasLV(8, 10);
+			ReinasLV r = new ReinasLV(15, 10);
 			r.starReinasLV();
 			promediosAl.add(r.getAleatorios());
 			float ale=0;
@@ -207,12 +207,12 @@ public class ReinasLV {
 		}
 		probabilidadprom /=1000; 
 		//System.out.println(fracasos);
-		//System.out.println(fracasosNum);
-		//System.out.println(promedioReinas);
-		//System.out.println(probabilidades);
-		System.out.println(promediosAl);
-		System.out.println(probabilidadprom);
+		System.out.println(fracasosNum);
+		System.out.println(promedioReinas);
+		System.out.println(probabilidades);
+		//System.out.println(promediosAl);
 		System.out.println(promedioAleatorio);
+		System.out.println(probabilidadprom);
 		
 		System.out.println();
 		
