@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Vector;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -192,6 +193,52 @@ import javax.swing.*;
          }  // fin de la clase interna
  
       ); // fin de la llamada a SwingUtilities.invokeLater
+   }
+   
+   
+   public void cifrado (){
+	   Fermat_extendido fermat = new Fermat_extendido();
+	   fermat.buscarPrimoGrande();
+	   long primo1=fermat.getPrimo1();
+	   long primo2=fermat.getPrimo2();
+	   
+	  long z= primo1*primo2;// mandar
+	   
+	  long f= (primo1-1)*(primo2-2);
+	  
+	  
+	  Vector<Long>  ns= determinarS(z,f);
+	  
+	  if (ns==null) return;
+	  long n = ns.get(0);// mandar 
+	  long s= ns.get(1);
+   }
+   
+   public Vector<Long> determinarS(long z,long f ){
+	   
+	   
+	   Generador generador= new Generador(1245);
+	   
+	   for (int i=0;i<5000;i++){
+		   long n= generador.aleatorio(z);
+		   long s= generador.aleatorio(z);
+		   
+		   if ((n*s) % f  == 1 ) {
+			   
+			   Vector<Long> r= new Vector<Long>(); 
+			   r.add(n);
+			   r.add(s);
+			   return r;
+			   
+		   } 
+		   
+		   
+	   }
+	   
+	   return null ;
+	   
+	   
+	   
    }
  
    public static void main( String args[] )

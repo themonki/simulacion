@@ -1,14 +1,21 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.6.9)  15 DEC 2012 18:32
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.10.10)  16 DEC 2012 04:50
 entering extended mode
- %&-line parsing enabled.
 **informe_tarea.tex
-(./informe_tarea.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+(C:\Users\Felipe\.ssh\simulacion\informe_tarea\informe_tarea.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -23,293 +30,32 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(/usr/share/texmf-texlive/tex/latex/ucs/utf8x.def
-File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
-))
-(/usr/share/texmf-texlive/tex/latex/ucs/ucs.sty
-Package: ucs 2004/10/17 UCS: Unicode input support
 
-(/usr/share/texmf-texlive/tex/latex/ucs/data/uni-global.def
-File: uni-global.def 2004/10/17 UCS: Unicode global data
-)
-\uc@secondtry=\count87
-\uc@combtoks=\toks16
-\uc@combtoksb=\toks17
-\uc@temptokena=\toks18
-)
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+! LaTeX Error: File `utf8x.def' not found.
 
-(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks19
-)
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: def)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
-)
-(/etc/texmf/tex/latex/config/graphics.cfg
-File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
-)
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.131 \endinput
+               
+*** (cannot \read from terminal in nonstop modes)
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count88
-))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
-)
-(./informe_tarea.aux
-
-LaTeX Warning: Label `fig:rinas10' multiply defined.
-
-
-LaTeX Warning: Label `fig:posibles10' multiply defined.
-
-)
-\openout1 = `informe_tarea.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
- (/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def
-File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
-)
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count89
-\scratchdimen=\dimen105
-\scratchbox=\box26
-\nofMPsegments=\count90
-\nofMParguments=\count91
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count92
-\MPscratchDim=\dimen106
-\MPnumerator=\count93
-\everyMPtoPDFconversion=\toks21
-) (/usr/share/texmf-texlive/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2004/10/17 UCS: Unicode data U+0000..U+00FF
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 11.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 11.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 11.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 17.
-
-(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 17.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 17.
-
-<promedios.jpg, id=1, 644.4075pt x 371.3875pt>
-File: promedios.jpg Graphic file (type jpg)
- <use promedios.jpg>
-<probabilidadOrdenadas.jpg, id=2, 628.3475pt x 355.3275pt>
-File: probabilidadOrdenadas.jpg Graphic file (type jpg)
-
-<use probabilidadOrdenadas.jpg> <fracasos.jpg, id=3, 644.4075pt x 370.38374pt>
-File: fracasos.jpg Graphic file (type jpg)
-
-<use fracasos.jpg> <fracasosOrden.jpg, id=4, 644.4075pt x 394.47375pt>
-File: fracasosOrden.jpg Graphic file (type jpg)
-
-<use fracasosOrden.jpg> <reinaspromedio.jpg, id=5, 659.46375pt x 366.36874pt>
-File: reinaspromedio.jpg Graphic file (type jpg)
-
-<use reinaspromedio.jpg>
-<promediosposibles.jpg, id=6, 644.4075pt x 371.3875pt>
-File: promediosposibles.jpg Graphic file (type jpg)
-
-<use promediosposibles.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
-
- []
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./promedios.jpg> <./pr
-obabilidadOrdenadas.jpg>] [3 <./fracasos.jpg> <./fracasosOrden.jpg>] [4 <./rein
-aspromedio.jpg> <./promediosposibles.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 85--87
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--93
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 94--95
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 96--99
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--105
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 108--111
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 119--123
-
- []
-
-<probabilidad10.jpg, id=26, 644.4075pt x 362.35374pt>
-File: probabilidad10.jpg Graphic file (type jpg)
- <use probabilidad10.jpg>
-<probabilidadOrden10.jpg, id=27, 667.49374pt x 403.5075pt>
-File: probabilidadOrden10.jpg Graphic file (type jpg)
-
-<use probabilidadOrden10.jpg> [5] [6 <./probabilidad10.jpg> <./probabilidadOrde
-n10.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 143--147
-
- []
-
-<fracasos10.jpg, id=39, 644.4075pt x 371.3875pt>
-File: fracasos10.jpg Graphic file (type jpg)
- <use fracasos10.jpg>
-<fracasosOrd10.jpg, id=40, 667.49374pt x 362.35374pt>
-File: fracasosOrd10.jpg Graphic file (type jpg)
- <use fracasosOrd10.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 167--171
-
- []
-
-<reinas10.jpg, id=41, 667.49374pt x 371.3875pt>
-File: reinas10.jpg Graphic file (type jpg)
- <use reinas10.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 184--188
-
- []
-
-[7 <./fracasos10.jpg>] [8 <./fracasosOrd10.jpg> <./reinas10.jpg>]
-<posibles10.jpg, id=49, 667.49374pt x 387.4475pt>
-File: posibles10.jpg Graphic file (type jpg)
- <use posibles10.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 206--210
-
- []
-
-<probabilidad15.jpg, id=50, 667.49374pt x 401.5pt>
-File: probabilidad15.jpg Graphic file (type jpg)
- <use probabilidad15.jpg>
-<./probabilidadOrden15.jpg, id=51, 676.5275pt x 387.4475pt>
-File: ./probabilidadOrden15.jpg Graphic file (type jpg)
-
-<use ./probabilidadOrden15.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 230--234
-
- []
-
-<fracasos15.jpg, id=52, 651.43375pt x 382.42876pt>
-File: fracasos15.jpg Graphic file (type jpg)
- <use fracasos15.jpg>
-<fracasosOrd15.jpg, id=53, 644.4075pt x 382.42876pt>
-File: fracasosOrd15.jpg Graphic file (type jpg)
- <use fracasosOrd15.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 254--258
-
- []
-
-[9 <./posibles10.jpg>] [10 <./probabilidad15.jpg> <./probabilidadOrden15.jpg>]
-[11 <./fracasos15.jpg> <./fracasosOrd15.jpg>]
-<reinas15.jpg, id=63, 667.49374pt x 362.35374pt>
-File: reinas15.jpg Graphic file (type jpg)
- <use reinas15.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 271--275
-
- []
-
-<posibles15.jpg, id=64, 667.49374pt x 362.35374pt>
-File: posibles15.jpg Graphic file (type jpg)
- <use posibles15.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 289--290
-
- []
-
-[12 <./reinas15.jpg>]
-Overfull \hbox (3.75061pt too wide) in paragraph at lines 297--299
-\OT1/cmr/m/n/10 specto a en-con-trar una soluci^^Son ^^Soptima sin em-bargo par
-a en-tradas peque~nas
- []
-
-[13 <./posibles15.jpg>] (./informe_tarea.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+ 
 Here is how much of TeX's memory you used:
- 1794 strings out of 495061
- 23877 string characters out of 1182622
- 79190 words of memory out of 3000000
- 4978 multiletter control sequences out of 15000+50000
- 7588 words of font info for 27 fonts, out of 3000000 for 9000
- 28 hyphenation exceptions out of 8191
- 25i,8n,20p,334b,587s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmsy7.pfb>
-Output written on informe_tarea.pdf (13 pages, 672284 bytes).
-PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 219 strings out of 494045
+ 2577 string characters out of 3148383
+ 48890 words of memory out of 3000000
+ 3598 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 23i,0n,19p,173b,36s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

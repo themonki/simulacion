@@ -21,6 +21,14 @@ public class Generador {
 		
 	}
 	
+	
+	public long aleatorioMillon(){
+		long r;
+		r = (long) (Math.floor(random.nextDouble()*(1000000)+1000001));// mirar si esta bien 
+		return r;
+		
+	}
+	
 
 	
 	public static void main(String [] args )
