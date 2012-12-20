@@ -137,7 +137,7 @@ class Servidor extends JFrame {
             mensaje = ( String ) entrada.readObject();
            
             
-            System.out.println("mensaje :: server   "+mensaje);
+           //System.out.println("mensaje :: server   "+mensaje);
             if(mensaje.equals("mandame")){
             	
             	Encriptacion encriptar = new Encriptacion(7);
@@ -157,7 +157,7 @@ class Servidor extends JFrame {
             	
             	//c^s mod z
             	
-            	System.out.println("Ultima fase");
+            	//System.out.println("Ultima fase");
             	
             	
             	

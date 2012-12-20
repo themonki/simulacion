@@ -129,10 +129,10 @@ public Cliente( String host )
          try {
             mensaje = ( String ) entrada.readObject();
             
-            System.out.println("recibido"+mensaje);
+           
             if(s_f_recibido==1){
             	
-            System.out.println("recibido    N "+mensaje);
+            
             n=Long.parseLong(mensaje);
             
             s_f_recibido++;
@@ -141,14 +141,14 @@ public Cliente( String host )
             	
             	z=Long.parseLong(mensaje);
             	
-            	 System.out.println("recibido   f  "+mensaje);
+            	 
             	 
             	 
             	 long a= mensaje_envio.hashCode();
             	 
             	 //c= a^n mod z
             	 
-            	 System.out.println("c cliente "+a  +"  z::"+z +"n::" +n );
+            	 System.out.println(" cliente recibe mensaje ASCII:: "+a  +"  z:: "+z +"  n::" +n );
           
             	 BigInteger aBig= new BigInteger(""+a);
             	 BigInteger nBig= new BigInteger(""+n);
@@ -160,6 +160,8 @@ public Cliente( String host )
             	 System.out.println("nunca pase eee" +c);
             	 //salida.writeObject("");
                  //salida.flush();
+            	 
+            	
             	 
             	 
             	 s_f_recibido=0;
@@ -207,6 +209,8 @@ public Cliente( String host )
          salida.writeObject( "mandame");
          salida.flush();
          s_f_recibido++;
+         
+         System.out.println("cliente:: pide a servidor las claves z y n");
          
     	 }
     	 
@@ -306,6 +310,16 @@ public Cliente( String host )
  
       aplicacion.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
       aplicacion.ejecutarCliente();
+      
+     
+     /* BigInteger a= BigInteger.valueOf(97);
+
+      BigInteger b= new BigInteger ("3141353429817");
+      
+
+      BigInteger c= new BigInteger ("3291240128983");
+      
+      aplicacion.calcularPotenciaModular(a, b, c);*/
    }
    
    public  BigInteger calcularPotenciaModular(BigInteger base, BigInteger exponente, BigInteger modulo){
@@ -314,7 +328,7 @@ public Cliente( String host )
 	   BigInteger resultado= new BigInteger("1");
 	   
 	   BigInteger resta= BigInteger.valueOf(1);
-	   BigInteger cero= BigInteger.valueOf(1);
+	   BigInteger cero= BigInteger.valueOf(0);
 		  
 		
 		for(; !exponente.equals(cero); exponente=exponente.subtract(resta)){
@@ -327,7 +341,7 @@ public Cliente( String host )
 
 		} 
 		
-		System.out.println("acabe");
+		System.out.println("acabe"+resultado);
 		
 		
 
