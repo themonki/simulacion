@@ -133,8 +133,12 @@ public class Fermat_extendido {
 		long resultado = 1;
 		for(int i = 1; i<=exponente; i++){
 			resultado = (resultado*base)%modulo;
+			
+			
 
 		} 
+		
+		
 
 		return resultado;
 	}
@@ -221,10 +225,11 @@ public class Fermat_extendido {
 		Integer [] a= { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89 , 97};
 
 		//for (int i=0;i<10;i++)primo 11906481 primo21726343
-		System.out.println(ferma.MillerRabinPrimalityTest(0.001, 1726343 ));
+		//
+		//c cliente 97  z::3291240128983n::695565083571System.out.println(ferma.MillerRabinPrimalityTest(0.001, 1726343 ));
 
 
-		ferma.buscarPrimoGrande();
+		
 
 
 	}

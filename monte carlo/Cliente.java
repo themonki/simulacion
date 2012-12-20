@@ -1,4 +1,5 @@
 import java.io.*;
+import java.math.BigInteger;
 import java.net.*;
 import java.util.Vector;
 import java.awt.*;
@@ -11,12 +12,15 @@ import javax.swing.*;
    private ObjectOutputStream salida;
    private ObjectInputStream entrada;
    private String mensaje = "";
+   private String mensaje_envio="";
    private String servidorChat;
    private Socket cliente;
+   
+   int s_f_recibido;
 
    long n ;// n de la formula de encriptar 
    
-   long f; // f de la formula de encriptacion 
+   long z; // f de la formula de encriptacion 
    
    private Encriptacion encripta;
   
@@ -124,6 +128,43 @@ public Cliente( String host )
          // leer mensaje y mostrarlo en pantalla
          try {
             mensaje = ( String ) entrada.readObject();
+            
+            System.out.println("recibido"+mensaje);
+            if(s_f_recibido==1){
+            	
+            System.out.println("recibido    N "+mensaje);
+            n=Long.parseLong(mensaje);
+            
+            s_f_recibido++;
+            }
+            else if(s_f_recibido==2 ){
+            	
+            	z=Long.parseLong(mensaje);
+            	
+            	 System.out.println("recibido   f  "+mensaje);
+            	 
+            	 
+            	 long a= mensaje_envio.hashCode();
+            	 
+            	 //c= a^n mod z
+            	 
+            	 System.out.println("c cliente "+a  +"  z::"+z +"n::" +n );
+          
+            	 BigInteger aBig= new BigInteger(""+a);
+            	 BigInteger nBig= new BigInteger(""+n);
+            	 BigInteger zBig= new BigInteger(""+z);
+            	 
+            	 
+            	 BigInteger  c= calcularPotenciaModular(aBig, nBig, zBig);
+            	 
+            	 System.out.println("nunca pase eee" +c);
+            	 //salida.writeObject("");
+                 //salida.flush();
+            	 
+            	 
+            	 s_f_recibido=0;
+            }
+            
             mostrarMensaje( "\n" + mensaje );
          }
  
@@ -158,12 +199,20 @@ public Cliente( String host )
       // enviar objeto al servidor
       try {
     	  
-    	  encripta= new Encriptacion(7);
     	  
-    	  
-    	 long codigo=  encripta(mensaje+"-"+encripta.getN()+"-"+encripta.getZ()); 
-         salida.writeObject( "" + codigo );
+    	 
+    	 mensaje_envio=mensaje;
+    	 
+    	 if(s_f_recibido==0){
+         salida.writeObject( "mandame");
          salida.flush();
+         s_f_recibido++;
+         
+    	 }
+    	 
+         
+         
+         
          mostrarMensaje( "\nCLIENTE>>> " + mensaje );
       }
  
@@ -258,5 +307,31 @@ public Cliente( String host )
       aplicacion.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
       aplicacion.ejecutarCliente();
    }
+   
+   public  BigInteger calcularPotenciaModular(BigInteger base, BigInteger exponente, BigInteger modulo){
+
+
+	   BigInteger resultado= new BigInteger("1");
+	   
+	   BigInteger resta= BigInteger.valueOf(1);
+	   BigInteger cero= BigInteger.valueOf(1);
+		  
+		
+		for(; !exponente.equals(cero); exponente=exponente.subtract(resta)){
+			
+			resultado = (resultado.multiply(base)).mod(modulo) ;
+			
+			
+			
+			
+
+		} 
+		
+		System.out.println("acabe");
+		
+		
+
+		return resultado;
+	}
  
 } // fin de la clase Cliente

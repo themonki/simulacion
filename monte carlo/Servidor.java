@@ -135,7 +135,36 @@ class Servidor extends JFrame {
          // leer el mensaje y mostrarlo en pantalla
          try {
             mensaje = ( String ) entrada.readObject();
-            System.out.println(mensaje);
+           
+            
+            System.out.println("mensaje :: server   "+mensaje);
+            if(mensaje.equals("mandame")){
+            	
+            	Encriptacion encriptar = new Encriptacion(7);
+            	 salida.writeObject(""+encriptar.getN());
+                 salida.flush();
+                 
+                 salida.writeObject(""+encriptar.getZ());
+                 salida.flush();
+                 
+                
+            	
+            	
+            }
+            
+            else {
+            	long c= Long.parseLong(mensaje);
+            	
+            	//c^s mod z
+            	
+            	System.out.println("Ultima fase");
+            	
+            	
+            	
+            }
+            
+            
+            
             mostrarMensaje( "\n" + mensaje );
          }
  

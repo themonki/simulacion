@@ -37,9 +37,7 @@ public class Encriptacion {
         //p=3;
         //q=2;
         z = p*q;
-        System.out.println("valor de p::"+p);
-        System.out.println("valor de q::"+q);
-        System.out.println("valor de z::"+z);
+       
         
         //1 906 481 * 1 726 343 = 3 291 240 128 983
         // 3 291 240 128 983 
@@ -59,7 +57,7 @@ public class Encriptacion {
         
        
         do {
-        	 rand = new BigInteger(21, new Random());// 2^21 es algo mas que dos millones
+        	 rand = new BigInteger(42, new Random());// 2^42 es algo mas que dos millones por dos millones lo cual es z
         	
         	
         	 //System.out.println("compare::"+(rand.compareTo(fBigInt)));
@@ -77,9 +75,7 @@ public class Encriptacion {
         s=sBigInt.longValue();
         
         
-        System.out.println("valor de s::"+s);
-        System.out.println("valor de f::"+f);
-        System.out.println("valor de n::"+n);
+      
         
         
         
