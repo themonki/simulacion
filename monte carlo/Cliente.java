@@ -13,9 +13,20 @@ import javax.swing.*;
    private String mensaje = "";
    private String servidorChat;
    private Socket cliente;
+
+   long n ;// n de la formula de encriptar 
+   
+   long f; // f de la formula de encriptacion 
+   
+   private Encriptacion encripta;
+  
  
    // inicializar servidorChat y configurar GUI
-   public Cliente( String host )
+   public void setEncripta(Encriptacion encripta) {
+	this.encripta = encripta;
+}
+
+public Cliente( String host )
    {
       super( "Cliente" );
  
@@ -51,7 +62,7 @@ import javax.swing.*;
    } // fin del constructor de Cliente
  
    // conectarse al servidor y procesar mensajes del servidor
-   private void ejecutarCliente()
+   public void ejecutarCliente()
    {
       // conectarse al servidor, obtener flujos, procesar la conexión
       try {
@@ -146,7 +157,12 @@ import javax.swing.*;
    {
       // enviar objeto al servidor
       try {
-         salida.writeObject( "CLIENTE>>> " + mensaje );
+    	  
+    	  encripta= new Encriptacion(7);
+    	  
+    	  
+    	 long codigo=  encripta(mensaje+"-"+encripta.getN()+"-"+encripta.getZ()); 
+         salida.writeObject( "" + codigo );
          salida.flush();
          mostrarMensaje( "\nCLIENTE>>> " + mensaje );
       }
@@ -196,54 +212,42 @@ import javax.swing.*;
    }
    
    
-   public void cifrado (){
-	   Fermat_extendido fermat = new Fermat_extendido();
-	   fermat.buscarPrimoGrande();
-	   long primo1=fermat.getPrimo1();
-	   long primo2=fermat.getPrimo2();
-	   
-	  long z= primo1*primo2;// mandar
-	   
-	  long f= (primo1-1)*(primo2-2);
-	  
-	  
-	  Vector<Long>  ns= determinarS(z,f);
-	  
-	  if (ns==null) return;
-	  long n = ns.get(0);// mandar 
-	  long s= ns.get(1);
-   }
    
-   public Vector<Long> determinarS(long z,long f ){
+   
+   
+   
+   public long encripta(String mensaje)
+   {
+   	
+	   Fermat_extendido fermat_extendido = new Fermat_extendido();
+   	
+	   long hash = mensaje.hashCode();
+	   
+	   //long codigo = fermat_extendido.calcularPotenciaModular(hash, n, z);
 	   
 	   
-	   Generador generador= new Generador(1245);
-	   
-	   for (int i=0;i<5000;i++){
-		   long n= generador.aleatorio(z);
-		   long s= generador.aleatorio(z);
-		   
-		   if ((n*s) % f  == 1 ) {
-			   
-			   Vector<Long> r= new Vector<Long>(); 
-			   r.add(n);
-			   r.add(s);
-			   return r;
-			   
-		   } 
-		   
-		   
-	   }
-	   
-	   return null ;
-	   
-	   
-	   
+      /* int i;
+       byte[] temp = new byte[1];
+       byte[] digitos = mensaje.getBytes();
+       BigInteger[] bigdigitos = new BigInteger[digitos.length];
+       
+       for(i=0; i<bigdigitos.length;i++){
+           temp[0] = digitos[i];
+           bigdigitos[i] = new BigInteger(temp);
+       }
+       
+       BigInteger[] encriptado = new BigInteger[bigdigitos.length];
+       
+       for(i=0; i<bigdigitos.length; i++)
+           encriptado[i] = bigdigitos[i].modPow(n,z);
+       
+       return(encriptado);*/
+   	return 1;
    }
  
    public static void main( String args[] )
    {
-      JFrame.setDefaultLookAndFeelDecorated(true);
+      //JFrame.setDefaultLookAndFeelDecorated(true);
       Cliente aplicacion;
  
       if ( args.length == 0 )

@@ -14,14 +14,25 @@ class Servidor extends JFrame {
    private ServerSocket servidor;
    private Socket conexion;
    private int contador = 1;
+   Encriptacion encrip;
+   
+   
+   long n ;// n de la formula de encriptar 
+   
+   long f; // f de la formula de encriptacion 
  
-   // configurar GUI
+   public void setEncrip(Encriptacion encrip) {
+	this.encrip = encrip;
+}
+
+// configurar GUI
    public Servidor()
    {
       super( "Servidor" );
  
       Container contenedor = getContentPane();
  
+      encrip= new Encriptacion(7);// genra claves busca primos grandes 
     
       campoIntroducir = new JTextField();
       campoIntroducir.setEditable( false );
@@ -124,6 +135,7 @@ class Servidor extends JFrame {
          // leer el mensaje y mostrarlo en pantalla
          try {
             mensaje = ( String ) entrada.readObject();
+            System.out.println(mensaje);
             mostrarMensaje( "\n" + mensaje );
          }
  
@@ -157,6 +169,8 @@ class Servidor extends JFrame {
    {
       // enviar objeto al cliente
       try {
+    	  
+    	  
          salida.writeObject( "SERVIDOR>>> " + mensaje );
          salida.flush();
          mostrarMensaje( "\nSERVIDOR>>> " + mensaje );
@@ -208,7 +222,7 @@ class Servidor extends JFrame {
  
    public static void main( String args[] )
    {
-      JFrame.setDefaultLookAndFeelDecorated(true);
+      //JFrame.setDefaultLookAndFeelDecorated(true);
       Servidor aplicacion = new Servidor();
       aplicacion.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
       aplicacion.ejecutarServidor();
